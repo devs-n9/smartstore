@@ -1,6 +1,19 @@
-
-@extends('layouts.layout')
+@extends('layouts.index')
 
 @section('content')
-    <p>This is Default content.</p>
+
+@include('includes.main_slider')
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <br>
+                <p>This is Default content!</p>
+                <br>
+            </div>
+        </div>
+    </div>
+</section>
+
 @endsection

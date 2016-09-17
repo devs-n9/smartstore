@@ -1,3 +1,11 @@
-@extends('layouts.dashboard') @section('content')
+@extends('layouts.dashboard')
 
-<h1>Default dashboard content</h1> @endsection
+@section('content')
+
+<span>
+
+    awdawdawdawd
+
+</span>
+
+@endsection

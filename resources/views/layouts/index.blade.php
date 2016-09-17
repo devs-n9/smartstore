@@ -89,7 +89,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#"><img src="{{ asset('assets/images/logo-dark.png') }}" alt="logo"></a>
+                        <a class="navbar-brand" href="/"><img src="{{ asset('assets/images/logo-dark.png') }}" alt="logo"></a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
@@ -270,8 +270,7 @@
                                     </div><!--cart-items-->
 
                                     <div class="cart-footer">
-                                        <a href="#" class="btn btn-light-dark"> View Cart</a>
-                                        <a href="#" class="btn btn-skin"> Checkout</a>
+                                        <a href="/cart" class="btn btn-light-dark"> View Cart</a>
                                     </div><!--footer of cart-->
 
 

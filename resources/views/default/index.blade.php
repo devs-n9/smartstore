@@ -2,5 +2,5 @@
 @extends('layouts.layout')
 
 @section('content')
-    <p>This is Default content.</p>
+    <p>This is Default content</p>
 @endsection

@@ -62,6 +62,12 @@
 										<li><a href="index3.html">Dashboard3</a></li>
 									</ul>
 								</li>
+								<li><a><i class="fa fa-cube"></i> Products <span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="/dashboard/products/all">Show products</a></li>
+										<li><a href="/dashboard/product/add">Add product</a></li>
+									</ul>
+								</li>
 							</ul>
 						</div>
 

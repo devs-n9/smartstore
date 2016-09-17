@@ -17,4 +17,9 @@ class Products extends Model
     {
         return $query->orderBy('rating')->limit(10)->get();
     }
+
+    public function category()
+    {
+        return $this->hasOne('App\Models\Categories', 'category_id');
+    }
 }

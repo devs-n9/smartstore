@@ -20,4 +20,9 @@ class ProductsController extends Controller
     {
         return response()->json(Products::getTop10());
     }
+    public function test()
+    {
+        $products = Products::all();
+        return response()->json(dump($products));
+    }
 }

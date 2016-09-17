@@ -20,6 +20,6 @@ class Products extends Model
 
     public function category()
     {
-        return $this->hasOne('App\Models\Categories', 'category_id');
+        return $this->hasOne('App\Models\Categories', 'id', 'category_id');
     }
 }

@@ -11,7 +11,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProductsController extends Controller
 {
-    public function getAllProducts(){
-                return response()->json(Products::AllProducts()->get());
+    public function getAllProducts()
+    {
+        return response()->json(Products::AllProducts());
+    }
+
+    public function getTop10()
+    {
+        return response()->json(Products::getTop10());
     }
 }

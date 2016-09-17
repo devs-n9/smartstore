@@ -11,4 +11,7 @@
 |
 */
 
-Route::get('/', "DefaultController@index");
+Route::get('/', 'DefaultController@index');
+
+Route::get('/dashboard', 'Dashboard\DashboardController@index');
+

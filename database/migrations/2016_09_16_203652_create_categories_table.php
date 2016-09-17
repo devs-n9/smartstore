@@ -3,18 +3,19 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCitiesTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     public function up()
     {
-       Schema::create('cities', function (Blueprint $table) {
+       Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cities'); 
+            $table->string('categories')->unique();
+        });
     }
 
     
     public function down()
     {
-        Schema::drop('cities');
+        Schema::drop('categories');
     }
 }

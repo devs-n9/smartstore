@@ -350,7 +350,9 @@
 	<script>
 		$(document).ready(function () {
 
-            $('#datatable-fixed-header').DataTable();
+            $('#datatable-fixed-header').DataTable({
+                fixedHeader: true
+            });
 
 			$('#world-map-gdp').vectorMap({
 				map: 'world_mill_en',

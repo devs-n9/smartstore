@@ -15,3 +15,4 @@ Route::get('/', 'DefaultController@index');
 
 Route::get('/dashboard', 'Dashboard\DashboardController@index');
 
+Route::get('/api/products/get/all', 'Api\ProductsController@getAllProducts');

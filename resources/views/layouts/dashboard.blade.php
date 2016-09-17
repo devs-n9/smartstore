@@ -21,7 +21,11 @@
 	<!-- jVectorMap -->
 	<link href="{{ asset('bower_components/gentelella/production/css/maps/jquery-jvectormap-2.0.3.css') }}" rel="stylesheet" />
 
-	<!-- Custom Theme Style -->
+    <!-- data tables -->
+    <link href="{{ asset('bower_components/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+
+
+    <!-- Custom Theme Style -->
 	<link href="{{ asset('bower_components/gentelella/build/css/custom.min.css') }}" rel="stylesheet">
 </head>
 
@@ -242,6 +246,8 @@
 	<!-- bootstrap-daterangepicker -->
 	<script src="{{ asset('bower_components/gentelella/production/js/moment/moment.min.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/production/js/datepicker/daterangepicker.js') }}"></script>
+    <!-- data tables -->
+	<script src="{{ asset('bower_components/gentelella/vendors/') }}"></script>
 
 	<!-- Custom Theme Scripts -->
 	<script src="{{ asset('bower_components/gentelella/build/js/custom.min.js') }}"></script>
@@ -322,12 +328,30 @@
 	</script>
 	<!-- /Flot -->
 
-	<!-- jVectorMap -->
+    <!-- Datatables -->
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-scroller/js/datatables.scroller.min.js') }}"></script>
+    <!-- Datatables -->
+
+    <!-- jVectorMap -->
 	<script src="{{ asset('bower_components/gentelella/production/js/maps/jquery-jvectormap-world-mill-en.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/production/js/maps/jquery-jvectormap-us-aea-en.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/production/js/maps/gdp-data.js') }}"></script>
 	<script>
 		$(document).ready(function () {
+
+            $('#datatable-fixed-header').DataTable();
+
 			$('#world-map-gdp').vectorMap({
 				map: 'world_mill_en',
 				backgroundColor: 'transparent',

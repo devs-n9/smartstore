@@ -31,7 +31,7 @@ class DashboardController extends Controller
 
     public function addProductPage()
     {
-        return view('dashboard.add_product', ['categories' => Categories::all(), 'brands' => Brands::all()]);
+        return view('dashboard.add_product', ['type' => '', 'message' => '', 'categories' => Categories::all(), 'brands' => Brands::all()]);
     }
 
     public function addProduct(Request $request)
@@ -45,16 +45,31 @@ class DashboardController extends Controller
             'count' => 'numeric',
             'photos.*.file' => 'image|max:1024'
         ];
-
         $validator = Validator::make($request->all(), $rule);
-        //$img_validator = Validator::make($request->photos);
-        //'photos' => 'image|size:1024'
-        dump($request->all());
+
+        //dump($request->all());
 
         if(!$validator->fails()){
-            dump($request->all());
+
+            $product = $request->all();
+            $photos = serialize($request->photos);
+
+            Products::insert(['product' => $product['product'],
+            'category_id' => $product['category'],
+            'brand_id' => $product['brand'],
+            'description' => $product['short_description'],
+            'content' => $product['content'],
+            'price' => $product['price'],
+            'preview' => $photos,
+            'count' => $product['count'],
+            'rating' => 0]);
+
+            $message = 'Product added successfully';
+            $message_type = 'success';
         }else{
-            dump($validator);
+            $message = $validator->errors()->all();
+            $message_type = 'danger';
         }
+        return view('dashboard.add_product', ['type' => $message_type, 'message' => $message, 'categories' => Categories::all(), 'brands' => Brands::all()]);
     }
 }

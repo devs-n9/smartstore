@@ -1,8 +1,21 @@
 @extends('layouts.dashboard')
 @section('content')
     <h1>Products</h1>
+    @if(!empty($message))
+    <div class="alert alert-{{ $type }} alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        @if(is_array($message))
+            @foreach($message as $mes)
+                {{ $mes }}<br>
+            @endforeach
+        @else
+            {{$message}}
+        @endif
+    </div>
+    @endif
     <form method="post" class="form-horizontal">
-            {{ csrf_field() }}
+        {{ csrf_field() }}
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Product name:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -12,13 +25,13 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Product category:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-            <select class="form-control" name="category">
-                <option value="0" selected></option>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->category }}</option>
-                @endforeach
-            </select>
-                </div>
+                <select class="form-control" name="category">
+                    <option value="0" selected></option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->category }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Product brand:</label>
@@ -40,7 +53,7 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Full description:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <textarea class="form-control col-md-7 col-xs-12" name="full_description"> </textarea>
+                <textarea class="form-control col-md-7 col-xs-12" name="content"> </textarea>
             </div>
         </div>
         <div class="form-group">
@@ -58,7 +71,8 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Photos:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="file" name="photos[]" multiple title="Choose photos" class="form-control btn btn-round btn-warning">
+                <input type="file" name="photos[]" multiple title="Choose photos"
+                       class="form-control btn btn-round btn-warning">
             </div>
         </div>
         <div class="form-group">

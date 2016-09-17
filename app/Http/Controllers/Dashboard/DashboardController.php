@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Brands;
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Validator;
 
 use App\Models\Products;
@@ -47,12 +48,17 @@ class DashboardController extends Controller
         ];
         $validator = Validator::make($request->all(), $rule);
 
-        //dump($request->all());
+        $path = 'images/product';
 
         if(!$validator->fails()){
+            $photos = [];
+            foreach($request->photos as $photo){
+                $filename = md5(time().rand(1,999)).'.'.$photo->extension();
+                $photos[] = $filename;
+                $photo->move($path, $filename);
+            }
 
             $product = $request->all();
-            $photos = serialize($request->photos);
 
             Products::insert(['product' => $product['product'],
             'category_id' => $product['category'],
@@ -60,7 +66,7 @@ class DashboardController extends Controller
             'description' => $product['short_description'],
             'content' => $product['content'],
             'price' => $product['price'],
-            'preview' => $photos,
+            'preview' => serialize($photos),
             'count' => $product['count'],
             'rating' => 0]);
 

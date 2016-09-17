@@ -9,10 +9,6 @@ class Products extends Model
     protected $table = 'products';
 
     // scopes begin
-    public function scopeAllProducts($query)
-    {
-        return $query->get();
-    }
 
     public function scopegetTop10($query)
     {

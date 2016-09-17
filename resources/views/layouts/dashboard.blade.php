@@ -347,12 +347,17 @@
 	<script src="{{ asset('bower_components/gentelella/production/js/maps/jquery-jvectormap-world-mill-en.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/production/js/maps/jquery-jvectormap-us-aea-en.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/production/js/maps/gdp-data.js') }}"></script>
+	<!-- bootstrap file input -->
+	<script src="{{ asset('assets/js/bootstrap.file-input.js') }}"></script>
 	<script>
 		$(document).ready(function () {
 
             $('#datatable-fixed-header').DataTable({
                 fixedHeader: true
             });
+			$('input[type=file]').bootstrapFileInput();
+			$('.file-inputs').bootstrapFileInput();
+
 			$('.product-row').click(function(){window.location.replace("/dashboard/product/edit/"+$(this).data('id'))});
 			$('#world-map-gdp').vectorMap({
 				map: 'world_mill_en',

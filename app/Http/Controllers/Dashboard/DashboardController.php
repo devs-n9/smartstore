@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Models\Brands;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
 use App\Models\Products;
@@ -21,5 +23,8 @@ class DashboardController extends Controller
     }
     public function editProduct($id){
         return view('dashboard.edit_product', ['data' => Products::find($id)]);
+    }
+    public function addProduct(){
+        return view('dashboard.add_product', ['categories' => Categories::all(), 'brands' => Brands::all()]);
     }
 }

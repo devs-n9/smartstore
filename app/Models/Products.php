@@ -8,6 +8,7 @@ class Products extends Model
 {
     protected $table = 'products';
 
+    // scopes begin
     public function scopeAllProducts($query)
     {
         return $query->get();
@@ -17,7 +18,9 @@ class Products extends Model
     {
         return $query->orderBy('rating')->limit(10)->get();
     }
+    // scopes end
 
+    // relations begin
     public function category()
     {
         return $this->hasOne('App\Models\Categories', 'id', 'category_id');
@@ -27,6 +30,8 @@ class Products extends Model
     {
         return $this->hasOne('App\Models\Brands', 'id', 'brand_id');
     }
+    // relations end
+
 
     public function getProduct($id)
     {

@@ -20,7 +20,7 @@
                     </thead>
                     <tbody>
                     @foreach($products as $product)
-                        <tr>
+                        <tr data-id="{{$product->id}}" class="product-row">
                             <td>{{ $product->id }}</td>
                             <td>{{ $product->product }}</td>
                             <td>{{ $product->category->category }}</td>

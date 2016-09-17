@@ -20,6 +20,6 @@ class DashboardController extends Controller
         return view('dashboard.products', ['products' => $products]);
     }
     public function editProduct($id){
-        return view('dashboard.test', ['data' => Products::find($id)]);
+        return view('dashboard.edit_product', ['data' => Products::find($id)]);
     }
 }

@@ -353,7 +353,7 @@
             $('#datatable-fixed-header').DataTable({
                 fixedHeader: true
             });
-
+			$('.product-row').click(function(){window.location.replace("/dashboard/product/edit/"+$(this).data('id'))});
 			$('#world-map-gdp').vectorMap({
 				map: 'world_mill_en',
 				backgroundColor: 'transparent',

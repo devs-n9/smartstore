@@ -1,7 +1,3 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboard') @section('content')
 
-@section('content')
-
-
-
-@endsection
+<h1>Default dashboard content</h1> @endsection

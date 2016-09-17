@@ -3,18 +3,20 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateStatusTable extends Migration
 {
+    
     public function up()
     {
-       Schema::create('categories', function (Blueprint $table) {
+       Schema::create('status', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('categories')->unique(); 
+            $table->string('status');
+        });
     }
 
     
     public function down()
     {
-        Schema::drop('categories');
+        Schema::drop('status');
     }
 }

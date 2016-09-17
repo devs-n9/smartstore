@@ -9,9 +9,13 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->int('count');
+            $table->integer('product_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('delivery_id')->unsigned();
+            $table->integer('payment_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('count');
             $table->text('description');
             $table->foreign('delivery_id')->references('id')->on('delivery');
             $table->foreign('payment_id')->references('id')->on('payment');

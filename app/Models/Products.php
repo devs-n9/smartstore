@@ -22,8 +22,14 @@ class Products extends Model
     {
         return $this->hasOne('App\Models\Categories', 'id', 'category_id');
     }
+
     public function brand()
     {
         return $this->hasOne('App\Models\Brands', 'id', 'brand_id');
+    }
+
+    public function getProduct($id)
+    {
+        return $this->where('id', $id)->get();
     }
 }

@@ -20,14 +20,14 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Product name:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="text" name="product" value="{{$form_data['product'] or ''}}"
+                <input type="text" required name="product" value="{{$form_data['product'] or ''}}"
                        class="form-control col-md-7 col-xs-12">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Product alias:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="text" name="alias" value="{{$form_data['alias'] or ''}}"
+                <input type="text" required name="alias" value="{{$form_data['alias'] or ''}}"
                        class="form-control col-md-7 col-xs-12">
             </div>
         </div>
@@ -82,14 +82,14 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Price:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="text" name="price" value="{{ $form_data['price'] or '' }}"
+                <input type="number" required min="0" name="price" value="{{ $form_data['price'] or '' }}"
                        class="form-control col-md-7 col-xs-12">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Product count:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="text" name="count" value="{{ $form_data['count'] or '' }}"
+                <input type="number" required min="0" name="count" value="{{ $form_data['count'] or '' }}"
                        class="form-control col-md-7 col-xs-12">
             </div>
         </div>

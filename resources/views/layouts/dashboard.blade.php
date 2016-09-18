@@ -349,8 +349,14 @@
 	<script src="{{ asset('bower_components/gentelella/production/js/maps/gdp-data.js') }}"></script>
 	<!-- bootstrap file input -->
 	<script src="{{ asset('assets/js/bootstrap.file-input.js') }}"></script>
+	<!-- litranslit -->
+	<script src="{{ asset('assets/js/jquery.liTranslit.js') }}"></script>
 	<script>
 		$(document).ready(function () {
+
+			$('input[name="product"]').liTranslit({
+				elAlias: $('input[name="alias"]')
+			});
 
             $('#datatable-fixed-header').DataTable({
                 fixedHeader: true

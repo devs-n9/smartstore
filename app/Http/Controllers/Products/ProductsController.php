@@ -31,9 +31,10 @@ class ProductsController extends Controller
     public function product($alias)
     {
         $product = Products::all()->where('alias', $alias)->first();
+        $images = unserialize($product->preview);
         $products = Products::all();
         $categories = Categories::all();
         $product_category = $categories->where('id', $product['category_id'])->first();
-        return view('products.product', ['product'=>$product,'categories'=>$categories,'products'=>$products,'product_category'=>$product_category]);
+        return view('products.product', ['product'=>$product,'categories'=>$categories,'products'=>$products,'product_category'=>$product_category, 'images'=>$images]);
     }
 }

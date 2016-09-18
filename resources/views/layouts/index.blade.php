@@ -96,7 +96,7 @@
                             <li class="active"><a href="/">Home</a></li>
                             <!--mega menu-->
                             <li class="dropdown yamm-fw">
-                                <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Catalog  <i class="fa fa-angle-down"></i></a>
+                                <a href="/catalog" class="dropdown-toggle js-activated" data-toggle="dropdown">Catalog  <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <div class="yamm-content">
@@ -104,6 +104,7 @@
                                                 <div class="col-sm-3">
                                                     <h3 class="heading">Base pages</h3>
                                                     <ul class="nav mega-vertical-nav">
+                                                        <li><a href="/catalog"><i class="fa fa-angle-right"></i> Catalog </a></li>
                                                         <li><a href="product-detail.html"><i class="fa fa-angle-right"></i> Product Detail </a></li>
                                                     </ul>
                                                 </div>

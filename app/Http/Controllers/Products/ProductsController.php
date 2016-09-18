@@ -21,17 +21,19 @@ class ProductsController extends Controller
     // Category - products list
     public function category($alias)
     {
-        $category = Categories::where('alias', $alias)->first;
+        $category = Categories::all()->where('alias', $alias)->first();
+        $category_products = Products::all()->where('category_id', $category['id']);
         $categories = Categories::all();
-        return view('products.list', ['categories'=>$categories,'category'=>$category]);
+        return view('products.category', ['categories'=>$categories,'category'=>$category,'category_products'=>$category_products]);
     }
 
     // Product detail
     public function product($alias)
     {
-        $product = Products::where('alias', $alias)->first;
+        $product = Products::all()->where('alias', $alias)->first();
         $products = Products::all();
         $categories = Categories::all();
-        return view('products.product', ['product'=>$product,'categories'=>$categories,'products'=>$products]);
+        $product_category = $categories->where('id', $product['category_id'])->first();
+        return view('products.product', ['product'=>$product,'categories'=>$categories,'products'=>$products,'product_category'=>$product_category]);
     }
 }

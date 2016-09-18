@@ -5,8 +5,8 @@
     version    : v1.0
 */
 /**google font**/
-@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic,700);
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800);
+@import url("https://fonts.googleapis.com/css?family=Arimo:400,700,700i&subset=cyrillic");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&subset=cyrillic");
 body {
   font-family: "Arimo", sans-serif;
   color: #aeaeae;
@@ -38,7 +38,7 @@ button:focus {
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0px;
-  font-family: "Raleway", serif;
+  font-family: 'Open Sans', sans-serif;
   letter-spacing: 1px;
   color: #333;
 }
@@ -280,7 +280,7 @@ del {
   transition: all0 0.3s;
 }
 .navbar-default .navbar-brand {
-  font-family: "Raleway", serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 30px;
 }
 
@@ -289,7 +289,7 @@ del {
   text-transform: uppercase;
   font-weight: 600;
   font-size: 13px;
-  font-family: "Raleway", serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .navbar-default .navbar-brand > img {
@@ -659,7 +659,7 @@ del {
   padding: 10px 30px;
   background-color: rgba(0, 0, 0, 0.2);
   text-transform: uppercase;
-  font-family: "Raleway", serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .slider-caption {
@@ -1078,7 +1078,7 @@ del {
   color: #666;
   font-size: 13px;
   text-transform: uppercase;
-  font-family: "Raleway", serif;
+  font-family: 'Open Sans', sans-serif;
 }
 .product-filter-block li a:hover {
   color: #1ab394;
@@ -1211,7 +1211,7 @@ del {
 /**cart page**/
 .cart-table > thead > tr > th {
   color: #000;
-  font-family: "Raleway", serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -1273,7 +1273,7 @@ del {
 }
 .cart-total .table-condensed > tbody > tr > td.total {
   color: #1ab394;
-  font-family: "Raleway", serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 500;
 }
 .cart-total .table-condensed > tbody > tr > td a.shipping-calculate {
@@ -1412,6 +1412,11 @@ del {
 .product-detail-desc .price {
   display: block;
   font-size: 18px;
+  margin-bottom: 10px;
+}
+.product-detail-desc .cat {
+  display: block;
+  font-size: 12px;
   margin-bottom: 10px;
 }
 .product-detail-desc .btn-border {

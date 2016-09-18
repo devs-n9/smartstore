@@ -39,6 +39,7 @@ class DashboardController extends Controller
     {
         $rule = [
             'product' => 'required|unique:products|max:255',
+            'alias' => 'required|unique:products|max:255',
             'category' => 'required',
             'brand' => 'required',
             'short_description' => 'max:255',
@@ -49,6 +50,7 @@ class DashboardController extends Controller
         $validator = Validator::make($request->all(), $rule);
 
         $path = 'uploads/images/product';
+        $form_data = '';
 
         if(!$validator->fails()){
             $photos = [];
@@ -61,6 +63,7 @@ class DashboardController extends Controller
             $product = $request->all();
 
             Products::insert(['product' => $product['product'],
+            'alias' => $product['alias'],
             'category_id' => $product['category'],
             'brand_id' => $product['brand'],
             'description' => $product['short_description'],
@@ -75,7 +78,8 @@ class DashboardController extends Controller
         }else{
             $message = $validator->errors()->all();
             $message_type = 'danger';
+            $form_data = $request->all();
         }
-        return view('dashboard.add_product', ['type' => $message_type, 'message' => $message, 'categories' => Categories::all(), 'brands' => Brands::all()]);
+        return view('dashboard.add_product', ['form_data' => $form_data,'type' => $message_type, 'message' => $message, 'categories' => Categories::all(), 'brands' => Brands::all()]);
     }
 }

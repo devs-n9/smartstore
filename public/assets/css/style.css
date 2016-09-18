@@ -775,6 +775,8 @@ del {
 }
 .item_holder .title {
   padding-top: 25px;
+  height: 130px;
+  overflow: hidden;
 }
 .item_holder .title h5 {
   font-size: 14px;

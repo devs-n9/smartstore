@@ -15,9 +15,10 @@
 
             <div class="row">
                 @foreach($categories as $category)
+                {{ dd($category) }}
                 <div class="col-sm-4">
                     <div class="item_holder">
-                        <a href="#"><img src="{{ asset('uploads/images/categories/' . $category->preview ) }}" alt="" class="img-responsive"></a>
+                        <a href="/category/{{ $category->alias }}"><img src="{{ asset('uploads/images/categories/' . $category->preview ) }}" alt="" class="img-responsive"></a>
                         <div class="title">
                             <h5>
                                 @if(strlen($category->category) > 40)
@@ -66,7 +67,7 @@
                 <h3>Categories</h3>
                 <ul class="list-unstyled">
                     @foreach($categories as $category)
-                    <li><a href="#">{{ $category->category }}</a></li>
+                    <li><a href="/category/{{ $category->alias }}">{{ $category->category }}</a></li>
                     @endforeach
                 </ul>
             </div><!--sidebar-widget end-->

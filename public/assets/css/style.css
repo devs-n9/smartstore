@@ -457,6 +457,8 @@ del {
 /**dropdown**/
 .dropdown-menu {
   padding: 0px;
+  margin: 0;
+  top: 98%;
   border: 2px solid #eee;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;

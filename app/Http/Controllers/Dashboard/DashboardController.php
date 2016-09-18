@@ -48,7 +48,7 @@ class DashboardController extends Controller
         ];
         $validator = Validator::make($request->all(), $rule);
 
-        $path = 'images/product';
+        $path = 'uploads/images/product';
 
         if(!$validator->fails()){
             $photos = [];

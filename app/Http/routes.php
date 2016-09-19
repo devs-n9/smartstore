@@ -18,6 +18,7 @@ Route::get('/dashboard', 'Dashboard\DashboardController@index');
 // Cart routes begin
 
 Route::get('/cart', 'Cart\CartController@cart');
+Route::post('/cart/addToCart', 'Cart\CartController@addToCart');
 Route::get('/checkout', 'Cart\CartController@checkout');
 
 // Cart routes end

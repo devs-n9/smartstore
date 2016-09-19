@@ -20,7 +20,8 @@ Route::get('/dashboard', 'Dashboard\DashboardController@index');
 Route::get('/dashboard/products/all', 'Dashboard\DashboardController@showAllProducts');
 Route::get('/dashboard/product/add', 'Dashboard\DashboardController@addProductPage');
 Route::post('/dashboard/product/add', 'Dashboard\DashboardController@addProduct');
-Route::get('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProduct');
+Route::get('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProductPage');
+Route::post('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProduct');
 
 ///dashboard products end here
 

@@ -5,7 +5,7 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <table id="datatable-fixed-header" class="table table-striped table-bordered dataTable no-footer"
+                <table id="products-table" class="table table-striped table-bordered dataTable no-footer"
                        role="grid" aria-describedby="datatable-fixed-header_info">
                     <thead>
                     <tr role="row">

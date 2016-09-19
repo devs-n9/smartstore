@@ -358,13 +358,19 @@
 				elAlias: $('input[name="alias"]')
 			});
 
-            $('#datatable-fixed-header').DataTable({
-                fixedHeader: true
-            });
 			$('input[type=file]').bootstrapFileInput();
 			$('.file-inputs').bootstrapFileInput();
 
-			$('.product-row').click(function(){window.location.replace("/dashboard/product/edit/"+$(this).data('id'))});
+
+			var table = $('#products-table').DataTable({
+				fixedHeader: true,
+				"order": [[ 0, "desc" ]]
+			});
+			$('#products-table tbody').on('click', 'tr', function () {
+				var data = table.row( this ).data();
+				window.location.replace("/dashboard/product/edit/"+data[0]);
+			} );
+
 			$('#world-map-gdp').vectorMap({
 				map: 'world_mill_en',
 				backgroundColor: 'transparent',

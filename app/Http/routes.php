@@ -15,8 +15,12 @@ Route::get('/', 'DefaultController@index');
 
 Route::get('/dashboard', 'Dashboard\DashboardController@index');
 
+// Cart routes begin
+
 Route::get('/cart', 'Cart\CartController@cart');
 Route::get('/checkout', 'Cart\CartController@checkout');
+
+// Cart routes end
 
 ///dashboard products begin here
 

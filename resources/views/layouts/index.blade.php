@@ -22,6 +22,8 @@
         <link href="{{ asset('assets/libs/revolution/css/navigation.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/libs/revolution/css/layers.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/libs/revolution/css/settings.css') }}" rel="stylesheet">
+        <!--sky-forms css file-->
+        <link href="{{ asset('assets/libs/sky-form/css/sky-forms.css') }}" rel="stylesheet">
         <!--custom css file-->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 

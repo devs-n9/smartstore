@@ -87,6 +87,27 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Old price:</label>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <input type="number" required min="0" name="old_price" step="any" value="{{ $form_data['old_price'] or '' }}"
+                       class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Price from:</label>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <input type="text" name="price_from_date" value="{{ $form_data['price_from_date'] or '' }}"
+                       class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Price to:</label>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <input type="text" name="price_to_date" value="{{ $form_data['price_to_date'] or '' }}"
+                       class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+        <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Product count:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <input type="number" required min="0" name="count" value="{{ $form_data['count'] or '' }}"

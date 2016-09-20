@@ -56,7 +56,9 @@ $().ready(function () {
         }
     });
 
-
+    //// datetimepicker
+    $.datetimepicker.setLocale('ru');
+    $('[name*="date"]').datetimepicker();
     //$('#products-table tbody').on('click', 'tr', function () {
     //var data = table.row( this ).data();
     //window.location.replace("/dashboard/product/edit/"+data[0]);

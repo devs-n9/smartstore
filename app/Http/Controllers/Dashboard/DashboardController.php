@@ -38,6 +38,9 @@ class DashboardController extends Controller
                 'brand' => 'required',
                 'short_description' => 'max:255',
                 'price' => 'numeric',
+                'old_price' => 'numeric',
+                'price_from_date' => 'date',
+                'price_to_date' => 'date',
                 'count' => 'numeric',
                 'photos.*.file' => 'image|max:1024',
                 'rating' => 'numeric'
@@ -58,6 +61,9 @@ class DashboardController extends Controller
                 'description' => $form_data['short_description'],
                 'content' => $form_data['content'],
                 'price' => $form_data['price'],
+                'old_price' => $form_data['old_price'],
+                'price_from_date' => $form_data['price_from_date'],
+                'price_to_date' => $form_data['price_to_date'],
                 'count' => $form_data['count'],
                 'rating' => $form_data['rating']]; //array keys rename for fill form fields
 
@@ -81,6 +87,9 @@ class DashboardController extends Controller
                     'description' => $product['short_description'],
                     'content' => $product['content'],
                     'price' => $product['price'],
+                    'old_price' => $product['old_price'],
+                    'price_from_date' => $product['price_from_date'],
+                    'price_to_date' => $product['price_to_date'],
                     'preview' => serialize($photos),
                     'count' => $product['count'],
                     'rating' => $product['rating']]); // update product row
@@ -107,6 +116,9 @@ class DashboardController extends Controller
                 'brand' => 'required',
                 'short_description' => 'max:255',
                 'price' => 'numeric',
+                'old_price' => 'numeric',
+                'price_from_date' => 'date',
+                'price_to_date' => 'date',
                 'count' => 'numeric',
                 'photos.*.file' => 'image|max:1024'
             ];
@@ -134,6 +146,9 @@ class DashboardController extends Controller
                     'description' => $product['short_description'],
                     'content' => $product['content'],
                     'price' => $product['price'],
+                    'old_price' => $product['old_price'],
+                    'price_from_date' => $product['price_from_date'],
+                    'price_to_date' => $product['price_to_date'],
                     'preview' => serialize($photos),
                     'count' => $product['count'],
                     'rating' => 0]);

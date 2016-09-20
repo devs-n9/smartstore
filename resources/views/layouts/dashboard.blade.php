@@ -24,6 +24,8 @@
     <!-- data tables -->
     <link href="{{ asset('bower_components/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
 
+	<!-- datetimepicker -->
+	<link href="{{ asset('bower_components/datetimepicker/build/jquery.datetimepicker.min.css') }}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
 	<link href="{{ asset('bower_components/gentelella/build/css/custom.min.css') }}" rel="stylesheet">
@@ -254,6 +256,9 @@
 	<!-- bootstrap-daterangepicker -->
 	<script src="{{ asset('bower_components/gentelella/production/js/moment/moment.min.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/production/js/datepicker/daterangepicker.js') }}"></script>
+
+	<!-- datetimepicker -->
+	<script src="{{ asset('bower_components/datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
 
 	<!-- Custom Theme Scripts -->
 	<script src="{{ asset('bower_components/gentelella/build/js/custom.min.js') }}"></script>

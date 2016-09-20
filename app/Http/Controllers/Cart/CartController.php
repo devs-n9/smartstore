@@ -26,7 +26,7 @@ class CartController extends Controller
     {
         $ses = Session::get('cart');
         //dd($ses);
-        dd($ses[1]->getOriginal());
+        dd($ses);
         return view('cart.index');
     }
 
@@ -54,31 +54,50 @@ class CartController extends Controller
             return false;
         }
         $sesProdID = array();
-        $product = Products::find($prodID);
-        
-        //Session::push('cart', $product);
+        $sesArr = array();
+        $product = Products::find($prodID)->getOriginal();
+        $sesArr['product'] = $product;
+        $sesArr['cntProd'] = 1;
         
         if(Session::has('cart')) {
             $ses = Session::get('cart');
             $cntSes = count($ses);
             for($i = 0; $i < $cntSes; $i++) {
-                $sesProdID[] = $ses[$i]->getOriginal('id');
+                $sesProdID[] = $ses[$i]['product']['id'];
             }
             if(Session::has('cart') && array_search($prodID, $sesProdID) === false) {
-                Session::push('cart', $product);
                 $cntProd = count(Session::get('cart'));
-                Session::put('cntProd', $cntProd);
+                $sesArr['cntProd'] += $cntProd;
+                Session::push('cart', $sesArr);
             } else {
-                return false;
+                $sesArr['cntProd'] += 1;
             }
             
         } else {
-            Session::push('cart', $product);
-            $cntProd = count(Session::get('cart'));
-            Session::put('cntProd', $cntProd);
+            Session::push('cart', $sesArr);
         }
+        
+//        if(Session::has('cart')) {
+//            $ses = Session::get('cart');
+//            $cntSes = count($ses);
+//            for($i = 0; $i < $cntSes; $i++) {
+//                $sesProdID[] = $ses[$i]->getOriginal('id');
+//            }
+//            if(Session::has('cart') && array_search($prodID, $sesProdID) === false) {
+//                Session::push('cart', $product);
+//                $cntProd = count(Session::get('cart'));
+//                Session::put('cntProd', $cntProd);
+//            } else {
+//                return false;
+//            }
+//            
+//        } else {
+//            Session::push('cart', $product);
+//            $cntProd = count(Session::get('cart'));
+//            Session::put('cntProd', $cntProd);
+//        }
             
-        return response()->json(['cntprod' => $cntProd, 'product' => $product]);
+        return response()->json(['cntprod' => $sesArr['cntProd'], 'product' => $product]);
         
     }
 }

@@ -14,4 +14,7 @@
 Route::get('/', 'DefaultController@index');
 
 Route::get('/dashboard', 'Dashboard\DashboardController@index');
+Route::get('/dashboard/orders', 'Dashboard\OrdersController@orders');
+Route::get('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@edit');
+Route::post('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@update');
 

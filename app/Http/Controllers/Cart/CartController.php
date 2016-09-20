@@ -43,8 +43,8 @@ class CartController extends Controller
      * @param integer $id GET параметр - ID добавляемого продукта
      * @return json информация об операции (успех, кол-во элементов в корзине)
      */
-    public function addToCart()
+    public function addToCart(Request $request)
     {
-        return Response::all();
+        return $request;
     }
 }

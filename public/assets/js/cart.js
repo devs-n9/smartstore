@@ -16,7 +16,7 @@ $(document).ready(function() {
      */
     $('#addCart').click(function () {
         var itemID = $(this).data('id');
-        $.post('/cart/addToCart/', { itemID: itemID });
+        $.post('/cart/addToCart', { itemID: itemID });
 
         return false;
     });

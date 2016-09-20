@@ -58,7 +58,9 @@ $().ready(function () {
 
     //// datetimepicker
     $.datetimepicker.setLocale('ru');
-    $('[name*="date"]').datetimepicker();
+    $('[name*="date"]').datetimepicker({
+        format: 'Y-m-d H:i'
+    });
     //$('#products-table tbody').on('click', 'tr', function () {
     //var data = table.row( this ).data();
     //window.location.replace("/dashboard/product/edit/"+data[0]);

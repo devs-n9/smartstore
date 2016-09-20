@@ -34,13 +34,18 @@ class DashboardController extends Controller
         } else {
             $old_product = Products::where('id', $id)->get(['product', 'alias']);
             $form_data = $request->all();
+            if (!empty($form_data['price_to_date'])) {
+                $date_range_validation = '|before:' . $form_data['price_to_date'];
+            } else {
+                $date_range_validation = '';
+            }
             $rule = [
                 'category' => 'required',
                 'brand' => 'required',
                 'short_description' => 'max:255',
                 'price' => 'numeric',
                 'old_price' => 'numeric',
-                'price_from_date' => 'date|before:' . $form_data['price_to_date'],
+                'price_from_date' => 'date' . $date_range_validation,
                 'price_to_date' => 'date',
                 'count' => 'numeric',
                 'photos.*.file' => 'image|max:1024',
@@ -52,6 +57,7 @@ class DashboardController extends Controller
             if ($old_product[0]->alias != $request->all()['alias']) { //if alias changed add unique name validation
                 $rule['alias'] = 'required|unique:products|max:255';
             }
+
             $validator = Validator::make($form_data, $rule);
             $path = 'uploads/images/product'; // path to product images directory
             $form_data = ['product' => $form_data['product'],
@@ -78,9 +84,7 @@ class DashboardController extends Controller
                 }
 
                 $product = $request->all();
-
-                Products::where('id', $id)->
-                update(['product' => $product['product'],
+                $data_array = ['product' => $product['product'],
                     'alias' => $product['alias'],
                     'category_id' => $product['category'],
                     'brand_id' => $product['brand'],
@@ -92,9 +96,16 @@ class DashboardController extends Controller
                     'price_to_date' => $product['price_to_date'],
                     'preview' => serialize($photos),
                     'count' => $product['count'],
-                    'rating' => $product['rating']]); // update product row
+                    'rating' => $product['rating']];
+                foreach ($data_array as $key => $item) {
+                    if(empty($item)){
+                        $data_array[$key] = null;
+                    }
+                }
+                Products::where('id', $id)->
+                update($data_array); // update product row
 
-                $message = "Product {$product['product']} edited successfully";
+                $message = trans('messages.Product') . ' ' . $product['product'] . ' ' . trans('messages.edited_succefully');
                 $message_type = 'success';
             } else {
                 $message = $validator->errors()->all();
@@ -109,6 +120,12 @@ class DashboardController extends Controller
         if (empty($request->all())) {
             return view('dashboard.add_product', ['type' => '', 'message' => '', 'categories' => Categories::all(), 'brands' => Brands::all()]);
         } else {
+            $form_data = $request->all();
+            if (!empty($form_data['price_to_date'])) {
+                $date_range_validation = '|before:' . $form_data['price_to_date'];
+            } else {
+                $date_range_validation = '';
+            }
             $rule = [
                 'product' => 'required|unique:products|max:255',
                 'alias' => 'required|unique:products|max:255',
@@ -117,7 +134,7 @@ class DashboardController extends Controller
                 'short_description' => 'max:255',
                 'price' => 'numeric',
                 'old_price' => 'numeric',
-                'price_from_date' => 'date|before:' . $request->all()['price_to_date'],
+                'price_from_date' => 'date' . $date_range_validation,
                 'price_to_date' => 'date',
                 'count' => 'numeric',
                 'photos.*.file' => 'image|max:1024'
@@ -125,7 +142,6 @@ class DashboardController extends Controller
             $validator = Validator::make($request->all(), $rule);
 
             $path = 'uploads/images/product';
-            $form_data = '';
 
             if (!$validator->fails()) {
                 $photos = [];
@@ -138,8 +154,7 @@ class DashboardController extends Controller
                 }
 
                 $product = $request->all();
-
-                Products::insert(['product' => $product['product'],
+                $data_array = ['product' => $product['product'],
                     'alias' => $product['alias'],
                     'category_id' => $product['category'],
                     'brand_id' => $product['brand'],
@@ -151,14 +166,20 @@ class DashboardController extends Controller
                     'price_to_date' => $product['price_to_date'],
                     'preview' => serialize($photos),
                     'count' => $product['count'],
-                    'rating' => 0]);
+                    'rating' => 0];
+                foreach ($data_array as $key => $value) {
+                    if (empty($value)) {
+                        unset($data_array[$key]);
+                    }
+                }
+                Products::insert($data_array);
 
-                $message = trans('messages.Product'). ' ' . $product['product'] . ' ' . trans('messages.succeffuly_added');
+                $message = trans('messages.Product') . ' ' . $product['product'] . ' ' . trans('messages.succeffuly_added');
                 $message_type = 'success';
+                $form_data = '';
             } else {
                 $message = $validator->errors()->all();
                 $message_type = 'danger';
-                $form_data = $request->all();
             }
             return view('dashboard.add_product', ['form_data' => $form_data, 'type' => $message_type, 'message' => $message, 'categories' => Categories::all(), 'brands' => Brands::all()]);
         }
@@ -198,7 +219,7 @@ class DashboardController extends Controller
                     $filename = $form_data['alias'] . '.' . $request->logo->extension();
                     $request->logo->move($path, $filename);
                 }
-                $message = trans('messages.Brand'). ' ' . $form_data['brand'] . ' ' . trans('messages.succeffuly_added');
+                $message = trans('messages.Brand') . ' ' . $form_data['brand'] . ' ' . trans('messages.succeffuly_added');
                 Brands::create(['brand' => $form_data['brand'], 'alias' => $form_data['alias'], 'logo' => $filename]);
                 return view('dashboard.add_brand', ['form_data' => $form_data, 'message' => $message, 'type' => 'success']);
             } else {

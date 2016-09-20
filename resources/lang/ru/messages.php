@@ -12,6 +12,7 @@ return [
     'Choose_photos' => 'Выбрать фото',
     'Choose_logo' => 'Выбрать лого',
     'Edit_product' => 'Редактировать товар',
+    'edited_succefully' => 'успешно отредактирован',
     'Full_description' => 'Полное описание',
     'Logo' => 'Логотип',
     'Old_price' => 'Старая цена',

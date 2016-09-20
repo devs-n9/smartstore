@@ -33,13 +33,14 @@ class DashboardController extends Controller
             return view('dashboard.edit_product', ['type' => '', 'message' => '', 'form_data' => $form_data, 'categories' => Categories::all(), 'brands' => Brands::all()]);
         } else {
             $old_product = Products::where('id', $id)->get(['product', 'alias']);
+            $form_data = $request->all();
             $rule = [
                 'category' => 'required',
                 'brand' => 'required',
                 'short_description' => 'max:255',
                 'price' => 'numeric',
                 'old_price' => 'numeric',
-                'price_from_date' => 'date',
+                'price_from_date' => 'date|before:'.$form_data['price_to_date'],
                 'price_to_date' => 'date',
                 'count' => 'numeric',
                 'photos.*.file' => 'image|max:1024',
@@ -51,9 +52,8 @@ class DashboardController extends Controller
             if ($old_product[0]->alias != $request->all()['alias']) { //if alias changed add unique name validation
                 $rule['alias'] = 'required|unique:products|max:255';
             }
-            $validator = Validator::make($request->all(), $rule);
+            $validator = Validator::make($form_data, $rule);
             $path = 'uploads/images/product'; // path to product images directory
-            $form_data = $request->all();
             $form_data = ['product' => $form_data['product'],
                 'alias' => $form_data['alias'],
                 'category_id' => $form_data['category'],
@@ -117,7 +117,7 @@ class DashboardController extends Controller
                 'short_description' => 'max:255',
                 'price' => 'numeric',
                 'old_price' => 'numeric',
-                'price_from_date' => 'date',
+                'price_from_date' => 'date|before:'.$request->all()['price_to_date'],
                 'price_to_date' => 'date',
                 'count' => 'numeric',
                 'photos.*.file' => 'image|max:1024'

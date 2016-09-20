@@ -89,7 +89,7 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Old price:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="number" required min="0" name="old_price" step="any" value="{{ $form_data['old_price'] or '' }}"
+                <input type="number" min="0" name="old_price" step="any" value="{{ $form_data['old_price'] or '' }}"
                        class="form-control col-md-7 col-xs-12">
             </div>
         </div>

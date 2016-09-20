@@ -27,6 +27,9 @@
 	<!-- datetimepicker -->
 	<link href="{{ asset('bower_components/datetimepicker/build/jquery.datetimepicker.min.css') }}" rel="stylesheet">
 
+	<!-- parsley
+	<link href="{{ asset('bower_components/gentelella/vendors/parsleyjs/dist/parsley.css') }}" rel="stylesheet">
+	-->
     <!-- Custom Theme Style -->
 	<link href="{{ asset('bower_components/gentelella/build/css/custom.min.css') }}" rel="stylesheet">
 	<!-- our dashboard custom styles -->
@@ -246,6 +249,10 @@
 	<script src="{{ asset('bower_components/gentelella/vendors/Flot/jquery.flot.time.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/vendors/Flot/jquery.flot.stack.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/vendors/Flot/jquery.flot.resize.js') }}"></script>
+
+	<!-- parsley -->
+	<script src="{{ asset('bower_components/gentelella/vendors/parsleyjs/dist/parsley.js') }}"></script>
+
 	<!-- Flot plugins -->
 	<script src="{{ asset('bower_components/gentelella/production/js/flot/jquery.flot.orderBars.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/production/js/flot/date.js') }}"></script>

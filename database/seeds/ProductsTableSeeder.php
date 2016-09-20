@@ -22,6 +22,7 @@ class ProductsTableSeeder extends Seeder
             'description' => 'Краткое описание товара',
             'content' => 'Полное описание товара',
             'price' => '1000',
+            'old_price' => '1999',
             'preview' => 'product_img.jpg',
             'count' => '100',
             'rating' => '0'

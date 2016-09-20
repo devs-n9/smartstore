@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+App::setLocale('ru');
 Route::get('/', 'DefaultController@index');
 
 Route::get('/dashboard', 'Dashboard\DashboardController@index');
@@ -18,13 +18,20 @@ Route::get('/dashboard', 'Dashboard\DashboardController@index');
 ///dashboard products begin here
 
 Route::get('/dashboard/products/all', 'Dashboard\DashboardController@showAllProducts');
-Route::get('/dashboard/product/add', 'Dashboard\DashboardController@addProductPage');
+Route::get('/dashboard/product/add', 'Dashboard\DashboardController@addProduct');
 Route::post('/dashboard/product/add', 'Dashboard\DashboardController@addProduct');
-Route::get('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProductPage');
+Route::get('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProduct');
 Route::post('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProduct');
 Route::post('/dashboard/product/delete', 'Dashboard\DashboardController@deleteProduct'); // ajax
 
 ///dashboard products end here
+
+//dashboard brands begin here
+Route::get('/dashboard/brands/all', 'Dashboard\DashboardController@showAllBrands');
+Route::get('/dashboard/brands/add', 'Dashboard\DashboardController@addBrand');
+Route::post('/dashboard/brands/add', 'Dashboard\DashboardController@addBrand');
+
+//dashboard brands end here
 
 Route::get('/api/products/get/all', 'Api\ProductsController@getAllProducts');
 Route::get('/api/products/get/top10', 'Api\ProductsController@getTop10');

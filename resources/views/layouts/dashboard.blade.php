@@ -24,9 +24,16 @@
     <!-- data tables -->
     <link href="{{ asset('bower_components/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
 
+	<!-- datetimepicker -->
+	<link href="{{ asset('bower_components/datetimepicker/build/jquery.datetimepicker.min.css') }}" rel="stylesheet">
 
+	<!-- parsley
+	<link href="{{ asset('bower_components/gentelella/vendors/parsleyjs/dist/parsley.css') }}" rel="stylesheet">
+	-->
     <!-- Custom Theme Style -->
 	<link href="{{ asset('bower_components/gentelella/build/css/custom.min.css') }}" rel="stylesheet">
+	<!-- our dashboard custom styles -->
+	<link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -66,10 +73,16 @@
 										<li><a href="index3.html">Dashboard3</a></li>
 									</ul>
 								</li>
-								<li><a><i class="fa fa-cube"></i> Products <span class="fa fa-chevron-down"></span></a>
+								<li><a><i class="fa fa-cube"></i> {{ trans('messages.Products') }} <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="/dashboard/products/all">Show products</a></li>
-										<li><a href="/dashboard/product/add">Add product</a></li>
+										<li><a href="/dashboard/products/all">{{ trans('messages.Show_products') }}</a></li>
+										<li><a href="/dashboard/product/add">{{ trans('messages.Add_product') }}</a></li>
+									</ul>
+								</li>
+								<li><a><i class="fa fa-apple"></i> {{ trans('messages.Brands') }} <span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="/dashboard/brands/all">{{ trans('messages.Show_brands') }}</a></li>
+										<li><a href="/dashboard/brands/add">{{ trans('messages.Add_brand') }}</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -236,6 +249,10 @@
 	<script src="{{ asset('bower_components/gentelella/vendors/Flot/jquery.flot.time.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/vendors/Flot/jquery.flot.stack.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/vendors/Flot/jquery.flot.resize.js') }}"></script>
+
+	<!-- parsley -->
+	<script src="{{ asset('bower_components/gentelella/vendors/parsleyjs/dist/parsley.js') }}"></script>
+
 	<!-- Flot plugins -->
 	<script src="{{ asset('bower_components/gentelella/production/js/flot/jquery.flot.orderBars.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/production/js/flot/date.js') }}"></script>
@@ -246,8 +263,9 @@
 	<!-- bootstrap-daterangepicker -->
 	<script src="{{ asset('bower_components/gentelella/production/js/moment/moment.min.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/production/js/datepicker/daterangepicker.js') }}"></script>
-    <!-- data tables -->
-	<script src="{{ asset('bower_components/gentelella/vendors/') }}"></script>
+
+	<!-- datetimepicker -->
+	<script src="{{ asset('bower_components/datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
 
 	<!-- Custom Theme Scripts -->
 	<script src="{{ asset('bower_components/gentelella/build/js/custom.min.js') }}"></script>
@@ -352,6 +370,10 @@
 	<!-- litranslit -->
 	<script src="{{ asset('assets/js/jquery.liTranslit.js') }}"></script>
 	<script src="{{ asset('assets/js/dashboard.js') }}"></script>
+	<!-- javascript texts translate here -->
+	<script>
+		var are_you_sure = '{{ trans('messages.Sure_remove') }}';
+	</script>
 	<script>
 		$(document).ready(function () {
 

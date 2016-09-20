@@ -19,6 +19,9 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->text('content');
             $table->decimal('price',6,2);
+            $table->decimal('old_price',6,2);
+            $table->dateTime('price_from_date')->nullable();
+            $table->dateTime('price_to_date')->nullable();
             $table->string('preview');
             $table->integer('count');
             $table->integer('rating');

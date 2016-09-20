@@ -18,7 +18,7 @@ Route::get('/dashboard', 'Dashboard\DashboardController@index');
 ///dashboard products begin here
 
 Route::get('/dashboard/products/all', 'Dashboard\DashboardController@showAllProducts');
-Route::get('/dashboard/product/add', 'Dashboard\DashboardController@addProductPage');
+Route::get('/dashboard/product/add', 'Dashboard\DashboardController@addProduct');
 Route::post('/dashboard/product/add', 'Dashboard\DashboardController@addProduct');
 Route::get('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProductPage');
 Route::post('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProduct');
@@ -28,6 +28,7 @@ Route::post('/dashboard/product/delete', 'Dashboard\DashboardController@deletePr
 
 //dashboard brands begin here
 Route::get('/dashboard/brands/all', 'Dashboard\DashboardController@showAllBrands');
+Route::get('/dashboard/brands/all', 'Dashboard\DashboardController@addBrand');
 
 //dashboard brands end here
 

@@ -94,59 +94,58 @@ class DashboardController extends Controller
         return view('dashboard.edit_product', ['type' => $message_type, 'message' => $message, 'form_data' => $form_data, 'categories' => Categories::all(), 'brands' => Brands::all()]);
     }
 
-    public function addProductPage()
-    {
-        return view('dashboard.add_product', ['type' => '', 'message' => '', 'categories' => Categories::all(), 'brands' => Brands::all()]);
-    }
-
     public function addProduct(Request $request)
     {
-        $rule = [
-            'product' => 'required|unique:products|max:255',
-            'alias' => 'required|unique:products|max:255',
-            'category' => 'required',
-            'brand' => 'required',
-            'short_description' => 'max:255',
-            'price' => 'numeric',
-            'count' => 'numeric',
-            'photos.*.file' => 'image|max:1024'
-        ];
-        $validator = Validator::make($request->all(), $rule);
-
-        $path = 'uploads/images/product';
-        $form_data = '';
-
-        if (!$validator->fails()) {
-            $photos = [];
-            if (!is_null($request->photos[0])) {
-                foreach ($request->photos as $photo) {
-                    $filename = md5(time() . rand(1, 999)) . '.' . $photo->extension();
-                    $photos[] = $filename;
-                    $photo->move($path, $filename);
-                }
-            }
-
-            $product = $request->all();
-
-            Products::insert(['product' => $product['product'],
-                'alias' => $product['alias'],
-                'category_id' => $product['category'],
-                'brand_id' => $product['brand'],
-                'description' => $product['short_description'],
-                'content' => $product['content'],
-                'price' => $product['price'],
-                'preview' => serialize($photos),
-                'count' => $product['count'],
-                'rating' => 0]);
-
-            $message = 'Product added successfully';
-            $message_type = 'success';
+        if (empty($request->all())) {
+            return view('dashboard.add_product', ['type' => '', 'message' => '', 'categories' => Categories::all(), 'brands' => Brands::all()]);
         } else {
-            $message = $validator->errors()->all();
-            $message_type = 'danger';
-            $form_data = $request->all();
+            $rule = [
+                'product' => 'required|unique:products|max:255',
+                'alias' => 'required|unique:products|max:255',
+                'category' => 'required',
+                'brand' => 'required',
+                'short_description' => 'max:255',
+                'price' => 'numeric',
+                'count' => 'numeric',
+                'photos.*.file' => 'image|max:1024'
+            ];
+            $validator = Validator::make($request->all(), $rule);
+
+            $path = 'uploads/images/product';
+            $form_data = '';
+
+            if (!$validator->fails()) {
+                $photos = [];
+                if (!is_null($request->photos[0])) {
+                    foreach ($request->photos as $photo) {
+                        $filename = md5(time() . rand(1, 999)) . '.' . $photo->extension();
+                        $photos[] = $filename;
+                        $photo->move($path, $filename);
+                    }
+                }
+
+                $product = $request->all();
+
+                Products::insert(['product' => $product['product'],
+                    'alias' => $product['alias'],
+                    'category_id' => $product['category'],
+                    'brand_id' => $product['brand'],
+                    'description' => $product['short_description'],
+                    'content' => $product['content'],
+                    'price' => $product['price'],
+                    'preview' => serialize($photos),
+                    'count' => $product['count'],
+                    'rating' => 0]);
+
+                $message = 'Product added successfully';
+                $message_type = 'success';
+            } else {
+                $message = $validator->errors()->all();
+                $message_type = 'danger';
+                $form_data = $request->all();
+            }
+            return view('dashboard.add_product', ['form_data' => $form_data, 'type' => $message_type, 'message' => $message, 'categories' => Categories::all(), 'brands' => Brands::all()]);
         }
-        return view('dashboard.add_product', ['form_data' => $form_data, 'type' => $message_type, 'message' => $message, 'categories' => Categories::all(), 'brands' => Brands::all()]);
     }
 
     public function deleteProduct(Request $request)// ajax delete

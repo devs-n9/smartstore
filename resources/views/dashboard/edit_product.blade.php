@@ -94,6 +94,13 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Product rating:</label>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <input type="number" required min="0" name="rating" value="{{ $form_data['rating'] or '' }}"
+                       class="form-control col-md-7 col-xs-12">
+            </div>
+        </div>
+        <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Photos:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <input type="file" name="photos[]" multiple title="Choose photos"

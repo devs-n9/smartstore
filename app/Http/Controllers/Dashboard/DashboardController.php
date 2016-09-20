@@ -39,7 +39,8 @@ class DashboardController extends Controller
                 'short_description' => 'max:255',
                 'price' => 'numeric',
                 'count' => 'numeric',
-                'photos.*.file' => 'image|max:1024'
+                'photos.*.file' => 'image|max:1024',
+                'rating' => 'numeric'
             ];
             if ($old_product[0]->product != $request->all()['product']) { //if product name changed add unique name validation
                 $rule['product'] = 'required|unique:products|max:255';
@@ -47,7 +48,6 @@ class DashboardController extends Controller
             if ($old_product[0]->alias != $request->all()['alias']) { //if alias changed add unique name validation
                 $rule['alias'] = 'required|unique:products|max:255';
             }
-            //dd($rule);
             $validator = Validator::make($request->all(), $rule);
             $path = 'uploads/images/product'; // path to product images directory
             $form_data = $request->all();
@@ -58,7 +58,8 @@ class DashboardController extends Controller
                 'description' => $form_data['short_description'],
                 'content' => $form_data['content'],
                 'price' => $form_data['price'],
-                'count' => $form_data['count']]; //array keys rename for fill form fields
+                'count' => $form_data['count'],
+                'rating' => $form_data['rating']]; //array keys rename for fill form fields
 
             if (!$validator->fails()) {
                 $photos = [];
@@ -81,7 +82,8 @@ class DashboardController extends Controller
                     'content' => $product['content'],
                     'price' => $product['price'],
                     'preview' => serialize($photos),
-                    'count' => $product['count']]); // update product row
+                    'count' => $product['count'],
+                    'rating' => $product['rating']]); // update product row
 
                 $message = "Product {$product['product']} edited successfully";
                 $message_type = 'success';

@@ -370,6 +370,10 @@
 	<!-- litranslit -->
 	<script src="{{ asset('assets/js/jquery.liTranslit.js') }}"></script>
 	<script src="{{ asset('assets/js/dashboard.js') }}"></script>
+	<!-- javascript texts translate here -->
+	<script>
+		var are_you_sure = '{{ trans('messages.Sure_remove') }}';
+	</script>
 	<script>
 		$(document).ready(function () {
 

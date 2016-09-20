@@ -29,7 +29,7 @@ $().ready(function () {
         var row = $(this).parent().parent();
         var text = $(row).find('.product').text();
         var message_block = $('#message');
-        if (confirm('Are you sure you want to remove the ' + text + '?')) {
+        if (confirm(are_you_sure + ' ' + text + '?')) {
             $.ajax({
                 url: link,
                 type: 'POST',

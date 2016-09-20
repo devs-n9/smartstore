@@ -168,7 +168,7 @@ class DashboardController extends Controller
     {
         $query = Products::where('id', $request->all()['id'])->delete();
         if ($query) {
-            return response()->json(['message' => "Product " . $request->all()['product'] . " successfully deleted!", 'result' => 'success']);
+            return response()->json(['message' => trans('messages.Product'). ' ' . $request->all()['product'] . ' ' . trans('messages.succeffuly_deleted').'!', 'result' => 'success']);
         } else {
             return response()->json(['message' => "Error!", 'result' => 'danger']);
         }

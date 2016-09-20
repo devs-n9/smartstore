@@ -26,5 +26,7 @@ return [
     'Show_products' => 'Все товары',
     'Show_brands' => 'Все бренды',
     'Short_description' => 'Короткое описание',
+    'succeffuly_deleted' => 'успешно удален',
+    'Sure_remove' => 'Вы уверены что хотите удалить товар'
 
 ];

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'DefaultController@index');
-Route::get('/', 'NewsController@index');
+Route::get('/news', 'NewsController@index');
 Route::get('/news/edit', "NewsController@lists");
 Route::get('/news/{title}', "NewsController@index");
 Route::auth();
@@ -31,3 +31,23 @@ Route::get('/dashboard/news/post/delete/{title}', 'Dashboard\NewsController@dele
 
 
 
+///dashboard products begin here
+
+Route::get('/dashboard/products/all', 'Dashboard\DashboardController@showAllProducts');
+Route::get('/dashboard/product/add', 'Dashboard\DashboardController@addProductPage');
+Route::post('/dashboard/product/add', 'Dashboard\DashboardController@addProduct');
+Route::get('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProductPage');
+Route::post('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProduct');
+Route::post('/dashboard/product/delete', 'Dashboard\DashboardController@deleteProduct'); // ajax
+
+///dashboard products end here
+
+Route::get('/api/products/get/all', 'Api\ProductsController@getAllProducts');
+Route::get('/api/products/get/top10', 'Api\ProductsController@getTop10');
+Route::get('/api/products/test', 'Api\ProductsController@test');
+
+// Front Products
+Route::get('/catalog', 'Products\ProductsController@catalog');
+Route::get('/category/{name}', 'Products\ProductsController@category');
+Route::get('/product/{name}', 'Products\ProductsController@product');
+// Front Products end

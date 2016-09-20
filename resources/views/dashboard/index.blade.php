@@ -2,6 +2,10 @@
 
 @section('content')
 
+<span>
 
+    awdawdawdawd
+
+</span>
 
 @endsection

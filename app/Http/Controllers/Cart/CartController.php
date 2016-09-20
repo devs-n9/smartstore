@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Session;
 
 class CartController extends Controller
 {
@@ -23,6 +24,9 @@ class CartController extends Controller
      */
     public function cart()
     {
+        $ses = Session::get('cart');
+        //dd($ses);
+        dd($ses[1]->getOriginal());
         return view('cart.index');
     }
 
@@ -40,11 +44,41 @@ class CartController extends Controller
     /**
      * Добавлени продукта в корзину
      *
-     * @param integer $id GET параметр - ID добавляемого продукта
-     * @return json информация об операции (успех, кол-во элементов в корзине)
+     * @param integer $prodID POST параметр - ID добавляемого продукта
+     * @return json информация об операции (продукт, кол-во элементов в корзине)
      */
     public function addToCart(Request $request)
     {
-        return $request;
+        $prodID = (int)$request['prodID'];
+        if(!$prodID) {
+            return false;
+        }
+        $sesProdID = array();
+        $product = Products::find($prodID);
+        
+        //Session::push('cart', $product);
+        
+        if(Session::has('cart')) {
+            $ses = Session::get('cart');
+            $cntSes = count($ses);
+            for($i = 0; $i < $cntSes; $i++) {
+                $sesProdID[] = $ses[$i]->getOriginal('id');
+            }
+            if(Session::has('cart') && array_search($prodID, $sesProdID) === false) {
+                Session::push('cart', $product);
+                $cntProd = count(Session::get('cart'));
+                Session::put('cntProd', $cntProd);
+            } else {
+                return false;
+            }
+            
+        } else {
+            Session::push('cart', $product);
+            $cntProd = count(Session::get('cart'));
+            Session::put('cntProd', $cntProd);
+        }
+            
+        return response()->json(['cntprod' => $cntProd, 'product' => $product]);
+        
     }
 }

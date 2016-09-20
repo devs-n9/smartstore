@@ -6,6 +6,10 @@
  */
 
 $(document).ready(function() {
+    $.ajaxSetup({
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    });
+    
     /**
      *
      * Добавления товара в корзину
@@ -15,8 +19,12 @@ $(document).ready(function() {
      *
      */
     $('#addCart').click(function () {
-        var itemID = $(this).data('id');
-        $.post('/cart/addToCart', { itemID: itemID });
+        var csrftoken = $('meta[name=_token]').attr('content');
+        var prodID = $(this).data('id');
+        $.post('/cart/addToCart', { prodID: prodID, _token: csrftoken })
+            .done(function(data) {
+                $('.badge').html(data.cntprod);
+            }, "json");
 
         return false;
     });

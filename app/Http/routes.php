@@ -22,6 +22,7 @@ Route::get('/dashboard/product/add', 'Dashboard\DashboardController@addProductPa
 Route::post('/dashboard/product/add', 'Dashboard\DashboardController@addProduct');
 Route::get('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProductPage');
 Route::post('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProduct');
+Route::post('/dashboard/product/delete', 'Dashboard\DashboardController@deleteProduct'); // ajax
 
 ///dashboard products end here
 

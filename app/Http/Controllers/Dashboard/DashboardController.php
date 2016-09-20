@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
     public function ShowAllProducts()
     {
-        $products = Products::orderBy('id', 'DESC')->get();;
+        $products = Products::orderBy('id', 'DESC')->get();
         return view('dashboard.products', ['products' => $products]);
     }
 
@@ -43,32 +43,32 @@ class DashboardController extends Controller
             'count' => 'numeric',
             'photos.*.file' => 'image|max:1024'
         ];
-        if($old_product[0]->product != $request->all()['product']){
+        if ($old_product[0]->product != $request->all()['product']) { //if product name changed add unique name validation
             $rule['product'] = 'required|unique:products|max:255';
         }
-        if($old_product[0]->alias != $request->all()['alias']){
+        if ($old_product[0]->alias != $request->all()['alias']) { //if alias changed add unique name validation
             $rule['alias'] = 'required|unique:products|max:255';
         }
         //dd($rule);
         $validator = Validator::make($request->all(), $rule);
-        $path = 'uploads/images/product';
+        $path = 'uploads/images/product'; // path to product images directory
         $form_data = $request->all();
         $form_data = ['product' => $form_data['product'],
-                'alias' => $form_data['alias'],
-                'category_id' => $form_data['category'],
-                'brand_id' => $form_data['brand'],
-                'description' => $form_data['short_description'],
-                'content' => $form_data['content'],
-                'price' => $form_data['price'],
-                'count' => $form_data['count']];
+            'alias' => $form_data['alias'],
+            'category_id' => $form_data['category'],
+            'brand_id' => $form_data['brand'],
+            'description' => $form_data['short_description'],
+            'content' => $form_data['content'],
+            'price' => $form_data['price'],
+            'count' => $form_data['count']]; //array keys rename for fill form fields
 
         if (!$validator->fails()) {
             $photos = [];
-            if (!is_null($request->photos[0])) {
+            if (!is_null($request->photos[0])) { // if we have one or more photos upload and write to db this
                 foreach ($request->photos as $photo) {
-                    $filename = md5(time() . rand(1, 999)) . '.' . $photo->extension();
+                    $filename = md5(time() . rand(1, 999)) . '.' . $photo->extension(); // filename generate
                     $photos[] = $filename;
-                    $photo->move($path, $filename);
+                    $photo->move($path, $filename); // move image to fs
                 }
             }
 
@@ -83,7 +83,7 @@ class DashboardController extends Controller
                 'content' => $product['content'],
                 'price' => $product['price'],
                 'preview' => serialize($photos),
-                'count' => $product['count']]);
+                'count' => $product['count']]); // update product row
 
             $message = "Product {$product['product']} edited successfully";
             $message_type = 'success';
@@ -147,5 +147,15 @@ class DashboardController extends Controller
             $form_data = $request->all();
         }
         return view('dashboard.add_product', ['form_data' => $form_data, 'type' => $message_type, 'message' => $message, 'categories' => Categories::all(), 'brands' => Brands::all()]);
+    }
+
+    public function deleteProduct(Request $request)// ajax
+    {
+        $query = Products::where('id', $request->all()['id'])->delete();
+        if ($query) {
+            return response()->json(['message' => "Product " . $request->all()['product'] . " successfully deleted!", 'result' => 'success']);
+        } else {
+            return response()->json(['message' => "Error!", 'result' => 'danger']);
+        }
     }
 }

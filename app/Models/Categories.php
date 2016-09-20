@@ -9,4 +9,9 @@ class Categories extends Model
     protected $table = 'categories';
     public $timestamps = false;
     protected $guarded = [''];
+
+    public function getCategory($id)
+    {
+        return $this->where('id', $id)->get();
+    }
 }

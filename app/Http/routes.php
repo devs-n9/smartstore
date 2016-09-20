@@ -21,6 +21,7 @@ Route::get('/dashboard/products/all', 'Dashboard\DashboardController@showAllProd
 Route::get('/dashboard/product/add', 'Dashboard\DashboardController@addProductPage');
 Route::post('/dashboard/product/add', 'Dashboard\DashboardController@addProduct');
 Route::get('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProduct');
+Route::post('/dashboard/category/add'), 'Dashboard\DashboardController@addCategory');
 
 ///dashboard products end here
 

@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('orders')
+@section('content')
     <h1>ORDERS</h1>
     <table class="table table-striped">
         <thead>

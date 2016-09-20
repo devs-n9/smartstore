@@ -18,3 +18,23 @@ Route::get('/dashboard/orders', 'Dashboard\OrdersController@orders');
 Route::get('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@edit');
 Route::post('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@update');
 
+///dashboard products begin here
+
+Route::get('/dashboard/products/all', 'Dashboard\DashboardController@showAllProducts');
+Route::get('/dashboard/product/add', 'Dashboard\DashboardController@addProductPage');
+Route::post('/dashboard/product/add', 'Dashboard\DashboardController@addProduct');
+Route::get('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProductPage');
+Route::post('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProduct');
+Route::post('/dashboard/product/delete', 'Dashboard\DashboardController@deleteProduct'); // ajax
+
+///dashboard products end here
+
+Route::get('/api/products/get/all', 'Api\ProductsController@getAllProducts');
+Route::get('/api/products/get/top10', 'Api\ProductsController@getTop10');
+Route::get('/api/products/test', 'Api\ProductsController@test');
+
+// Front Products
+Route::get('/catalog', 'Products\ProductsController@catalog');
+Route::get('/category/{name}', 'Products\ProductsController@category');
+Route::get('/product/{name}', 'Products\ProductsController@product');
+// Front Products end

@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Meta, title, CSS, favicons, etc. -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentallela Dashboard</title>
+	<title>Gentallela Dashboard</title>
 
-    <!-- Bootstrap -->
-    <link href="{{ asset('bower_components/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="{{ asset('bower_components/gentelella/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="{{ asset('bower_components/gentelella/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
-    <!-- bootstrap-progressbar -->
-    <link href="{{ asset('bower_components/gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
-    <!-- jVectorMap -->
-    <link href="{{ asset('bower_components/gentelella/production/css/maps/jquery-jvectormap-2.0.3.css') }}" rel="stylesheet"/>
+	<!-- Bootstrap -->
+	<link href="{{ asset('bower_components/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link href="{{ asset('bower_components/gentelella/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+	<!-- iCheck -->
+	<link href="{{ asset('bower_components/gentelella/vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
+	<!-- bootstrap-progressbar -->
+	<link href="{{ asset('bower_components/gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
+	<!-- jVectorMap -->
+	<link href="{{ asset('bower_components/gentelella/production/css/maps/jquery-jvectormap-2.0.3.css') }}" rel="stylesheet" />
+
+    <!-- data tables -->
+    <link href="{{ asset('bower_components/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+
 
     <!-- Custom Theme Style -->
-    <link href="{{ asset('bower_components/gentelella/build/css/custom.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('bower_components/gentelella/build/css/custom.min.css') }}" rel="stylesheet">
 </head>
 
 <body class="nav-md">
+
 <div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col">
@@ -62,7 +68,19 @@
                                 </ul>
                             </li>
                             <li><a  href="/dashboard/orders"><i class="fa fa-inbox"></i> Orders <span class="fa fa-chevron-down"></span></a></li>
-                        </ul>
+							<li><a><i class="fa fa-cube"></i> {{ trans('messages.Products') }} <span class="fa fa-chevron-down"></span></a>
+								<ul class="nav child_menu">
+									<li><a href="/dashboard/products/all">{{ trans('messages.Show_products') }}</a></li>
+									<li><a href="/dashboard/product/add">{{ trans('messages.Add_product') }}</a></li>
+								</ul>
+							</li>
+							<li><a><i class="fa fa-apple"></i> {{ trans('messages.Brands') }} <span class="fa fa-chevron-down"></span></a>
+								<ul class="nav child_menu">
+									<li><a href="/dashboard/brands/all">{{ trans('messages.Show_brands') }}</a></li>
+									<li><a href="/dashboard/brands/add">{{ trans('messages.Add_brand') }}</a></li>
+								</ul>
+							</li>
+						</ul>
                     </div>
                 </div>
                 <!-- /sidebar menu -->
@@ -185,8 +203,7 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-            @yield('orders')
-            @yield('edit_orders')
+            @yield('content')
         </div>
         <!-- /page content -->
 
@@ -310,72 +327,93 @@
             tooltip: false
         });
 
-        function gd(year, month, day) {
-            return new Date(year, month - 1, day).getTime();
-        }
-    });
-</script>
-<!-- /Flot -->
+			function gd(year, month, day) {
+				return new Date(year, month - 1, day).getTime();
+			}
+		});
+	</script>
+	<!-- /Flot -->
 
-<!-- jVectorMap -->
-<script src="{{ asset('bower_components/gentelella/production/js/maps/jquery-jvectormap-world-mill-en.js') }}"></script>
-<script src="{{ asset('bower_components/gentelella/production/js/maps/jquery-jvectormap-us-aea-en.js') }}"></script>
-<script src="{{ asset('bower_components/gentelella/production/js/maps/gdp-data.js') }}"></script>
-<script>
-    $(document).ready(function(){
-        $('#world-map-gdp').vectorMap({
-            map: 'world_mill_en',
-            backgroundColor: 'transparent',
-            zoomOnScroll: false,
-            series: {
-                regions: [{
-                    values: gdpData,
-                    scale: ['#E6F2F0', '#149B7E'],
-                    normalizeFunction: 'polynomial'
+    <!-- Datatables -->
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+    <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-scroller/js/datatables.scroller.min.js') }}"></script>
+    <!-- Datatables -->
+
+    <!-- jVectorMap -->
+	<script src="{{ asset('bower_components/gentelella/production/js/maps/jquery-jvectormap-world-mill-en.js') }}"></script>
+	<script src="{{ asset('bower_components/gentelella/production/js/maps/jquery-jvectormap-us-aea-en.js') }}"></script>
+	<script src="{{ asset('bower_components/gentelella/production/js/maps/gdp-data.js') }}"></script>
+	<!-- bootstrap file input -->
+	<script src="{{ asset('assets/js/bootstrap.file-input.js') }}"></script>
+	<!-- litranslit -->
+	<script src="{{ asset('assets/js/jquery.liTranslit.js') }}"></script>
+	<script src="{{ asset('assets/js/dashboard.js') }}"></script>
+	<script>
+		$(document).ready(function () {
+
+			$('#world-map-gdp').vectorMap({
+				map: 'world_mill_en',
+				backgroundColor: 'transparent',
+				zoomOnScroll: false,
+				series: {
+					regions: [{
+						values: gdpData,
+						scale: ['#E6F2F0', '#149B7E'],
+						normalizeFunction: 'polynomial'
                 }]
-            },
-            onRegionTipShow: function(e, el, code) {
-                el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
-            }
-        });
-    });
-</script>
-<!-- /jVectorMap -->
+				},
+				onRegionTipShow: function (e, el, code) {
+					el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+				}
+			});
+		});
+	</script>
+	<!-- /jVectorMap -->
 
-<!-- Skycons -->
-<script>
-    $(document).ready(function() {
-        var icons = new Skycons({
-                    "color": "#73879C"
-                }),
-                list = [
+	<!-- Skycons -->
+	<script>
+		$(document).ready(function () {
+			var icons = new Skycons({
+					"color": "#73879C"
+				}),
+				list = [
                     "clear-day", "clear-night", "partly-cloudy-day",
                     "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
                     "fog"
                 ],
-                i;
+				i;
 
-        for (i = list.length; i--;)
-            icons.set(list[i], list[i]);
+			for (i = list.length; i--;)
+				icons.set(list[i], list[i]);
 
-        icons.play();
-    });
-</script>
-<!-- /Skycons -->
+			icons.play();
+		});
+	</script>
+	<!-- /Skycons -->
 
-<!-- Doughnut Chart -->
-<script>
-    $(document).ready(function(){
-        var options = {
-            legend: false,
-            responsive: false
-        };
+	<!-- Doughnut Chart -->
+	<script>
+		$(document).ready(function () {
+			var options = {
+				legend: false,
+				responsive: false
+			};
 
-        new Chart(document.getElementById("canvas1"), {
-            type: 'doughnut',
-            tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-            data: {
-                labels: [
+			new Chart(document.getElementById("canvas1"), {
+				type: 'doughnut',
+				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+				data: {
+					labels: [
                     "Symbian",
                     "Blackberry",
                     "Other",
@@ -480,31 +518,32 @@
 </script>
 <!-- /bootstrap-daterangepicker -->
 
-<!-- gauge.js -->
-<script>
-    var opts = {
-        lines: 12,
-        angle: 0,
-        lineWidth: 0.4,
-        pointer: {
-            length: 0.75,
-            strokeWidth: 0.042,
-            color: '#1D212A'
-        },
-        limitMax: 'false',
-        colorStart: '#1ABC9C',
-        colorStop: '#1ABC9C',
-        strokeColor: '#F0F3F3',
-        generateGradient: true
-    };
-    var target = document.getElementById('foo'),
-            gauge = new Gauge(target).setOptions(opts);
+	<!-- gauge.js -->
+	<script>
+		var opts = {
+			lines: 12,
+			angle: 0,
+			lineWidth: 0.4,
+			pointer: {
+				length: 0.75,
+				strokeWidth: 0.042,
+				color: '#1D212A'
+			},
+			limitMax: 'false',
+			colorStart: '#1ABC9C',
+			colorStop: '#1ABC9C',
+			strokeColor: '#F0F3F3',
+			generateGradient: true
+		};
+		var target = document.getElementById('foo'),
+			gauge = new Gauge(target).setOptions(opts);
 
-    gauge.maxValue = 6000;
-    gauge.animationSpeed = 32;
-    gauge.set(3200);
-    gauge.setTextField(document.getElementById("gauge-text"));
-</script>
-<!-- /gauge.js -->
+		gauge.maxValue = 6000;
+		gauge.animationSpeed = 32;
+		gauge.set(3200);
+		gauge.setTextField(document.getElementById("gauge-text"));
+	</script>
+	<!-- /gauge.js -->
 </body>
+
 </html>

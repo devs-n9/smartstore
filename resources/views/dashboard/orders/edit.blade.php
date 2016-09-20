@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('edit_orders')
+@section('content')
     <form method="post">
         {{ csrf_field() }}
         <div class="form-group">

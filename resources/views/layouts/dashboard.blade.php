@@ -27,6 +27,8 @@
 
     <!-- Custom Theme Style -->
 	<link href="{{ asset('bower_components/gentelella/build/css/custom.min.css') }}" rel="stylesheet">
+	<!-- our dashboard custom styles -->
+	<link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
 </head>
 
 <body class="nav-md">

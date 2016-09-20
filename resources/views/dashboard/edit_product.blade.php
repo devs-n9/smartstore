@@ -103,7 +103,7 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="submit" value="Add product" class="form-control btn btn-success">
+                <input type="submit" value="Edit product" class="form-control btn btn-success">
             </div>
         </div>
     </form>

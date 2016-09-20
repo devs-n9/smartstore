@@ -13,7 +13,7 @@ class BrandsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Brands')->delete();
+        DB::table('brands')->delete();
         Brands::insert([
             [
                 'brand' => 'Brand 1',

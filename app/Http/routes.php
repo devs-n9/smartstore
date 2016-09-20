@@ -30,6 +30,13 @@ Route::get('/api/products/get/all', 'Api\ProductsController@getAllProducts');
 Route::get('/api/products/get/top10', 'Api\ProductsController@getTop10');
 Route::get('/api/products/test', 'Api\ProductsController@test');
 
+//dashboard categories begin here
+Route::get('/dashboard/categories/all', 'Dashboard\DashboardController@showAllCategories');
+Route::get('/dashboard/category/add', 'Dashboard\CategoriesController@addCategoryPage');
+Route::post('/dashboard/category/add', 'Dashboard\CategoriesController@addCategory');
+
+//dashboard categories end here 
+
 // Front Products
 Route::get('/catalog', 'Products\ProductsController@catalog');
 Route::get('/category/{name}', 'Products\ProductsController@category');

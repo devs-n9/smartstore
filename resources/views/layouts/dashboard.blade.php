@@ -72,6 +72,12 @@
 										<li><a href="/dashboard/product/add">Add product</a></li>
 									</ul>
 								</li>
+								<li><a><i class="fa fa-cube"></i> Categories <span class="fa fa-chevron-down"></span></a>
+								    <ul class="nav child_menu">
+										<li><a href="/dashboard/categories/all">Show categories</a></li>
+										<li><a href="/dashboard/category/add">Add category</a></li>
+									</ul>
+								</li>
 							</ul>
 						</div>
 

@@ -24,6 +24,7 @@ class DashboardController extends Controller
         $products = Products::orderBy('id', 'DESC')->get();
         return view('dashboard.products', ['products' => $products]);
     }
+    
 
     public function editProductPage($id)
     {
@@ -158,4 +159,7 @@ class DashboardController extends Controller
             return response()->json(['message' => "Error!", 'result' => 'danger']);
         }
     }
+    
+
+    
 }

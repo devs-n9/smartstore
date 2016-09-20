@@ -20,6 +20,9 @@
                         <th>Category</th>
                         <th>Brand</th>
                         <th>Price</th>
+                        <th>Old price</th>
+                        <th>Price from</th>
+                        <th>Price to</th>
                         <th>Count</th>
                         <th>Rating</th>
                         <th></th>
@@ -33,6 +36,9 @@
                             <td>{{ $product->category->category }}</td>
                             <td>{{ $product->brand->brand }}</td>
                             <td>{{ $product->price }}</td>
+                            <td>{{ $product->old_price }}</td>
+                            <td>{{ $product->price_from_date }}</td>
+                            <td>{{ $product->price_to_date }}</td>
                             <td>{{ $product->count }}</td>
                             <td>{{ $product->rating }}</td>
                             <td>

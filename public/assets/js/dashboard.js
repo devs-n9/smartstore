@@ -1,7 +1,7 @@
 $().ready(function () {
 
     //translit in aliases
-    $('input[name="product"]').liTranslit({
+    $('input[data-translit="true"]').liTranslit({
         elAlias: $('input[name="alias"]')
     });
 

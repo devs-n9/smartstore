@@ -20,7 +20,7 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ trans('messages.Product_name') }}:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="text" required name="product" value="{{$form_data['product'] or ''}}"
+                <input type="text" data-translit="true" required name="product" value="{{$form_data['product'] or ''}}"
                        class="form-control col-md-7 col-xs-12">
             </div>
         </div>
@@ -124,7 +124,7 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ trans('messages.Photos') }}:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input style="display: none;" type="file" name="photos[]" multiple title="{{ trans('messages.Choose_photos') }}"
+                <input style="opacity: 0;" type="file" name="photos[]" multiple title="{{ trans('messages.Choose_photos') }}"
                        class="form-control btn btn-round btn-warning">
             </div>
         </div>

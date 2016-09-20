@@ -5,10 +5,12 @@ return [
     'Add_product' => 'Добавить товар',
     'Add_brand' => 'Добавить бренд',
     'Brand' => 'Бренд',
+    'Brand_name' => 'Название бренда',
     'Brands' => 'Бренды',
     'Count' => 'Кол-во',
     'Category' => 'Категория',
     'Choose_photos' => 'Выбрать фото',
+    'Choose_logo' => 'Выбрать лого',
     'Edit_product' => 'Редактировать товар',
     'Full_description' => 'Полное описание',
     'Logo' => 'Логотип',
@@ -27,6 +29,7 @@ return [
     'Show_brands' => 'Все бренды',
     'Short_description' => 'Короткое описание',
     'succeffuly_deleted' => 'успешно удален',
+    'succeffuly_added' => 'успешно добавлен',
     'Sure_remove' => 'Вы уверены что хотите удалить товар'
 
 ];

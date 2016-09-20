@@ -351,20 +351,10 @@
 	<script src="{{ asset('assets/js/bootstrap.file-input.js') }}"></script>
 	<!-- litranslit -->
 	<script src="{{ asset('assets/js/jquery.liTranslit.js') }}"></script>
+	<script src="{{ asset('assets/js/dashboard.js') }}"></script>
 	<script>
 		$(document).ready(function () {
 
-			$('input[name="product"]').liTranslit({
-				elAlias: $('input[name="alias"]')
-			});
-
-            $('#datatable-fixed-header').DataTable({
-                fixedHeader: true
-            });
-			$('input[type=file]').bootstrapFileInput();
-			$('.file-inputs').bootstrapFileInput();
-
-			$('.product-row').click(function(){window.location.replace("/dashboard/product/edit/"+$(this).data('id'))});
 			$('#world-map-gdp').vectorMap({
 				map: 'world_mill_en',
 				backgroundColor: 'transparent',

@@ -13,7 +13,7 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Products')->delete();
+        DB::table('products')->delete();
         Products::create([
             'product' => 'Тестовый продукт №1',
             'alias' => 'test_product_1',

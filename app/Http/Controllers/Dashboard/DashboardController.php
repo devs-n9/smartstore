@@ -149,7 +149,7 @@ class DashboardController extends Controller
         return view('dashboard.add_product', ['form_data' => $form_data, 'type' => $message_type, 'message' => $message, 'categories' => Categories::all(), 'brands' => Brands::all()]);
     }
 
-    public function deleteProduct(Request $request)// ajax
+    public function deleteProduct(Request $request)// ajax delete
     {
         $query = Products::where('id', $request->all()['id'])->delete();
         if ($query) {
@@ -157,5 +157,10 @@ class DashboardController extends Controller
         } else {
             return response()->json(['message' => "Error!", 'result' => 'danger']);
         }
+    }
+
+    public function showAllBrands()
+    {
+        return view('dashboard.brands', ['brands' => Brands::all()]);
     }
 }

@@ -72,6 +72,12 @@
 										<li><a href="/dashboard/product/add">Add product</a></li>
 									</ul>
 								</li>
+								<li><a><i class="fa fa-apple"></i> Brands <span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="/dashboard/brands/all">Show brands</a></li>
+										<li><a href="/dashboard/brands/add">Add brand</a></li>
+									</ul>
+								</li>
 							</ul>
 						</div>
 
@@ -246,8 +252,6 @@
 	<!-- bootstrap-daterangepicker -->
 	<script src="{{ asset('bower_components/gentelella/production/js/moment/moment.min.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/production/js/datepicker/daterangepicker.js') }}"></script>
-    <!-- data tables -->
-	<script src="{{ asset('bower_components/gentelella/vendors/') }}"></script>
 
 	<!-- Custom Theme Scripts -->
 	<script src="{{ asset('bower_components/gentelella/build/js/custom.min.js') }}"></script>

@@ -26,6 +26,11 @@ Route::post('/dashboard/product/delete', 'Dashboard\DashboardController@deletePr
 
 ///dashboard products end here
 
+//dashboard brands begin here
+Route::get('/dashboard/brands/all', 'Dashboard\DashboardController@showAllBrands');
+
+//dashboard brands end here
+
 Route::get('/api/products/get/all', 'Api\ProductsController@getAllProducts');
 Route::get('/api/products/get/top10', 'Api\ProductsController@getTop10');
 Route::get('/api/products/test', 'Api\ProductsController@test');

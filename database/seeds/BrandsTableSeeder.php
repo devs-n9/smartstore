@@ -15,15 +15,27 @@ class BrandsTableSeeder extends Seeder
     {
         DB::table('Brands')->delete();
         Brands::create([
-            'brand' => 'Brand 1',
+            [
+                'brand' => 'Brand 1',
+                'logo' => 'brand_logo_1.jpg'
+            ],
+            [
+                'brand' => 'Brand 2',
+                'logo' => 'brand_logo_2.jpg'
+            ],
+            [
+                'brand' => 'Brand 3',
+                'logo' => 'brand_logo_3.jpg'
+            ],
+            [
+                'brand' => 'Brand 4',
+                'logo' => 'brand_logo_4.jpg'
+            ],
+            [
+                'brand' => 'Brand 5',
+                'logo' => 'brand_logo_5.jpg'
+            ]
         ]);
 
-        Brands::create([
-            'brand' => 'Brand 2',
-        ]);
-
-        Brands::create([
-            'brand' => 'Brand 3',
-        ]);
     }
 }

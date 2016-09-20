@@ -1,6 +1,6 @@
 @extends('layouts.dashboard') @section('content')
 
-    <h1>Products</h1>
+    <h1>{{ trans('messages.Products') }}</h1>
     <div class="alert alert-success alert-dismissible fade in" style="display: none;" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                     aria-hidden="true">×</span>
@@ -16,8 +16,8 @@
                     <thead>
                     <tr role="row">
                         <th>ID</th>
-                        <th>Brand</th>
-                        <th>Logo</th>
+                        <th>{{ trans('messages.Brand') }}</th>
+                        <th>{{ trans('messages.Logo') }}</th>
                         <th></th>
                     </tr>
                     </thead>

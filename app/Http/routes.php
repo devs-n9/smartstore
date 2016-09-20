@@ -28,7 +28,7 @@ Route::post('/dashboard/product/delete', 'Dashboard\DashboardController@deletePr
 
 //dashboard brands begin here
 Route::get('/dashboard/brands/all', 'Dashboard\DashboardController@showAllBrands');
-Route::get('/dashboard/brands/all', 'Dashboard\DashboardController@addBrand');
+Route::get('/dashboard/brands/add', 'Dashboard\DashboardController@addBrand');
 
 //dashboard brands end here
 

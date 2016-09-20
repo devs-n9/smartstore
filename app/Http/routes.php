@@ -15,3 +15,15 @@ Route::get('/', 'DefaultController@index');
 
 Route::get('/dashboard', 'Dashboard\DashboardController@index');
 
+///dashboard products begin here
+
+Route::get('/dashboard/products/all', 'Dashboard\DashboardController@showAllProducts');
+Route::get('/dashboard/product/add', 'Dashboard\DashboardController@addProductPage');
+Route::post('/dashboard/product/add', 'Dashboard\DashboardController@addProduct');
+Route::get('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProduct');
+
+///dashboard products end here
+
+Route::get('/api/products/get/all', 'Api\ProductsController@getAllProducts');
+Route::get('/api/products/get/top10', 'Api\ProductsController@getTop10');
+Route::get('/api/products/test', 'Api\ProductsController@test');

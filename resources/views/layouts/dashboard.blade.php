@@ -24,9 +24,14 @@
     <!-- data tables -->
     <link href="{{ asset('bower_components/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
 
+	<!-- datetimepicker -->
+	<link href="{{ asset('bower_components/datetimepicker/build/jquery.datetimepicker.min.css') }}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
 	<link href="{{ asset('bower_components/gentelella/build/css/custom.min.css') }}" rel="stylesheet">
+
+	<!-- our dashboard custom styles -->
+	<link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -246,8 +251,12 @@
 	<!-- bootstrap-daterangepicker -->
 	<script src="{{ asset('bower_components/gentelella/production/js/moment/moment.min.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/production/js/datepicker/daterangepicker.js') }}"></script>
-    <!-- data tables -->
+
+	<!-- data tables -->
 	<script src="{{ asset('bower_components/gentelella/vendors/') }}"></script>
+
+	<!-- datetimepicker -->
+	<script src="{{ asset('bower_components/datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
 
 	<!-- Custom Theme Scripts -->
 	<script src="{{ asset('bower_components/gentelella/build/js/custom.min.js') }}"></script>
@@ -352,6 +361,12 @@
 	<!-- litranslit -->
 	<script src="{{ asset('assets/js/jquery.liTranslit.js') }}"></script>
 	<script src="{{ asset('assets/js/dashboard.js') }}"></script>
+
+	<!-- javascript texts translate here -->
+	<script>
+		var are_you_sure = '{{ trans('messages.Sure_remove') }}';
+	</script>
+
 	<script>
 		$(document).ready(function () {
 

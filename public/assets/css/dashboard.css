@@ -1,0 +1,4 @@
+.product-edit, .product-delete, .brand-delete, .brand-edit{
+    display: inline-block;
+    cursor: pointer;
+}

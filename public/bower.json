@@ -22,6 +22,7 @@
     "lightbox2": "^2.8.2",
     "font-awesome": "^4.6.3",
     "flexslider": "^2.6.3",
-    "jquery.easing": "^1.3.1"
+    "jquery.easing": "^1.3.1",
+    "datetimepicker": "^2.5.4"
   }
 }

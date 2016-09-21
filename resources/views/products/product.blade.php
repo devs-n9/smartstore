@@ -10,18 +10,13 @@
             <div class="row">
                 <div class="col-md-5 margin-b-30">
                     <div id="product-single"  class="owl-carousel owl-theme single-product-slider">
+                        @foreach($images as $image)
                         <div class="item">
-                            <a href="images/men/s-1.jpg" data-lightbox="roadtrip"> <img src="images/men/s-1.jpg" alt="Product image" class="img-responsive"></a>
+                            <a href="{{ asset('/uploads/images/product/' . $image->image) }}" data-lightbox="roadtrip">
+                                <img src="{{ asset('/uploads/images/product/' . $image->image) }}" alt="Product image" class="img-responsive">
+                            </a>
                         </div>
-                        <div class="item">
-                            <a href="images/men/s-2.jpg" data-lightbox="roadtrip"> <img src="images/men/s-2.jpg" alt="Product image" class="img-responsive"></a>
-                        </div>
-                        <div class="item">
-                            <a href="images/men/s-3.jpg" data-lightbox="roadtrip"> <img src="images/men/s-3.jpg" alt="Product image" class="img-responsive"></a>
-                        </div>
-                        <div class="item">
-                            <a href="images/men/s-4.jpg" data-lightbox="roadtrip"> <img src="images/men/s-4.jpg" alt="Product image" class="img-responsive"></a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-md-7">

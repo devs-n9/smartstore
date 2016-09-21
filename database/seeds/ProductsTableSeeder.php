@@ -13,7 +13,7 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Products')->delete();
+        DB::table('products')->delete();
         Products::create([
             'product' => 'Тестовый продукт №1',
             'alias' => 'test_product_1',
@@ -22,6 +22,7 @@ class ProductsTableSeeder extends Seeder
             'description' => 'Краткое описание товара',
             'content' => 'Полное описание товара',
             'price' => '1000',
+            'old_price' => '1999',
             'preview' => 'product_img.jpg',
             'count' => '100',
             'rating' => '0'

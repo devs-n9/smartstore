@@ -9,6 +9,7 @@ use App\Models\Products;
 use App\Models\Categories;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Validator;
 
 class ProductsController extends Controller
 {

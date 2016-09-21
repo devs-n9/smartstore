@@ -23,10 +23,11 @@ $(document).ready(function() {
         var prodID = $(this).data('id');
         $.post('/cart/addToCart', { prodID: prodID, _token: csrftoken })
             .done(function(data) {
+                pr(data.cntprod);
                 $('.badge').html(data.cntprod);
             }, "json");
 
-        return false;
+        //return false;
     });
 
 });

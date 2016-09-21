@@ -6,7 +6,6 @@
 
 namespace App\Http\Controllers\Cart;
 
-use App\Models\Categories;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
@@ -24,7 +23,8 @@ class CartController extends Controller
      */
     public function cart()
     {
-
+        $ses = Session::get('cart');
+        dd($ses);
         return view('cart.index');
     }
 

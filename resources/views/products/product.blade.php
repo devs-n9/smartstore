@@ -138,23 +138,23 @@
                                 </div><!--media-->
                             </div>
                             <div role="tabpanel" class="tab-pane" id="add-cmnt">
-                                <form role="form" method="post" action="#">
+                                <form role="form" method="post" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
                                     <div class="row">
+                                        <input type="hidden" value="{{ $product->id }}" name="product">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="inputFirstName" class="control-label">First Name:<span class="text-error">*</span></label>
                                                 <div>
-                                                    <input type="text" class="form-control" id="inputFirstName">
+                                                    <input type="text" class="form-control" id="inputFirstName" name="name">
                                                 </div>
                                             </div>
-
-
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="inputCompany" class="control-label">Company:</label>
+                                                <label for="inputCompany" class="control-label">Avatar:</label>
                                                 <div>
-                                                    <input type="text" class="form-control" id="inputCompany">
+                                                    <input type="file" class="form-control" id="inputAvatar" name="avatar">
                                                 </div>
                                             </div>
                                         </div>
@@ -164,9 +164,8 @@
                                                 <textarea class="form-control" id="review">    </textarea>
                                             </div>
                                         </div>
-
                                     </div>
-                                    <input type="submit" class="btn-skin btn btn-lg" value="Add Review">
+                                    <input type="submit" class="btn-skin btn btn-lg" value="Add Review" name="add_review">
                                 </form>
                             </div>
                         </div>

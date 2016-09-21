@@ -24,9 +24,7 @@ class CartController extends Controller
      */
     public function cart()
     {
-        $ses = Session::get('cart');
-        //dd($ses);
-        dd($ses);
+
         return view('cart.index');
     }
 
@@ -57,7 +55,7 @@ class CartController extends Controller
         $sesArr = array();
         $product = Products::find($prodID)->getOriginal();
         $sesArr['product'] = $product;
-        $sesArr['cntProd'] = 1;
+        $sesArr['count'] = 1;
         
         if(Session::has('cart')) {
             $ses = Session::get('cart');
@@ -66,38 +64,20 @@ class CartController extends Controller
                 $sesProdID[] = $ses[$i]['product']['id'];
             }
             if(Session::has('cart') && array_search($prodID, $sesProdID) === false) {
-                $cntProd = count(Session::get('cart'));
-                $sesArr['cntProd'] += $cntProd;
                 Session::push('cart', $sesArr);
+                $cntProd = count(Session::get('cart'));
+                Session::put('cntProd', $cntProd);
             } else {
-                $sesArr['cntProd'] += 1;
+                return false;
             }
             
         } else {
             Session::push('cart', $sesArr);
+            $cntProd = count(Session::get('cart'));
+            Session::put('cntProd', $cntProd);
         }
-        
-//        if(Session::has('cart')) {
-//            $ses = Session::get('cart');
-//            $cntSes = count($ses);
-//            for($i = 0; $i < $cntSes; $i++) {
-//                $sesProdID[] = $ses[$i]->getOriginal('id');
-//            }
-//            if(Session::has('cart') && array_search($prodID, $sesProdID) === false) {
-//                Session::push('cart', $product);
-//                $cntProd = count(Session::get('cart'));
-//                Session::put('cntProd', $cntProd);
-//            } else {
-//                return false;
-//            }
-//            
-//        } else {
-//            Session::push('cart', $product);
-//            $cntProd = count(Session::get('cart'));
-//            Session::put('cntProd', $cntProd);
-//        }
             
-        return response()->json(['cntprod' => $sesArr['cntProd'], 'product' => $product]);
+        return response()->json(['cntprod' => $cntProd, 'product' => $product]);
         
     }
 }

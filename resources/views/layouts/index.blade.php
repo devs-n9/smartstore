@@ -132,8 +132,10 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" role="button" aria-haspopup="true"><i class="pe-7s-cart"></i> <span class="badge">{{ Session::get('cntProd') }}</span></a>
                                 <div class="dropdown-menu shopping-cart">
-
                                     <div class="cart-items content-scroll">
+                                       @foreach(Session::get('cart') as $val)
+                                          <p>{{ $val['product']['id'] }}</p>
+                                       @endforeach
                                         <div class="cart-item clearfix">
                                             <div class="img">
                                                 <img src="{{ asset('assets/images/men/1.jpg') }}" alt="" class="img-responsive">

@@ -26,6 +26,7 @@
                         <th>{{ trans('messages.Count') }}</th>
                         <th>{{ trans('messages.Rating') }}</th>
                         <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,6 +45,8 @@
                             <td>
                                 <div class="product-edit" data-id="{{ $product->id }}"><span
                                             class="fa fa-pencil fa-2x"></span></div>
+                            </td>
+                            <td>
                                 <div class="product-delete" data-id="{{ $product->id }}"><span
                                             class="fa fa-close fa-2x"></span></div>
                             </td>

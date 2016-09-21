@@ -23,8 +23,6 @@ class CartController extends Controller
      */
     public function cart()
     {
-        $ses = Session::get('cart');
-        dd($ses);
         return view('cart.index');
     }
 

@@ -134,65 +134,20 @@
                                 <div class="dropdown-menu shopping-cart">
                                     <div class="cart-items content-scroll">
                                         @if(Session::get('cart'))
-                                        @foreach(Session::get('cart') as $val)
-                                            <p>{{ $val['product']['id'] }}</p>
-                                        @endforeach
+                                            @foreach(Session::get('cart') as $val)
+                                                <div class="cart-item clearfix">
+                                                    <div class="img">
+                                                        <img src="{{ asset('assets/images/men/'.$val['product']['preview']) }}" alt="" class="img-responsive">
+                                                    </div><!--img-->
+                                                    <div class="description">
+                                                        <a href="#">{{ $val['product']['product'] }}</a><strong class="price">1 x ${{ $val['product']['price'] }}</strong>
+                                                    </div><!--Description-->
+                                                    <div class="buttons">
+                                                        <a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a>
+                                                    </div>
+                                                </div><!--cart item-->
+                                            @endforeach
                                         @endif
-                                        <div class="cart-item clearfix">
-                                            <div class="img">
-                                                <img src="{{ asset('assets/images/men/1.jpg') }}" alt="" class="img-responsive">
-                                            </div><!--img-->
-                                            <div class="description">
-                                                <a href="#">Mauris et ligula quis</a><strong class="price">1 x $44.95</strong>
-                                            </div><!--Description-->
-                                            <div class="buttons">
-                                                <a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a>
-                                            </div>
-                                        </div><!--cart item-->
-                                        <div class="cart-item clearfix">
-                                            <div class="img">
-                                                <img src="{{ asset('assets/images/men/4.jpg') }}" alt="" class="img-responsive">
-                                            </div><!--img-->
-                                            <div class="description">
-                                                <a href="#">Mauris et ligula quis</a><strong class="price">1 x $44.95</strong>
-                                            </div><!--Description-->
-                                            <div class="buttons">
-                                                <a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a>
-                                            </div>
-                                        </div><!--cart item-->
-                                        <div class="cart-item clearfix">
-                                            <div class="img">
-                                                <img src="{{ asset('assets/images/men/2.jpg') }}" alt="" class="img-responsive">
-                                            </div><!--img-->
-                                            <div class="description">
-                                                <a href="#">Mauris et ligula quis</a><strong class="price">1 x $44.95</strong>
-                                            </div><!--Description-->
-                                            <div class="buttons">
-                                                <a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a>
-                                            </div>
-                                        </div><!--cart item-->
-                                        <div class="cart-item clearfix">
-                                            <div class="img">
-                                                <img src="{{ asset('assets/images/men/3.jpg') }}" alt="" class="img-responsive">
-                                            </div><!--img-->
-                                            <div class="description">
-                                                <a href="#">Mauris et ligula quis</a><strong class="price">1 x $44.95</strong>
-                                            </div><!--Description-->
-                                            <div class="buttons">
-                                                <a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a>
-                                            </div>
-                                        </div><!--cart item-->
-                                        <div class="cart-item clearfix">
-                                            <div class="img">
-                                                <img src="{{ asset('assets/images/men/6.jpg') }}" alt="" class="img-responsive">
-                                            </div><!--img-->
-                                            <div class="description">
-                                                <a href="#">Mauris et ligula quis</a><strong class="price">1 x $44.95</strong>
-                                            </div><!--Description-->
-                                            <div class="buttons">
-                                                <a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a>
-                                            </div>
-                                        </div><!--cart item-->
                                     </div><!--cart-items-->
 
                                     <div class="cart-footer">

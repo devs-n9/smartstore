@@ -4,6 +4,7 @@
 <div class="space-60"></div>
 <div class="container">
     <div class="table-responsive">
+        @if(Session::get('cart'))
         <table class="table table-condensed cart-table">
             <thead>
                 <tr>
@@ -16,51 +17,25 @@
                 </tr>
             </thead>
             <tbody>
+            @foreach(Session::get('cart') as $val)
                 <tr>
                     <td class="product-image">
-                        <img src="{{ asset('assets/images/men/5.jpg') }}" alt="" width="80">
+                        <img src="{{ asset('assets/images/men/'.$val['product']['preview']) }}" alt="" width="80">
                     </td>
-                    <td class='product-name'><a href='#'>Men's Backpack</a></td>
-                    <td class="product-price">$299.00</td>
+                    <td class='product-name'><a href='#'>{{ $val['product']['product'] }}</a></td>
+                    <td class="product-price">${{ $val['product']['price'] }}</td>
                     <td class="product-quantity">
                         <input type="number" value="1" min="1" class="fl qty-text" name="quantity">
                     </td>
                     <td class="product-total">
-                        $299.00
+                        ${{ $val['product']['price'] }}
                     </td>
                     <td class='product-delete'><a href='#' data-toggle='tooltip' data-placement='top' title='Remove this item'><i class="fa fa-times"></i></a></td>
                 </tr>
-                <tr>
-                    <td class="product-image">
-                        <img src="{{ asset('assets/images/men/7.jpg') }}" alt="" width="80">
-                    </td>
-                    <td class='product-name'><a href='#'>Cream T-shirt</a></td>
-                    <td class="product-price">$299.00</td>
-                    <td class="product-quantity">
-                        <input type="number" value="1" min="1" class="fl qty-text" name="quantity">
-                    </td>
-                    <td class="product-total">
-                        $299.00
-                    </td>
-                    <td class='product-delete'><a href='#' data-toggle='tooltip' data-placement='top' title='Remove this item'><i class="fa fa-times"></i></a></td>
-                </tr>
-                <tr>
-                    <td class="product-image">
-                        <img src="{{ asset('assets/images/men/3.jpg') }}" alt="" width="80">
-                    </td>
-                    <td class='product-name'><a href='#'>Men's Watch</a></td>
-                    <td class="product-price">$599.00</td>
-                    <td class="product-quantity">
-                        <input type="number" value="1" min="1" class="fl qty-text" name="quantity">
-                    </td>
-                    <td class="product-total">
-                        $599.00
-                    </td>
-                    <td class='product-delete'><a href='#' data-toggle='tooltip' data-placement='top' title='Remove this item'><i class="fa fa-times"></i></a></td>
-                </tr>
+            @endforeach
             </tbody>
-        </table>
-        <!--cart table-->
+        </table><!--cart table-->
+        @endif
     </div>
     <div class="space-20"></div>
     <div class="coupon-row">

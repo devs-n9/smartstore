@@ -13,7 +13,7 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Categories')->delete();
+        DB::table('categories')->delete();
         Categories::create([
             'category' => 'Тестовая категория №1',
             'alias' => 'test_category_1',

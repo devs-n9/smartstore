@@ -13,7 +13,7 @@ class StatusTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Status')->delete();
+        DB::table('status')->delete();
         Status::create([
             'status' => '1',
         ]);

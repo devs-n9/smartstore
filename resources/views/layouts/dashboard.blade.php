@@ -35,6 +35,7 @@
 </head>
 
 <body class="nav-md">
+
 	<div class="container body">
 		<div class="main_container">
 			<div class="col-md-3 left_col">
@@ -71,15 +72,21 @@
 										<li><a href="index3.html">Dashboard3</a></li>
 									</ul>
 								</li>
-								<li><a><i class="fa fa-cube"></i> Products <span class="fa fa-chevron-down"></span></a>
+								<li><a  href="/dashboard/orders"><i class="fa fa-inbox"></i> Orders <span class="fa fa-chevron-down"></span></a></li>
+								<li><a><i class="fa fa-cube"></i> {{ trans('messages.Products') }} <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="/dashboard/products/all">Show products</a></li>
-										<li><a href="/dashboard/product/add">Add product</a></li>
+										<li><a href="/dashboard/products/all">{{ trans('messages.Show_products') }}</a></li>
+										<li><a href="/dashboard/product/add">{{ trans('messages.Add_product') }}</a></li>
+									</ul>
+								</li>
+								<li><a><i class="fa fa-apple"></i> {{ trans('messages.Brands') }} <span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="/dashboard/brands/all">{{ trans('messages.Show_brands') }}</a></li>
+										<li><a href="/dashboard/brands/add">{{ trans('messages.Add_brand') }}</a></li>
 									</ul>
 								</li>
 							</ul>
 						</div>
-
 					</div>
 					<!-- /sidebar menu -->
 
@@ -203,8 +210,9 @@
 			<div class="right_col" role="main">
 				@yield('content')
 			</div>
-
 			<!-- /page content -->
+
+
 
 			<!-- footer content -->
 			<footer>

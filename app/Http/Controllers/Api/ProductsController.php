@@ -20,4 +20,10 @@ class ProductsController extends Controller
     {
         return response()->json(Products::getTop10());
     }
+    public function test(){
+        $products = Products::all();
+        foreach ($products as $product){
+            dd($product->images);
+        }
+    }
 }

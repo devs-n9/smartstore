@@ -31,7 +31,7 @@ Route::get('/api/products/get/top10', 'Api\ProductsController@getTop10');
 Route::get('/api/products/test', 'Api\ProductsController@test');
 
 //dashboard categories begin here
-Route::get('/dashboard/categories/all', 'Dashboard\DashboardController@showAllCategories');
+Route::get('/dashboard/categories/all', 'Dashboard\CategoriesController@showAllCategories');
 Route::get('/dashboard/category/add', 'Dashboard\CategoriesController@addCategoryPage');
 Route::post('/dashboard/category/add', 'Dashboard\CategoriesController@addCategory');
 

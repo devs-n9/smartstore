@@ -12,8 +12,8 @@
                     <div id="product-single"  class="owl-carousel owl-theme single-product-slider">
                         @foreach($images as $image)
                         <div class="item">
-                            <a href="images/men/s-1.jpg" data-lightbox="roadtrip">
-                                <img src="{{ asset('/uploads/images/product/' . $image) }}" alt="Product image" class="img-responsive">
+                            <a href="{{ asset('/uploads/images/product/' . $image->image) }}" data-lightbox="roadtrip">
+                                <img src="{{ asset('/uploads/images/product/' . $image->image) }}" alt="Product image" class="img-responsive">
                             </a>
                         </div>
                         @endforeach

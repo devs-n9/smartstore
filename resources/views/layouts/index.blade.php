@@ -302,7 +302,7 @@
         <!--footer end-->
         <!--js plugins-->
         <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-        <script src="{{ asset('bower_components/jquery-migrate/jquery-migrate.min.js') }}" type="text/javascript"></script>
+<!--        <script src="{{ asset('bower_components/jquery-migrate/jquery-migrate.min.js') }}" type="text/javascript"></script>-->
         <script src="{{ asset('bower_components/jquery.easing/js/jquery.easing.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.sticky.js') }}" type="text/javascript"></script>
@@ -313,6 +313,7 @@
         <script src="{{ asset('assets/libs/owl-carousel/owl.carousel.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/js/tweetie.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/js/custom.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bower_components/lightbox2/dist/js/lightbox.min.js') }}" type="text/javascript"></script>
         <!--revolution slider extentions-->
         <script type="text/javascript" src="{{ asset('assets/libs/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/libs/revolution/js/jquery.themepunch.tools.min.js') }}"></script>

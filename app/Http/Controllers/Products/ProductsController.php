@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Products;
 
 use App\Models\Categories;
+use App\Models\ProductImages;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class ProductsController extends Controller
     public function product($alias)
     {
         $product = Products::all()->where('alias', $alias)->first();
-        $images = unserialize($product->preview);
+        $images = ProductImages::all()->where('product_id', $product->id);
         $products = Products::all();
         $categories = Categories::all();
         $product_category = $categories->where('id', $product['category_id'])->first();

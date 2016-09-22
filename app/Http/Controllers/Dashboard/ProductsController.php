@@ -136,7 +136,7 @@ class ProductsController extends Controller
             ];
             $validator = Validator::make($request->all(), $rule);
 
-            $path = 'uploads/images/product';
+            $path = 'uploads/images/products';
 
             if (!$validator->fails()) {
                 $photos = [];

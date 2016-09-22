@@ -1,7 +1,7 @@
 $().ready(function () {
 
     //translit in aliases
-    $('input[name="product"]').liTranslit({
+    $('input[data-translit="true"]').liTranslit({
         elAlias: $('input[name="alias"]')
     });
 
@@ -29,7 +29,7 @@ $().ready(function () {
         var row = $(this).parent().parent();
         var text = $(row).find('.product').text();
         var message_block = $('#message');
-        if (confirm('Are you sure you want to remove the ' + text + '?')) {
+        if (confirm(are_you_sure + ' ' + text + '?')) {
             $.ajax({
                 url: link,
                 type: 'POST',
@@ -56,7 +56,11 @@ $().ready(function () {
         }
     });
 
-
+    //// datetimepicker
+    $.datetimepicker.setLocale('ru');
+    $('[name*="date"]').datetimepicker({
+        format: 'Y-m-d H:i'
+    });
     //$('#products-table tbody').on('click', 'tr', function () {
     //var data = table.row( this ).data();
     //window.location.replace("/dashboard/product/edit/"+data[0]);

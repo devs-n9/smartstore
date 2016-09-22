@@ -1,6 +1,6 @@
 @extends('layouts.dashboard') @section('content')
 
-    <h1>Products</h1>
+    <h1>{{ trans('messages.Products') }}</h1>
     <div class="alert alert-success alert-dismissible fade in" style="display: none;" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                     aria-hidden="true">×</span>
@@ -16,12 +16,16 @@
                     <thead>
                     <tr role="row">
                         <th>ID</th>
-                        <th>Product</th>
-                        <th>Category</th>
-                        <th>Brand</th>
-                        <th>Price</th>
-                        <th>Count</th>
-                        <th>Rating</th>
+                        <th>{{ trans('messages.Products') }}</th>
+                        <th>{{ trans('messages.Category') }}</th>
+                        <th>{{ trans('messages.Brand') }}</th>
+                        <th>{{ trans('messages.Price') }}</th>
+                        <th>{{ trans('messages.Old_price') }}</th>
+                        <th>{{ trans('messages.Price_from') }}</th>
+                        <th>{{ trans('messages.Price_to') }}</th>
+                        <th>{{ trans('messages.Count') }}</th>
+                        <th>{{ trans('messages.Rating') }}</th>
+                        <th></th>
                         <th></th>
                     </tr>
                     </thead>
@@ -33,11 +37,16 @@
                             <td>{{ $product->category->category }}</td>
                             <td>{{ $product->brand->brand }}</td>
                             <td>{{ $product->price }}</td>
+                            <td>{{ $product->old_price }}</td>
+                            <td>{{ $product->price_from_date }}</td>
+                            <td>{{ $product->price_to_date }}</td>
                             <td>{{ $product->count }}</td>
                             <td>{{ $product->rating }}</td>
                             <td>
                                 <div class="product-edit" data-id="{{ $product->id }}"><span
                                             class="fa fa-pencil fa-2x"></span></div>
+                            </td>
+                            <td>
                                 <div class="product-delete" data-id="{{ $product->id }}"><span
                                             class="fa fa-close fa-2x"></span></div>
                             </td>

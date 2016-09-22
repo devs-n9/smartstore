@@ -54,7 +54,7 @@ class ProductsController extends Controller
             }
 
             $validator = Validator::make($form_data, $rule);
-            $path = 'uploads/images/product'; // path to product images directory
+            $path = 'uploads/images/products'; // path to product images directory
             $form_data = ['product' => $form_data['product'],
                 'alias' => $form_data['alias'],
                 'category_id' => $form_data['category'],

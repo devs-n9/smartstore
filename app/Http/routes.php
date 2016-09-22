@@ -18,6 +18,14 @@ Route::get('/dashboard/orders', 'Dashboard\OrdersController@orders');
 Route::get('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@edit');
 Route::post('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@update');
 
+// Cart routes begin
+
+Route::get('/cart', 'Cart\CartController@cart');
+Route::post('/cart/addToCart', 'Cart\CartController@addToCart');
+Route::get('/checkout', 'Cart\CartController@checkout');
+
+// Cart routes end
+
 ///dashboard products begin here
 
 Route::get('/dashboard/products/all', 'Dashboard\ProductsController@showAllProducts');

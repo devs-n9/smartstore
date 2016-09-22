@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="_token" content="{{ csrf_token() }}">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Assan E-commerce</title>
 
@@ -22,6 +23,8 @@
         <link href="{{ asset('assets/libs/revolution/css/navigation.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/libs/revolution/css/layers.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/libs/revolution/css/settings.css') }}" rel="stylesheet">
+        <!--sky-forms css file-->
+        <link href="{{ asset('assets/libs/sky-form/css/sky-forms.css') }}" rel="stylesheet">
         <!--custom css file-->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
@@ -89,7 +92,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#"><img src="{{ asset('assets/images/logo-dark.png') }}" alt="logo"></a>
+                        <a class="navbar-brand" href="/"><img src="{{ asset('assets/images/logo-dark.png') }}" alt="logo"></a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
@@ -127,10 +130,14 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" role="button" aria-haspopup="true"><i class="pe-7s-cart"></i> <span class="badge">5</span></a>
+                                <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" role="button" aria-haspopup="true"><i class="pe-7s-cart"></i> <span class="badge">{{ Session::get('cntProd') }}</span></a>
                                 <div class="dropdown-menu shopping-cart">
-
                                     <div class="cart-items content-scroll">
+                                        @if(Session::get('cart'))
+                                        @foreach(Session::get('cart') as $val)
+                                            <p>{{ $val['product']['id'] }}</p>
+                                        @endforeach
+                                        @endif
                                         <div class="cart-item clearfix">
                                             <div class="img">
                                                 <img src="{{ asset('assets/images/men/1.jpg') }}" alt="" class="img-responsive">
@@ -189,8 +196,7 @@
                                     </div><!--cart-items-->
 
                                     <div class="cart-footer">
-                                        <a href="#" class="btn btn-light-dark"> View Cart</a>
-                                        <a href="#" class="btn btn-skin"> Checkout</a>
+                                        <a href="/cart" class="btn btn-light-dark"> View Cart</a>
                                     </div><!--footer of cart-->
 
 
@@ -296,7 +302,7 @@
         <!--footer end-->
         <!--js plugins-->
         <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-        <script src="{{ asset('bower_components/jquery-migrate/jquery-migrate.min.js') }}" type="text/javascript"></script>
+<!--        <script src="{{ asset('bower_components/jquery-migrate/jquery-migrate.min.js') }}" type="text/javascript"></script>-->
         <script src="{{ asset('bower_components/jquery.easing/js/jquery.easing.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.sticky.js') }}" type="text/javascript"></script>
@@ -307,6 +313,7 @@
         <script src="{{ asset('assets/libs/owl-carousel/owl.carousel.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/js/tweetie.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/js/custom.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bower_components/lightbox2/dist/js/lightbox.min.js') }}" type="text/javascript"></script>
         <!--revolution slider extentions-->
         <script type="text/javascript" src="{{ asset('assets/libs/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/libs/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
@@ -314,6 +321,8 @@
         <script type="text/javascript" src="{{ asset('assets/libs/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/libs/revolution/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/libs/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
+        <!--cart script-->
+        <script type="text/javascript" src="{{ asset('assets/js/cart.js') }}"></script>
         <script>
             /******************************************
              -	PREPARE PLACEHOLDER FOR SLIDER	-

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Orders;
+use App\Models\Orders;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;

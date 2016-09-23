@@ -22,8 +22,8 @@ return [
     'Product_category' => 'Категория товара',
     'Product_brand' => 'Бренд товара',
     'Price' => 'Цена',
-    'Price_from' => 'Действуйет с',
-    'Price_to' => 'Действуйет до',
+    'Price_from' => 'Действует с',
+    'Price_to' => 'Действует до',
     'Photos' => 'Фотографии',
     'Rating' => 'Рейтинг',
     'Select_category' => 'Выберите категорию',
@@ -31,8 +31,8 @@ return [
     'Show_products' => 'Все товары',
     'Show_brands' => 'Все бренды',
     'Short_description' => 'Короткое описание',
-    'succeffuly_deleted' => 'успешно удален',
-    'succeffuly_added' => 'успешно добавлен',
+    'succeffully_deleted' => 'успешно удален',
+    'succeffully_added' => 'успешно добавлен',
     'Sure_remove' => 'Вы уверены что хотите удалить товар'
 
 ];

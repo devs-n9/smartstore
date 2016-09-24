@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Models\Brands;
 use App\Models\Products;
+use App\Models\ProductImages;
 use App\Models\Categories;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Validator;
 
 class ProductsController extends Controller
 {
@@ -52,7 +54,7 @@ class ProductsController extends Controller
             }
 
             $validator = Validator::make($form_data, $rule);
-            $path = 'uploads/images/product'; // path to product images directory
+            $path = 'uploads/images/products'; // path to product images directory
             $form_data = ['product' => $form_data['product'],
                 'alias' => $form_data['alias'],
                 'category_id' => $form_data['category'],
@@ -138,13 +140,6 @@ class ProductsController extends Controller
 
             if (!$validator->fails()) {
                 $photos = [];
-                if (!is_null($request->photos[0])) {
-                    foreach ($request->photos as $photo) {
-                        $filename = md5(time() . rand(1, 999)) . '.' . $photo->extension();
-                        $photos[] = $filename;
-                        $photo->move($path, $filename);
-                    }
-                }
 
                 $product = $request->all();
                 $data_array = ['product' => $product['product'],
@@ -157,7 +152,7 @@ class ProductsController extends Controller
                     'old_price' => $product['old_price'],
                     'price_from_date' => $product['price_from_date'],
                     'price_to_date' => $product['price_to_date'],
-                    'preview' => serialize($photos),
+                    'preview' => '',
                     'count' => $product['count'],
                     'rating' => 0];
                 foreach ($data_array as $key => $value) {
@@ -165,7 +160,17 @@ class ProductsController extends Controller
                         unset($data_array[$key]);
                     }
                 }
-                Products::insert($data_array);
+                $result = Products::create($data_array);
+
+                if (!is_null($request->photos[0])) {
+                    foreach ($request->photos as $photo) {
+                        $filename = $form_data['product'] . md5(time() . rand(1, 999)) . '.' . $photo->extension();
+                        $img_result = ProductImages::create(['image' => $filename, 'product_id' => $result->id]);
+                        $photos[] = $filename;
+                        $photo->move($path, $filename);
+                    }
+                    Products::where('id', $result->id)->update(['preview' => $img_result->id]);
+                }
 
                 $message = trans('messages.Product') . ' ' . $product['product'] . ' ' . trans('messages.succeffuly_added');
                 $message_type = 'success';

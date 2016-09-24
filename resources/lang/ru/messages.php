@@ -26,6 +26,8 @@ return [
     'Price_to' => 'Действуйет до',
     'Photos' => 'Фотографии',
     'Rating' => 'Рейтинг',
+    'Select_category' => 'Выберите категорию',
+    'Select_brand' => 'Выберите бренд',
     'Show_products' => 'Все товары',
     'Show_brands' => 'Все бренды',
     'Short_description' => 'Короткое описание',

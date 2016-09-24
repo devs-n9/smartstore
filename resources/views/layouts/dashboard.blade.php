@@ -85,6 +85,12 @@
 										<li><a href="/dashboard/brands/add">{{ trans('messages.Add_brand') }}</a></li>
 									</ul>
 								</li>
+								<li><a><i class="fa fa-apple"></i> Categories <span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="/dashboard/categories/all">Show</a></li>
+										<li><a href="/dashboard/category/add">Add</a></li>
+									</ul>
+								</li>
 							</ul>
 						</div>
 					</div>

@@ -29,6 +29,15 @@ Route::post('/dashboard/product/delete', 'Dashboard\ProductsController@deletePro
 
 ///dashboard products end here
 
+//dashboard categories begin here
+Route::get('/dashboard/categories/all', 'Dashboard\CategoriesController@showAllCategories');
+Route::get('/dashboard/category/add', 'Dashboard\CategoriesController@addCategory');
+Route::post('/dashboard/category/add', 'Dashboard\CategoriesController@addCategory');
+Route::get('/dashboard/category/edit/{id}', 'Dashboard\CategoriesController@editCategory');
+Route::post('/dashboard/category/edit/{id}', 'Dashboard\CategoriesController@updateCategory');
+Route::get('/dashboard/category/delete/{id}', 'Dashboard\CategoriesController@deleteCategory');
+//Route::post('/dashboard/category/delete/{id}', 'Dashboard\CategoriesController@deleteCategory');
+
 //dashboard brands begin here
 Route::get('/dashboard/brands/all', 'Dashboard\ProductsController@showAllBrands');
 Route::get('/dashboard/brands/add', 'Dashboard\ProductsController@addBrand');

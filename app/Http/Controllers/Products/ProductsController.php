@@ -32,6 +32,8 @@ class ProductsController extends Controller
     // Product detail
     public function product($alias, Request $request)
     {
+
+        // Set review
         if($request){
             $validator = Validator::make($request->all(), [
                 "name" => "required",
@@ -59,12 +61,15 @@ class ProductsController extends Controller
 
             }
         }
-        
+
+        // Get product
         $product = Products::all()->where('alias', $alias)->first();
         $images = ProductImages::all()->where('product_id', $product->id);
         $products = Products::all();
         $categories = Categories::all();
         $product_category = $categories->where('id', $product['category_id'])->first();
+
+        // Get product reviews
         $product_reviews = Reviews::all()->where('product_id', $product->id);
         $product_rating = Reviews::where('product_id', $product->id)->select('rating')->get();
         $product_rating_total = 0;
@@ -75,7 +80,12 @@ class ProductsController extends Controller
                 $product_rating_count++;
             }
         }
-        $product_rating_average = round($product_rating_total / $product_rating_count);
+        if($product_rating_total > 0 && $product_rating_count > 0){
+            $product_rating_average = round($product_rating_total / $product_rating_count);
+        } else {
+            $product_rating_average = 0;
+        }
+
         return view('products.product',
             [
                 'product'=>$product,

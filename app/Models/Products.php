@@ -29,9 +29,8 @@ class Products extends Model
         return $this->hasOne('App\Models\Brands', 'id', 'brand_id');
     }
 
-    public function images()
-    {
-        return $this->hasMany('App\Models\ProductImages', 'id', 'product_id');
+    public function images(){
+        return $this->hasMany('App\Models\ProductImages', 'product_id', 'id');
     }
     // relations end
 

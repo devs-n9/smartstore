@@ -18,6 +18,7 @@ class CreateReviewsTable extends Migration
             $table->string('name');
             $table->text('review');
             $table->string('avatar');
+            $table->integer('rating');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
         });

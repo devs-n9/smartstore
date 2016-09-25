@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Products;
 use App\Models\Categories;
 use App\Models\ProductImages;
 use App\Models\Products;
+use App\Models\Reviews;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Validator;
 
 class ProductsController extends Controller
 {
@@ -29,13 +30,63 @@ class ProductsController extends Controller
     }
 
     // Product detail
-    public function product($alias)
+    public function product($alias, Request $request)
     {
+        if($request){
+            $validator = Validator::make($request->all(), [
+                "name" => "required",
+                "review" => "required"
+            ]);
+            $data = $request->all();
+
+            if ( !$validator->fails() ) {
+                // Create review & save
+                $review = new Reviews();
+                $review->name = $data["name"];
+                $review->review = $data["review"];
+                $review->product_id = $data["product_id"];
+                $review->rating = $data["rating"];
+                // Work with image
+                if($request->hasFile("avatar")){
+                    $file = $request->file("avatar");
+                    $fileName = md5(time() . rand(1, 999)) . '.' . $file->extension();
+                    $uploadPath = base_path() . '\public\uploads\images\reviews';
+                    $file->move($uploadPath, $fileName);
+                    $review->avatar = $fileName;
+                }
+                $review->save();
+            } else {
+
+            }
+        }
+        
         $product = Products::all()->where('alias', $alias)->first();
         $images = ProductImages::all()->where('product_id', $product->id);
         $products = Products::all();
         $categories = Categories::all();
         $product_category = $categories->where('id', $product['category_id'])->first();
-        return view('products.product', ['product'=>$product,'categories'=>$categories,'products'=>$products,'product_category'=>$product_category, 'images'=>$images]);
+        $product_reviews = Reviews::all()->where('product_id', $product->id);
+        $product_rating = Reviews::where('product_id', $product->id)->select('rating')->get();
+        $product_rating_total = 0;
+        $product_rating_count = 0;
+        for($i=0;$i<count($product_rating);$i++){
+            $product_rating_total += $product_rating[$i]['rating'];
+            if($product_rating[$i]['rating'] > 0){
+                $product_rating_count++;
+            }
+        }
+        $product_rating_average = round($product_rating_total / $product_rating_count);
+        return view('products.product',
+            [
+                'product'=>$product,
+                'categories'=>$categories,
+                'products'=>$products,
+                'product_category'=>$product_category,
+                'images'=>$images,
+                'product_reviews'=>$product_reviews,
+                'product_rating'=>$product_rating_average,
+                'product_rating_count'=>$product_rating_count
+            ]
+        );
     }
 }

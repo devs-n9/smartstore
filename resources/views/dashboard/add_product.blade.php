@@ -35,7 +35,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ trans('messages.Product_category') }}:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <select class="form-control" name="category">
-                    <option value="0" selected></option>
+                    <option value="0" selected>{{ trans('messages.Select_category') }}</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}"
                                 @if(!empty($form_data))
@@ -52,7 +52,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ trans('messages.Product_brand') }}:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <select class="form-control" name="brand">
-                    <option value="0" selected></option>
+                    <option value="0" selected>{{ trans('messages.Select_brand') }}</option>
                     @foreach($brands as $brand)
                         <option value="{{ $brand->id }}"
                                 @if(!empty($form_data))

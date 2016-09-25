@@ -172,7 +172,7 @@ class ProductsController extends Controller
                     Products::where('id', $result->id)->update(['preview' => $img_result->id]);
                 }
 
-                $message = trans('messages.Product') . ' ' . $product['product'] . ' ' . trans('messages.succeffuly_added');
+                $message = trans('messages.Product') . ' ' . $product['product'] . ' ' . trans('messages.succeffully_added');
                 $message_type = 'success';
                 $form_data = '';
             } else {
@@ -187,7 +187,7 @@ class ProductsController extends Controller
     {
         $query = Products::where('id', $request->all()['id'])->delete();
         if ($query) {
-            return response()->json(['message' => trans('messages.Product') . ' ' . $request->all()['product'] . ' ' . trans('messages.succeffuly_deleted') . '!', 'result' => 'success']);
+            return response()->json(['message' => trans('messages.Product') . ' ' . $request->all()['product'] . ' ' . trans('messages.succeffully_deleted') . '!', 'result' => 'success']);
         } else {
             return response()->json(['message' => "Error!", 'result' => 'danger']);
         }
@@ -217,7 +217,7 @@ class ProductsController extends Controller
                     $filename = $form_data['alias'] . '.' . $request->logo->extension();
                     $request->logo->move($path, $filename);
                 }
-                $message = trans('messages.Brand') . ' ' . $form_data['brand'] . ' ' . trans('messages.succeffuly_added');
+                $message = trans('messages.Brand') . ' ' . $form_data['brand'] . ' ' . trans('messages.succeffully_added');
                 Brands::create(['brand' => $form_data['brand'], 'alias' => $form_data['alias'], 'logo' => $filename]);
                 return view('dashboard.add_brand', ['form_data' => $form_data, 'message' => $message, 'type' => 'success']);
             } else {

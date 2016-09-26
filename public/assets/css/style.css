@@ -1530,3 +1530,26 @@ del {
 .similar-products #owl-slider.col-md-12 .item {
   padding: 0px 15px;
 }
+
+
+.rating-stars ul {
+  list-style: none;
+  cursor: pointer;
+  padding: 0;
+}
+.rating-stars ul li.star {
+  display: inline-block;
+  font-size: 10px;
+}
+.rating-stars ul li.star i.fa {
+  font-size: 30px;
+  color: #ccc;
+  display: block;
+  margin: 0 auto;
+}
+.rating-stars ul li.star.hover i.fa {
+  color: #ef6464;
+}
+.rating-stars ul li.star.selected i.fa {
+  color: #ef6464;
+}

@@ -61,4 +61,5 @@ Route::get('/api/products/test', 'Api\ProductsController@test');
 Route::get('/catalog', 'Products\ProductsController@catalog');
 Route::get('/category/{name}', 'Products\ProductsController@category');
 Route::get('/product/{name}', 'Products\ProductsController@product');
+Route::post('/product/{name}', 'Products\ProductsController@product');
 // Front Products end

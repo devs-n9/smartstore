@@ -8,7 +8,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "barryvdh/laravel-debugbar": "^2.3",
-        "anakadote/laravel-5-image-manager": "dev-master"
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

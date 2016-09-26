@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 
-use App\Models\Products;
+use App\Models\Brands;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,8 +22,10 @@ class ProductsController extends Controller
     }
 
     public function test(){
-        $products = Products::all();
-        dd($products);
 
+        $brands = Brands::all();
+        foreach($brands as $brand){
+            dump($brand->productsInBrand->count());
+        }
     }
 }

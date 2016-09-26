@@ -21,6 +21,7 @@ return [
     'Product_name' => 'Название товара',
     'Product_category' => 'Категория товара',
     'Product_brand' => 'Бренд товара',
+    'Products_in_brand' => 'Товаров в бренде',
     'Price' => 'Цена',
     'Price_from' => 'Действует с',
     'Price_to' => 'Действует до',

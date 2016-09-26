@@ -17,6 +17,7 @@
                     <tr role="row">
                         <th>ID</th>
                         <th>{{ trans('messages.Brand') }}</th>
+                        <th>{{ trans('messages.Products_in_brand') }}</th>
                         <th>{{ trans('messages.Alias') }}</th>
                         <th>{{ trans('messages.Logo') }}</th>
                         <th></th>
@@ -28,6 +29,7 @@
                         <tr data-id="{{$brand->id}}" class="product-row">
                             <td>{{ $brand->id }}</td>
                             <td class="brand">{{ $brand->brand }}</td>
+                            <td class="brand">{{ $brand->productsInBrand->count() }}</td>
                             <td class="brand">{{ $brand->alias }}</td>
                             <td><img src="/uploads/images/brands/{{ $brand->logo }}" alt=""></td>
                             <td>

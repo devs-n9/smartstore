@@ -22,6 +22,8 @@ $().ready(function () {
         window.location.replace("/dashboard/product/edit/" + $(this).data('id'));
     });
 
+
+    //удаление товаров ajax'ом
     $('.product-delete').click(function () {
         var token = $('#products-table').data('token');
         var link = "/dashboard/product/delete";
@@ -38,6 +40,41 @@ $().ready(function () {
                     _token: token,
                     id: id,
                     product: text
+                },
+                success: function (e) {
+                    if ($('.alert').is('.alert-success') || $('.alert').is('.alert-danger')) {
+                        $('.alert').removeClass('alert-success');
+                        $('.alert').removeClass('alert-danger');
+                    }
+                    $('.alert').addClass('alert-' + e.result);
+                    $(message_block).text(e.message);
+                }
+            });
+            $('.alert').slideDown(500);
+            $(row).fadeOut(500);
+            setTimeout(function () {
+                $('.alert').slideUp(500);
+            }, 5000)
+        }
+    });
+
+    //удаление брендов ajax'ом
+    $('.brand-delete').click(function () {
+        var token = $('#products-table').data('token');
+        var link = "/dashboard/brand/delete";
+        var id = $(this).data('id');
+        var row = $(this).parent().parent();
+        var text = $(row).find('.brand').text();
+        var message_block = $('#message');
+        if (confirm(are_you_sure + ' ' + text + '?')) {
+            $.ajax({
+                url: link,
+                type: 'POST',
+                dataType: 'JSON',
+                data: {
+                    _token: token,
+                    id: id,
+                    brand: text
                 },
                 success: function (e) {
                     if ($('.alert').is('.alert-success') || $('.alert').is('.alert-danger')) {

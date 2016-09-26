@@ -1,6 +1,6 @@
 @extends('layouts.dashboard') @section('content')
 
-    <h1>{{ trans('messages.Products') }}</h1>
+    <h1>{{ trans('messages.Brands') }}</h1>
     <div class="alert alert-success alert-dismissible fade in" style="display: none;" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                     aria-hidden="true">×</span>
@@ -25,8 +25,8 @@
                     @foreach($brands as $brand)
                         <tr data-id="{{$brand->id}}" class="product-row">
                             <td>{{ $brand->id }}</td>
-                            <td>{{ $brand->brand }}</td>
-                            <td><img src="{{ $brand->logo }}" alt=""></td>
+                            <td class="brand">{{ $brand->brand }}</td>
+                            <td><img src="/uploads/images/brands/{{ $brand->logo }}" alt=""></td>
                             <td>
                                 <div class="brand-edit" data-id="{{ $brand->id }}"><span
                                             class="fa fa-pencil fa-2x"></span></div>

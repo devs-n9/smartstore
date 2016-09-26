@@ -10,6 +10,7 @@ use App\Models\ProductImages;
 use App\Models\Categories;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Validator;
 
@@ -230,6 +231,20 @@ class ProductsController extends Controller
                 $message = $validator->errors()->all();
                 return view('dashboard.add_brand', ['form_data' => $form_data, 'message' => $message, 'type' => 'danger']);
             }
+        }
+    }
+
+    public function deleteBrand(Request $request)// ajax delete
+    {
+        $query = Brands::where('id', $request->all()['id']);
+        $img = $query->first();
+        $query = $query->delete();
+        if ($query) {
+            unlink('uploads/images/brands/'.$img->logo);
+            //dd($query);
+            return response()->json(['message' => trans('messages.Brand') . ' ' . $request->all()['brand'] . ' ' . trans('messages.succeffully_deleted') . '!', 'result' => 'success']);
+        } else {
+            return response()->json(['message' => 'Error!', 'result' => 'danger']);
         }
     }
 }

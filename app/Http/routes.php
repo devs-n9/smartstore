@@ -21,6 +21,11 @@ Route::get('/dashboard/products/all', 'Dashboard\DashboardController@showAllProd
 Route::get('/dashboard/product/add', 'Dashboard\DashboardController@addProductPage');
 Route::post('/dashboard/product/add', 'Dashboard\DashboardController@addProduct');
 Route::get('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProduct');
+Route::get('/dashboard/settings/edit_settings','Dashboard\SettingsController@index');
+Route::get('/dashboard/settings/add_settings', 'Dashboard\SettingsController@createSettings');
+Route::post('/dashboard/settings/add_settings', 'Dashboard\SettingsController@insertSettings');
+Route::get('/dashboard/settings/add_settings', 'Dashboard\SettingsController@createContacts');
+Route::post('/dashboard/settings/add_settings', 'Dashboard\SettingsController@insertContacts');
 
 ///dashboard products end here
 

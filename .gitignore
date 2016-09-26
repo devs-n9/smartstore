@@ -8,4 +8,6 @@ Homestead.json
 .idea/
 nbproject/
 composer.lock
-/public/uploads/images/product/*
+/public/uploads/images/products/*
+/public/uploads/images/brands/*
+/public/uploads/images/categories/*

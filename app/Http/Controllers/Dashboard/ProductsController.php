@@ -10,6 +10,7 @@ use App\Models\ProductImages;
 use App\Models\Categories;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use Validator;
 
 class ProductsController extends Controller
@@ -75,6 +76,7 @@ class ProductsController extends Controller
                         $filename = md5(time() . rand(1, 999)) . '.' . $photo->extension(); // filename generate
                         $photos[] = $filename;
                         $photo->move($path, $filename); // move image to fs
+                        Image::make($path.'/'.$filename)->crop(210, 210)->save($path.'/210x210/'.$filename, 90);
                     }
                 }
 
@@ -168,6 +170,8 @@ class ProductsController extends Controller
                         $img_result = ProductImages::create(['image' => $filename, 'product_id' => $result->id]);
                         $photos[] = $filename;
                         $photo->move($path, $filename);
+                        Image::make($path.'/'.$filename)->crop(210, 210)->save($path.'/210x210/'.$filename, 90);
+
                     }
                     Products::where('id', $result->id)->update(['preview' => $img_result->id]);
                 }
@@ -214,8 +218,10 @@ class ProductsController extends Controller
             if (!$validator->fails()) {
                 $filename = '';
                 if (!is_null($request->logo)) {
+                    //dd($request->logo->path());
                     $filename = $form_data['alias'] . '.' . $request->logo->extension();
-                    $request->logo->move($path, $filename);
+                    //$request->logo->move($path, $filename);
+                    Image::make($request->logo->path())->crop(100, 100)->save($path.'/'.$filename, 90);
                 }
                 $message = trans('messages.Brand') . ' ' . $form_data['brand'] . ' ' . trans('messages.succeffully_added');
                 Brands::create(['brand' => $form_data['brand'], 'alias' => $form_data['alias'], 'logo' => $filename]);

@@ -39,6 +39,9 @@ class Products extends Model
     }
     // relations end
 
+    public function productsQty($id){
+        return $this->where('brand_id', $id)->count();
+    }
 
     public function getProduct($id)
     {

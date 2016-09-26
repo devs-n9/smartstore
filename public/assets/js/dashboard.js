@@ -16,13 +16,6 @@ $().ready(function () {
         "order": [[0, "desc"]]
     });
 
-
-    //edit and delete products data table
-    $('.product-edit').click(function () {
-        window.location.replace("/dashboard/product/edit/" + $(this).data('id'));
-    });
-
-
     //удаление товаров ajax'ом
     $('.product-delete').click(function () {
         var token = $('#products-table').data('token');

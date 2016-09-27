@@ -9,7 +9,7 @@
         
         <label for="">Phone</label>
         <div>
-        <input type="number" name="phone" value="{{ $contacts->phone }}">
+        <input type="tel" name="phone" value="{{ $contacts->phone }}">
         </div>
         
         <label for="">Email</label>
@@ -36,12 +36,12 @@
         
         <label for="">Keywords</label>
         <div>
-        <textarea name="keywords" cols="30" rows="10">{{ $settings->keywords }}</textarea>
+        <textarea name="keywords" cols="10" rows="5">{{ $settings->keywords }}</textarea>
         </div>
         
         <label for="">Description</label>
         <div>
-        <textarea name="description" cols="30" rows="10">{{ $settings->description }}</textarea>
+        <textarea name="description" cols="10" rows="5">{{ $settings->description }}</textarea>
         </div>
         
         <div>

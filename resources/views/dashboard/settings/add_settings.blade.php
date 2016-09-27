@@ -9,7 +9,7 @@
         
         <label for="">Phone</label>
         <div>
-        <input type="number" name="phone">
+        <input type="tel" name="phone">
         </div>
         
         <label for="">Email</label>
@@ -36,12 +36,12 @@
         
         <label for="">Keywords</label>
         <div>
-        <textarea name="keywords" cols="30" rows="10"></textarea>
+        <textarea name="keywords" cols="10" rows="5"></textarea>
         </div>
         
         <label for="">Description</label>
         <div>
-        <textarea name="description" cols="30" rows="10"></textarea>
+        <textarea name="description" cols="10" rows="5"></textarea>
         </div>
                 
         @if(!empty($errors))

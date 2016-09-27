@@ -7,8 +7,9 @@ use App\Models\Contacts;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
-class SettingsComtroller extends Controller
+class SettingsController extends Controller
 {
      public function index()
     { 

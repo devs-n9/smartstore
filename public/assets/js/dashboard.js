@@ -101,6 +101,7 @@ $().ready(function () {
                     $('input[name="y"]').val(Math.ceil(e.detail.y));
                     $('input[name="width"]').val(Math.ceil(e.detail.width));
                     $('input[name="height"]').val(Math.ceil(e.detail.height));
+                    this.setDragMode('move');
                 }
             });
             cropper.setData(image);

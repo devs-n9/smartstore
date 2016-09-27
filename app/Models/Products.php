@@ -32,6 +32,11 @@ class Products extends Model
     public function images(){
         return $this->hasMany('App\Models\ProductImages', 'product_id', 'id');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Models\Reviews', 'id', 'product_id');
+    }
     // relations end
 
 

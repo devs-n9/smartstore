@@ -212,7 +212,7 @@ class ProductsController extends Controller
             $rule = [
                 'brand' => 'required|unique:brands|max:255',
                 'alias' => 'required|unique:brands|max:255',
-                'logo' => 'image|max:512'
+                'logo' => 'image|max:2048'
             ];
             $validator = Validator::make($request->all(), $rule);
             $path = 'uploads/images/brands/';
@@ -222,7 +222,7 @@ class ProductsController extends Controller
                     //dd($request->logo->path());
                     $filename = $form_data['alias'] . '.' . $request->logo->extension();
                     //$request->logo->move($path, $filename);
-                    Image::make($request->logo->path())->crop(100, 100)->save($path . $filename, 90);
+                    Image::make($request->logo->path())->crop($form_data['width'], $form_data['height'], $form_data['x'], $form_data['y'])->resize(150, 85)->save($path . $filename, 90);
                 }
                 $message = trans('messages.Brand') . ' ' . $form_data['brand'] . ' ' . trans('messages.succeffully_added');
                 Brands::create(['brand' => $form_data['brand'], 'alias' => $form_data['alias'], 'logo' => $filename]);

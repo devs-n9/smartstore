@@ -86,6 +86,33 @@ $().ready(function () {
         }
     });
 
+
+    var cropper = null;
+    $('input[type="file"]').change(function (e) {
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = function(){
+            $('.img-container>img').attr('src', reader.result);
+            var image = document.getElementById('image');
+            cropper = new Cropper(image, {
+                aspectRatio: 16 / 9,
+                crop: function(e) {
+                    $('input[name="x"]').val(Math.ceil(e.detail.x));
+                    $('input[name="y"]').val(Math.ceil(e.detail.y));
+                    $('input[name="width"]').val(Math.ceil(e.detail.width));
+                    $('input[name="height"]').val(Math.ceil(e.detail.height));
+                }
+            });
+            cropper.setData(image);
+        };
+
+    });
+    $('input[type="file"]').click(function () {
+        if(cropper){
+            cropper.destroy();
+        }
+    });
+
     //// datetimepicker
     $.datetimepicker.setLocale('ru');
     $('[name*="date"]').datetimepicker({

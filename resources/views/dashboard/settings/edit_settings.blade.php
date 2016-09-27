@@ -2,7 +2,7 @@
 @section('content')
 
     <title>Add settings to the web site</title>
-    <form method="post" class="form-horizontal">
+    <form method="post">
         {{ csrf_field() }}
         
         <h3>Change contact information</h3>
@@ -45,7 +45,7 @@
         </div>
         
         <div>
-        <input type="submit" value="Save" class="form-control btn btn-success">
+        <input type="submit" value="Save">
         </div>
     </form>
 

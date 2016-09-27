@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="_token" content="{{ csrf_token() }}">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Assan E-commerce</title>
 
@@ -22,6 +23,8 @@
         <link href="{{ asset('assets/libs/revolution/css/navigation.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/libs/revolution/css/layers.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/libs/revolution/css/settings.css') }}" rel="stylesheet">
+        <!--sky-forms css file-->
+        <link href="{{ asset('assets/libs/sky-form/css/sky-forms.css') }}" rel="stylesheet">
         <!--custom css file-->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
@@ -89,45 +92,23 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#"><img src="{{ asset('assets/images/logo-dark.png') }}" alt="logo"></a>
+                        <a class="navbar-brand" href="/"><img src="{{ asset('assets/images/logo-dark.png') }}" alt="logo"></a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="index.html">Home</a></li>
+                            <li class="active"><a href="/">Home</a></li>
                             <!--mega menu-->
                             <li class="dropdown yamm-fw">
-                                <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Pages  <i class="fa fa-angle-down"></i></a>
+                                <a href="/catalog" class="dropdown-toggle js-activated" data-toggle="dropdown">Catalog  <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <div class="yamm-content">
                                             <div class="row">
-
                                                 <div class="col-sm-3">
                                                     <h3 class="heading">Base pages</h3>
-                                                    <ul class="nav mega-vertical-nav">        
-                                                        <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
-                                                        <li><a href="register.html"><i class="fa fa-user"></i> Register</a></li>
-                                                        <li><a href="contact.html"><i class="fa fa-map-marker"></i> Contact </a></li>
-                                                        <li><a href="404.html"><i class="fa fa-trash-o"></i> 404 </a></li>
-                                                    </ul>
-
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <h3 class="heading">Product Pages </h3>
                                                     <ul class="nav mega-vertical-nav">
-                                                        <li><a href="product-list.html"><i class="fa fa-list"></i> Product list</a></li>
-                                                        <li><a href="product-grid.html"><i class="fa fa-bars"></i> Product grid</a></li>
+                                                        <li><a href="/catalog"><i class="fa fa-angle-right"></i> Catalog </a></li>
                                                         <li><a href="product-detail.html"><i class="fa fa-angle-right"></i> Product Detail </a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <h3 class="heading">Cart Pages</h3>
-                                                    <ul class="nav mega-vertical-nav">
-                                                        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>                                                   
-                                                        <li><a href="checkout.html"><i class="fa fa-truck"></i> Checkout</a></li>   
-                                                        <li><a href="order-history.html"><i class="fa fa-sliders"></i> Order history </a></li>
-                                                        <li><a href="compare.html"><i class="fa fa-random"></i> Compare </a></li>
-                                                        <li><a href="wishlist.html"><i class="fa fa-heart"></i> Wishlist </a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-sm-3">
@@ -138,65 +119,6 @@
                                     </li>
                                 </ul>
                             </li> <!--menu Features li end here-->
-                            <!--mega menu end--> 
-                            <!--mega menu-->
-                            <li class="dropdown yamm-fw">
-                                <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Women  <i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <div class="yamm-content">
-                                            <div class="row">
-
-                                                <div class="col-sm-3">
-                                                    <h3 class="heading">Sample title</h3>
-                                                    <ul class="nav mega-vertical-nav">        
-                                                        <li><a href="#">Nam ipsum est</a></li>
-                                                        <li><a href="#">Volutpat</a></li>
-                                                        <li><a href="#">In efficitur in</a></li>
-                                                        <li><a href="#">Accumsan eget</a></li>
-                                                        <li><a href="#">Curabitur</a></li>
-                                                    </ul>
-
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <h3 class="heading">Sample title </h3>
-                                                    <ul class="nav mega-vertical-nav">
-                                                        <li><a href="#">Nam ipsum est</a></li>
-                                                        <li><a href="#">Volutpat</a></li>
-                                                        <li><a href="#">In efficitur in</a></li>
-                                                        <li><a href="#">Accumsan eget</a></li>
-                                                        <li><a href="#">Curabitur</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <h3 class="heading">Sample title</h3>
-                                                    <ul class="nav mega-vertical-nav">
-                                                        <li><a href="#">Nam ipsum est</a></li>
-                                                        <li><a href="#">Volutpat</a></li>
-                                                        <li><a href="#">In efficitur in</a></li>
-                                                        <li><a href="#">Accumsan eget</a></li>
-                                                        <li><a href="#">Curabitur</a></li>                                        
-                                                    </ul>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <img src="{{ asset('assets/images/women/8.jpg') }}" class="img-responsive" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li> <!--menu Features li end here-->
-                            <!--mega menu end--> 
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" role="button" aria-haspopup="true">Men <i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Nam ipsum est</a></li>
-                                    <li><a href="#">Volutpat</a></li>
-                                    <li><a href="#">In efficitur in</a></li>
-                                    <li><a href="#">Accumsan eget</a></li>
-                                    <li><a href="#">Curabitur</a></li>
-                                </ul>
-                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" role="button" aria-haspopup="true">Blog <i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu">
@@ -208,10 +130,14 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" role="button" aria-haspopup="true"><i class="pe-7s-cart"></i> <span class="badge">5</span></a>
+                                <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" role="button" aria-haspopup="true"><i class="pe-7s-cart"></i> <span class="badge">{{ Session::get('cntProd') }}</span></a>
                                 <div class="dropdown-menu shopping-cart">
-
                                     <div class="cart-items content-scroll">
+                                        @if(Session::get('cart'))
+                                        @foreach(Session::get('cart') as $val)
+                                            <p>{{ $val['product']['id'] }}</p>
+                                        @endforeach
+                                        @endif
                                         <div class="cart-item clearfix">
                                             <div class="img">
                                                 <img src="{{ asset('assets/images/men/1.jpg') }}" alt="" class="img-responsive">
@@ -270,8 +196,7 @@
                                     </div><!--cart-items-->
 
                                     <div class="cart-footer">
-                                        <a href="#" class="btn btn-light-dark"> View Cart</a>
-                                        <a href="#" class="btn btn-skin"> Checkout</a>
+                                        <a href="/cart" class="btn btn-light-dark"> View Cart</a>
                                     </div><!--footer of cart-->
 
 
@@ -377,7 +302,7 @@
         <!--footer end-->
         <!--js plugins-->
         <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-        <script src="{{ asset('bower_components/jquery-migrate/jquery-migrate.min.js') }}" type="text/javascript"></script>
+<!--        <script src="{{ asset('bower_components/jquery-migrate/jquery-migrate.min.js') }}" type="text/javascript"></script>-->
         <script src="{{ asset('bower_components/jquery.easing/js/jquery.easing.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.sticky.js') }}" type="text/javascript"></script>
@@ -388,6 +313,7 @@
         <script src="{{ asset('assets/libs/owl-carousel/owl.carousel.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/js/tweetie.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/js/custom.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bower_components/lightbox2/dist/js/lightbox.min.js') }}" type="text/javascript"></script>
         <!--revolution slider extentions-->
         <script type="text/javascript" src="{{ asset('assets/libs/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/libs/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
@@ -395,6 +321,8 @@
         <script type="text/javascript" src="{{ asset('assets/libs/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/libs/revolution/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/libs/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
+        <!--cart script-->
+        <script type="text/javascript" src="{{ asset('assets/js/cart.js') }}"></script>
         <script>
             /******************************************
              -	PREPARE PLACEHOLDER FOR SLIDER	-

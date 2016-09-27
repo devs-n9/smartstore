@@ -8,7 +8,5 @@ Homestead.json
 .idea/
 nbproject/
 composer.lock
-<<<<<<< HEAD
-=======
 /public/uploads/images/product/*
->>>>>>> cf968a9286153f742c0921af6fae36b4a489ef36
+/public/uploads/*

@@ -80,7 +80,8 @@
 
 					<!-- /menu footer buttons -->
 					<div class="sidebar-footer hidden-small">
-						<a data-toggle="tooltip" data-placement="top" title="Settings">
+                        <!-- For contacts and settings changing -->
+						<a data-toggle="tooltip" data-placement="top" title="Settings" href="/dashboard/settings/edit_settings.blade.php">
 							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 						</a>
 						<a data-toggle="tooltip" data-placement="top" title="FullScreen">

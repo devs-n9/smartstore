@@ -15,26 +15,27 @@ class SettingsComtroller extends Controller
         return view('dashboard.settings.add_settings');
     }
     
-    public function create()
+    public function createConacts()
     {
         $contacts = Contacts::all();
+        return view('dashboard.settings.add_settings', [
+            'contacts' => $contacts
+        ]);
+    }
+    
+    public function createSettings()
+    {
         $settings = Settings::all();
         return view('dashboard.settings.add_settings', [
-            'contacts' => $contacts,
             'settings' => $settings
         ]);
     }
     
-     public function insert(Request $request)
+    
+     public function insertContacts(Request $request)
     {
         $contacts = [];
-        $setting = [];
-        $changes = [];
         $validator = Validator::make($request->all(), [
-            'description' => 'unique:settings|required',
-            'keywords' => 'unique:settings|required',
-            'author' => 'unique:settings|required',
-            'title' => 'unique:settings|required',
             'phone' => 'unique:contacts|required',
             'email' => 'unique:contacts|required',
             'address' => 'unique:contacts|required'
@@ -42,15 +43,41 @@ class SettingsComtroller extends Controller
         
         if (!$validator->fails()) {
             $data_con = $request->all();
-            $data_set = $request->all();
             
             $contacts = $data_con['contacts'];
-            $settings = $data_set['settings'];
-            
-            unset($data_con['contacts'] & $data_set['settings']);
+                
+            unset($data_con['contacts']);
             
             $contacts = Contacts::create($data_con);
             Contacts::insert($contacts);
+            
+            return redirect('/dashboard.index.blade');
+        }else{
+            
+            return view('dashboard.settings.add_settings', [
+                'errors' => $validator->errors()->all()
+            ]);
+        }
+        
+    }
+    
+    public function insertSettings(Request $request)
+    {
+        $setting = [];
+        $validator = Validator::make($request->all(), [
+            'description' => 'unique:settings|required',
+            'keywords' => 'unique:settings|required',
+            'author' => 'unique:settings|required',
+            'title' => 'unique:settings|required'
+        ]);
+        
+        if (!$validator->fails()) {
+            
+            $data_set = $request->all();
+            
+            $settings = $data_set['settings'];
+            
+            unset($data_set['settings']);
             
             $ettings = Settings::create($data_set);
             Settings::insert($settings);
@@ -65,23 +92,35 @@ class SettingsComtroller extends Controller
         
     }
     
-    public function edit($id)
+    
+    public function editContacts($id)
     {
         $contacts = Contacts::find($id);
+        return view('dashboard.settings.edit_settings', [
+            'contacts' => $contacts
+        ]);
+    }
+    
+    public function editSettings($id)
+    {
         $settings = Settings::find($id);
         return view('dashboard.settings.edit_settings', [
-            'contacts' => $contacts,
             'settings' => $settings
         ]);
     }
     
-    public function update(Request $request, $id)
+    public function updateContacts(Request $request, $id)
     {
         $data_cont = $request->all();
         $contacts = Contacts::find($id);
+        $contacts ->update($data_cont);
+        return redirect('/dashboard.index.blade');
+    }
+    
+    public function updateSettings(Request $request, $id)
+    {
         $data_set = $request->all();
         $settings = Settings::find($id);
-        $contacts ->update($data_cont);
         $settings ->update($data_set);
         return redirect('/dashboard.index.blade');
     }

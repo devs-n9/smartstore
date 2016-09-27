@@ -336,7 +336,7 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading">+01 1800 345-4509</h4>
+                                <h4 class="media-heading" >+01 1800 345-4509</h4>
                             </div>
                         </div>
                         <div class="media">

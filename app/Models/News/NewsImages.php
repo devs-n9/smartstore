@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\News;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class NewsImages extends Model
 {
-    protected $table = 'categories';
+    protected $table = 'news_images';
     public $timestamps = false;
     protected $guarded = [''];
 }
-
-
-
+ 

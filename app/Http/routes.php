@@ -17,6 +17,14 @@ Route::get('/dashboard', 'Dashboard\DashboardController@index');
 Route::get('/dashboard/orders', 'Dashboard\OrdersController@orders');
 Route::get('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@edit');
 Route::post('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@update');
+Route::get('/dashboard/news', 'Dashboard\DashboardNewsController\DashboardNewsController@news');
+Route::get('/dashboard/news/post/create', 'Dashboard\DashboardNewsController\DashboardNewsController@create');
+Route::post('/dashboard/news/post/create', 'Dashboard\DashboardNewsController\DashboardNewsController@insert');
+
+Route::get('/dashboard/news/post/edit/{id}', 'Dashboard\DashboardNewsController\DashboardNewsController@edit');
+Route::post('/dashboard/news/post/edit/{id}', 'Dashboard\DashboardNewsController\DashboardNewsController@update');
+
+Route::get('/dashboard/news/post/delete/{title}', 'Dashboard\DashboardNewsController\DashboardNewsController@delete');
 
 // Cart routes begin
 

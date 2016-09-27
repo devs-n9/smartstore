@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Brands;
 use App\Models\Categories;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Validator;

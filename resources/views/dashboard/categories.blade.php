@@ -36,6 +36,12 @@
                     </tbody>
                 </table>
             </div>
+            <div class="container">
+                @foreach ($categories as $category)
+                    {{ $category->name }}
+                @endforeach
+            </div>
+            {{ $categories->links() }}
         </div>
     </div>
 @endsection

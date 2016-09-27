@@ -13,7 +13,7 @@ class CategoriesController extends Controller
 {
     public function ShowAllCategories()
     {
-        $categories = Categories::orderBy('id')->get();
+        $categories = Categories::orderBy('id')->paginate(10);
         return view('dashboard.categories', ['categories' => $categories]);
     }
 

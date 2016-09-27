@@ -149,3 +149,5 @@ $(document).ready(function() {
       navigationText: ["<i class='pe-7s-angle-left'>", "<i class='pe-7s-angle-right'>"]
   });
 });
+
+// delete style break-word

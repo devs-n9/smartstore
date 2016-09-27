@@ -27,9 +27,7 @@
                     <td class="product-quantity">
                         <input type="number" value="1" min="1" class="fl qty-text" name="quantity">
                     </td>
-                    <td class="product-total">
-                        ${{ $val['product']['price'] }}
-                    </td>
+                    <td class="product-total"></td>
                     <td class='product-delete'><a href='#' data-toggle='tooltip' data-placement='top' title='Remove this item'><i class="fa fa-times"></i></a></td>
                 </tr>
             @endforeach
@@ -67,7 +65,7 @@
                     <tbody>
                         <tr>
                             <td>Subtotal</td>
-                            <td>$2456.00</td>
+                            <td class="subtotal"></td>
                         </tr>
                         <tr>
                             <td>Shipping</td>
@@ -75,7 +73,7 @@
                         </tr>
                         <tr>
                             <td>Total</td>
-                            <td class="total">$2456.00</td>
+                            <td class="total"></td>
                         </tr>
                         <tr>
                             <td colspan="2"> <a href="/checkout" class="btn btn-lg btn-skin">Proceed to checkout</a></td>

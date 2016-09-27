@@ -28,7 +28,7 @@
                         <input type="number" value="1" min="1" class="fl qty-text" name="quantity">
                     </td>
                     <td class="product-total"></td>
-                    <td class='product-delete'><a href='#' data-toggle='tooltip' data-placement='top' title='Remove this item'><i class="fa fa-times"></i></a></td>
+                    <td class="product-delete"><a href="cart/del/{{ $val['product']['id'] }}" data-toggle="tooltip" data-placement="top" title="Remove this item"><i class="fa fa-times"></i></a></td>
                 </tr>
             @endforeach
             </tbody>

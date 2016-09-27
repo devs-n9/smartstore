@@ -27,7 +27,7 @@ $(document).ready(function() {
                 var html = '<div class="cart-item clearfix">';
                 html += '<div class="img"><img src="'+data.product['preview']+'" alt="img" class="img-responsive"></div>';
                 html += '<div class="description"><a href="product/'+data.product['alias']+'">'+data.product['product']+'</a><strong class="price">1 x $'+data.product['price']+'</strong></div>';
-                html += '<div class="buttons"><a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a></div>';
+                html += '<div class="buttons"><a href="#" class="fa fa-trash-o"></a></div>';
                 html += '</div>';
                 $('.content-scroll').children().children().append(html);
             }, "json");

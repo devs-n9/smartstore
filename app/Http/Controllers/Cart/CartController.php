@@ -23,6 +23,7 @@ class CartController extends Controller
      */
     public function cart()
     {
+        //dd(Session::get('cart'));
         return view('cart.index');
     }
 
@@ -62,7 +63,7 @@ class CartController extends Controller
                 $sesProdID[] = $ses[$i]['product']['id'];
             }
             if(Session::has('cart') && array_search($prodID, $sesProdID) === false) {
-                Session::push('cart', $sesArr);
+                Session::push('cart.'.$prodID, $sesArr);
                 $cntProd = count(Session::get('cart'));
                 Session::put('cntProd', $cntProd);
             } else {
@@ -70,12 +71,18 @@ class CartController extends Controller
             }
             
         } else {
-            Session::push('cart', $sesArr);
+            Session::push('cart.'.$prodID,, $sesArr);
             $cntProd = count(Session::get('cart'));
             Session::put('cntProd', $cntProd);
         }
             
         return response()->json(['cntprod' => $cntProd, 'product' => $product]);
         
+    }
+
+    public function delToCart()
+    {
+
+        return view('cart.index');
     }
 }

@@ -143,7 +143,7 @@
                                                         <a href="#">{{ $val['product']['product'] }}</a><strong class="price">1 x ${{ $val['product']['price'] }}</strong>
                                                     </div><!--Description-->
                                                     <div class="buttons">
-                                                        <a href="#" class="fa fa-pencil"></a><a href="#" class="fa fa-trash-o"></a>
+                                                        <a href="cart/del/{{ $val['product']['id'] }}" class="fa fa-trash-o"></a>
                                                     </div>
                                                 </div><!--cart item-->
                                             @endforeach

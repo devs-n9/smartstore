@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use App;
+use Storage;
 
 class ProductsController extends Controller
 {
@@ -22,8 +23,9 @@ class ProductsController extends Controller
         return response()->json(Products::getTop10());
     }
 
-    public function test(){
-
+    public function test()
+    {
+        dd(Storage::disk('uploads')->allDirectories());
         dump(config('custom')['brands_img']);
     }
 }

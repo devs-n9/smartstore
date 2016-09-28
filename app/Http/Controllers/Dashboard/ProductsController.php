@@ -56,7 +56,8 @@ class ProductsController extends Controller
             }
 
             $validator = Validator::make($form_data, $rule);
-            $path = 'uploads/images/products/'; // path to product images directory
+            $path = config('custom')['products_path']; // path to product images directory
+            $img_sizes = config('custom')['products_img'];
             $form_data = ['product' => $form_data['product'],
                 'alias' => $form_data['alias'],
                 'category_id' => $form_data['category'],
@@ -76,8 +77,13 @@ class ProductsController extends Controller
                     foreach ($request->photos as $photo) {
                         $filename = md5(time() . rand(1, 999)) . '.' . $photo->extension(); // filename generate
                         $photos[] = $filename;
-                        $photo->move($path, $filename); // move image to fs
-                        Image::make($path . $filename)->crop(210, 210)->save($path . '210x210/' . $filename, 90);
+                        $curr_img = Image::make($photo->path());
+                        foreach ($img_sizes as $sizes) {
+                            if (!is_dir($path . $sizes['width'] . 'x' . $sizes['height'])) {
+                                mkdir($path . $sizes['width'] . 'x' . $sizes['height']);
+                            }
+                            $curr_img->fit($sizes['width'], $sizes['height'])->save($path . $sizes['width'] . 'x' . $sizes['height'] . '/' . $filename, 90);
+                        }
                     }
                 }
 
@@ -139,7 +145,8 @@ class ProductsController extends Controller
             ];
             $validator = Validator::make($request->all(), $rule);
 
-            $path = 'uploads/images/products/';
+            $path = config('custom')['products_path'];
+            $img_sizes = config('custom')['products_img'];
 
             if (!$validator->fails()) {
                 $photos = [];
@@ -169,10 +176,13 @@ class ProductsController extends Controller
                     foreach ($request->photos as $photo) {
                         $filename = $form_data['product'] . md5(time() . rand(1, 999)) . '.' . $photo->extension();
                         $img_result = ProductImages::create(['image' => $filename, 'product_id' => $result->id]);
-                        $photos[] = $filename;
-                        $photo->move($path, $filename);
-                        Image::make($path . $filename)->crop(210, 210)->save($path . '210x210/' . $filename, 90);
-
+                        $curr_img = Image::make($photo->path());
+                        foreach ($img_sizes as $sizes) {
+                            if (!is_dir($path . $sizes['width'] . 'x' . $sizes['height'])) {
+                                mkdir($path . $sizes['width'] . 'x' . $sizes['height']);
+                            }
+                            $curr_img->fit($sizes['width'], $sizes['height'])->save($path . $sizes['width'] . 'x' . $sizes['height'] . '/' . $filename, 90);
+                        }
                     }
                     Products::where('id', $result->id)->update(['preview' => $img_result->id]);
                 }
@@ -216,7 +226,7 @@ class ProductsController extends Controller
                 'logo' => 'image|max:2048'
             ];
             $validator = Validator::make($request->all(), $rule);
-            $path = 'uploads/images/brands/';
+            $path = config('custom')['brands_path']; // path to product images directory
             if (!$validator->fails()) {
                 $filename = '';
                 if (!is_null($request->logo)) {
@@ -241,8 +251,7 @@ class ProductsController extends Controller
         $img = $query->first();
         $query = $query->delete();
         if ($query) {
-            unlink('uploads/images/brands/'.$img->logo);
-            //dd($query);
+            unlink(config('custom')['brands_path'] . $img->logo);
             return response()->json(['message' => trans('messages.Brand') . ' ' . $request->all()['brand'] . ' ' . trans('messages.succeffully_deleted') . '!', 'result' => 'success']);
         } else {
             return response()->json(['message' => 'Error!', 'result' => 'danger']);

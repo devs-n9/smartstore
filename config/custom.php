@@ -20,10 +20,11 @@ return [
 
     'brands_path' => 'uploads/images/brands/', //путь к логотипам брендов
     'products_path' => 'uploads/images/products/', //путь к фото товаров
+
     /*
      * Разрешение картинок для брендов
      */
-    'brands_img' => ['width' => 150, 'height' => 85],
+    'brands_img' => [['width' => 150, 'height' => 85],],
 
 
     /*

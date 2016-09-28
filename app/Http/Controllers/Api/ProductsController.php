@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Brands;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use App;
 use Storage;
@@ -25,7 +26,6 @@ class ProductsController extends Controller
 
     public function test()
     {
-        dd(Storage::disk('uploads')->allFiles());
-        dump(config('custom')['brands_img']);
+        dd(Auth::guard());
     }
 }

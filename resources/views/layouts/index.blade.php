@@ -62,16 +62,8 @@
                         <div class="col-sm-6 text-right">
                             <ul class="list-inline">
                                 <li class="hidden-xs"><a href="#" class="offers">offers</a></li>                              
-                                <li class="hidden-xs"><a href="#"><i class="pe-7s-user"></i> Register</a></li>
-                                <li><a href="#"><i class="pe-7s-lock"></i> Login</a></li>
-                                <li class="lang-dropdown">
-                                    <a href="#"><img src="{{ asset('assets/images/flag1.png') }}" alt=""> English <i class="fa fa-angle-down"></i></a>
-                                    <div class="lang-drop-menu">
-                                        <a href="#"><img src="{{ asset('assets/images/flag1.png') }}" alt=""> English</a>
-                                        <a href="#"><img src="{{ asset('assets/images/flag2.png') }}" alt=""> French</a>
-                                        <a href="#"><img src="{{ asset('assets/images/flag3.png') }}" alt=""> German</a>
-                                    </div>
-                                </li>
+                                <li class="hidden-xs"><a href="{{ url('register') }}"><i class="pe-7s-user"></i> Register</a></li>
+                                <li><a href="{{ url('login') }}"><i class="pe-7s-lock"></i> Login</a></li>
                                 <li><a href="javascript:void(0)" class="search-toggle"><i class="fa fa-search"></i></a></li>
                             </ul>
                         </div>

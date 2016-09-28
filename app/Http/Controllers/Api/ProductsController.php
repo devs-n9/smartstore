@@ -25,7 +25,7 @@ class ProductsController extends Controller
 
     public function test()
     {
-        dd(Storage::disk('uploads')->allDirectories());
+        dd(Storage::disk('uploads')->allFiles());
         dump(config('custom')['brands_img']);
     }
 }

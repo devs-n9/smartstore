@@ -32,14 +32,31 @@ Route::get('/dashboard/products/all', 'Dashboard\DashboardController@showAllProd
 Route::get('/dashboard/product/add', 'Dashboard\DashboardController@addProductPage');
 Route::post('/dashboard/product/add', 'Dashboard\DashboardController@addProduct');
 Route::get('/dashboard/product/edit/{id}', 'Dashboard\DashboardController@editProduct');
-Route::get('/dashboard/settings/edit_settings','Dashboard\SettingsController@index');
-Route::get('/dashboard/settings/add_settings', 'Dashboard\SettingsController@createSettings');
-Route::post('/dashboard/settings/add_settings', 'Dashboard\SettingsController@insertSettings');
-Route::get('/dashboard/settings/add_settings', 'Dashboard\SettingsController@createContacts');
-Route::post('/dashboard/settings/add_settings', 'Dashboard\SettingsController@insertContacts');
 Route::post('/dashboard/product/delete', 'Dashboard\ProductsController@deleteProduct');
 
 ///dashboard products end here
+
+///dashboard settings start here
+
+Route::get('/dashboard/settings/index_contacts', 'Dashboard\SettingsController@createContacts');
+Route::get('/dashboard/settings/index_meta', 'Dashboard\SettingsController@createSettings');
+
+Route::get('/dashboard/settings/add_contacts', 'Dashboard\SettingsController@createContacts');
+Route::post('/dashboard/settings/add_contacts', 'Dashboard\SettingsController@insertContacts');
+
+Route::get('/dashboard/settings/edit_contacts/{id}', 'Dashboard\SettingController@editCotacts');
+Route::post('/dashboard/settings/edit_contacts/{id}', 'Dashboard\SettingsController@updateContacts');
+
+Route::get('/dashboard/settings/add_meta', 'Dashboard\SettingsController@createSettings');
+Route::post('/dashboard/settings/add_meta', 'Dashboard\SettingsController@insertSettings');
+
+Route::get('/dashboard/settings/edit_meta/{id}', 'Dashboard\SettingController@editSettings');
+Route::post('/dashboard/settings/edit_meta/{id}', 'Dashboard\SettingsController@updateSettings');
+
+Route::get('/dashboard/settings/deleteSettings/{id}', 'Dashboard\SettingsController@deleteSettings');
+
+///dashboard settings end here
+
 
 //dashboard brands begin here
 Route::get('/dashboard/brands/all', 'Dashboard\ProductsController@showAllBrands');

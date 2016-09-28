@@ -11,15 +11,15 @@ use App\Http\Controllers\Controller;
 
 class SettingsController extends Controller
 {
-     public function index()
-    { 
-        return view('dashboard.settings.add_settings');
-    }
+//     public function index()
+//    { 
+//        return view('dashboard.settings.add_settings');
+//    }
     
-    public function createConacts()
+    public function createContacts()
     {
         $contacts = Contacts::all();
-        return view('dashboard.settings.add_settings', [
+        return view('dashboard.settings.add_contacts', [
             'contacts' => $contacts
         ]);
     }
@@ -27,7 +27,7 @@ class SettingsController extends Controller
     public function createSettings()
     {
         $settings = Settings::all();
-        return view('dashboard.settings.add_settings', [
+        return view('dashboard.settings.add_meta', [
             'settings' => $settings
         ]);
     }
@@ -52,10 +52,10 @@ class SettingsController extends Controller
             $contacts = Contacts::create($data_con);
             Contacts::insert($contacts);
             
-            return redirect('/dashboard.index.blade');
+            return redirect('/dashboard.settings.index_contacts');
         }else{
             
-            return view('dashboard.settings.add_settings', [
+            return view('dashboard.settings.add_contacts', [
                 'errors' => $validator->errors()->all()
             ]);
         }
@@ -83,10 +83,10 @@ class SettingsController extends Controller
             $ettings = Settings::create($data_set);
             Settings::insert($settings);
             
-            return redirect('/dashboard.index.blade');
+            return redirect('/dashboard.settings.index_meta');
         }else{
             
-            return view('dashboard.settings.add_settings', [
+            return view('dashboard.settings.add_meta', [
                 'errors' => $validator->errors()->all()
             ]);
         }
@@ -97,7 +97,7 @@ class SettingsController extends Controller
     public function editContacts($id)
     {
         $contacts = Contacts::find($id);
-        return view('dashboard.settings.edit_settings', [
+        return view('dashboard.settings.edit_contacts', [
             'contacts' => $contacts
         ]);
     }
@@ -105,7 +105,7 @@ class SettingsController extends Controller
     public function editSettings($id)
     {
         $settings = Settings::find($id);
-        return view('dashboard.settings.edit_settings', [
+        return view('dashboard.settings.edit_meta', [
             'settings' => $settings
         ]);
     }
@@ -115,7 +115,7 @@ class SettingsController extends Controller
         $data_cont = $request->all();
         $contacts = Contacts::find($id);
         $contacts ->update($data_cont);
-        return redirect('/dashboard.index.blade');
+        return redirect('/dashboard.settings.index_contacts');
     }
     
     public function updateSettings(Request $request, $id)
@@ -123,7 +123,13 @@ class SettingsController extends Controller
         $data_set = $request->all();
         $settings = Settings::find($id);
         $settings ->update($data_set);
-        return redirect('/dashboard.index.blade');
+        return redirect('/dashboard.settings.index_meta');
+    }
+    
+     public function deleteSettings($id)
+    {
+        $post = Settings::where('id', $id)->delete();
+        return redirect('/dashboard.settings.index_meta');
     }
     
 }

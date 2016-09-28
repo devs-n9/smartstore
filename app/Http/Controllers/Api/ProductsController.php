@@ -8,6 +8,7 @@ use App\Models\Brands;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use App;
 
 class ProductsController extends Controller
 {
@@ -23,9 +24,6 @@ class ProductsController extends Controller
 
     public function test(){
 
-        $brands = Brands::all();
-        foreach($brands as $brand){
-            dump($brand->productsInBrand->count());
-        }
+        dump(config('custom')['brands_img']);
     }
 }

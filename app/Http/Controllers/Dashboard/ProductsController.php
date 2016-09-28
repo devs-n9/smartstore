@@ -205,6 +205,7 @@ class ProductsController extends Controller
 
     public function addBrand(Request $request)
     {
+        $img_config = config('custom')['brands_img'];
         $form_data = $request->all();
         if (empty($form_data)) {
             return view('dashboard.add_brand');
@@ -222,7 +223,7 @@ class ProductsController extends Controller
                     //dd($request->logo->path());
                     $filename = $form_data['alias'] . '.' . $request->logo->extension();
                     //$request->logo->move($path, $filename);
-                    Image::make($request->logo->path())->crop($form_data['width'], $form_data['height'], $form_data['x'], $form_data['y'])->resize(150, 85)->save($path . $filename, 90);
+                    Image::make($request->logo->path())->crop($form_data['width'], $form_data['height'], $form_data['x'], $form_data['y'])->resize($img_config['width'], $img_config['height'])->save($path . $filename, 90);
                 }
                 $message = trans('messages.Brand') . ' ' . $form_data['brand'] . ' ' . trans('messages.succeffully_added');
                 Brands::create(['brand' => $form_data['brand'], 'alias' => $form_data['alias'], 'logo' => $filename]);

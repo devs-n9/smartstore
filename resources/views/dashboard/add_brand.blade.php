@@ -57,18 +57,19 @@
                        class="form-control btn btn-round btn-warning">
             </div>
         </div>
-        <div id="cropper" class="col-md-10">
-            <div class="img-container">
-                <img id="image" src="">
-            </div>
-        </div>
-        <div class="form-group">
-        </div>
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <input type="submit" value="{{ trans('messages.Add_brand') }}" class="form-control btn btn-success">
             </div>
         </div>
+        <div class="form-group">
+        </div>
+        <div id="cropper" class="col-md-10">
+            <div class="img-container">
+                <img id="image" src="">
+            </div>
+        </div>
+
     </form>
 @endsection

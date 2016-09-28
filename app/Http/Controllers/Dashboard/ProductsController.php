@@ -72,12 +72,11 @@ class ProductsController extends Controller
                 'rating' => $form_data['rating']]; //array keys rename for fill form fields
 
             if (!$validator->fails()) {
-                $photos = [];
                 if (!is_null($request->photos[0])) { // if we have one or more photos upload and write to db this
                     foreach ($request->photos as $photo) {
                         $filename = md5(time() . rand(1, 999)) . '.' . $photo->extension(); // filename generate
-                        $photos[] = $filename;
                         $curr_img = Image::make($photo->path());
+                        ProductImages::create(['image' => $filename, 'product_id' => $form_data['id']]);
                         foreach ($img_sizes as $sizes) {
                             if (!is_dir($path . $sizes['width'] . 'x' . $sizes['height'])) {
                                 mkdir($path . $sizes['width'] . 'x' . $sizes['height']);
@@ -98,7 +97,6 @@ class ProductsController extends Controller
                     'old_price' => $product['old_price'],
                     'price_from_date' => $product['price_from_date'],
                     'price_to_date' => $product['price_to_date'],
-                    'preview' => serialize($photos),
                     'count' => $product['count'],
                     'rating' => $product['rating']];
                 foreach ($data_array as $key => $item) {
@@ -149,8 +147,6 @@ class ProductsController extends Controller
             $img_sizes = config('custom')['products_img'];
 
             if (!$validator->fails()) {
-                $photos = [];
-
                 $product = $request->all();
                 $data_array = ['product' => $product['product'],
                     'alias' => $product['alias'],
@@ -175,7 +171,6 @@ class ProductsController extends Controller
                 if (!is_null($request->photos[0])) {
                     foreach ($request->photos as $photo) {
                         $filename = $form_data['product'] . md5(time() . rand(1, 999)) . '.' . $photo->extension();
-                        $img_result = ProductImages::create(['image' => $filename, 'product_id' => $result->id]);
                         $curr_img = Image::make($photo->path());
                         foreach ($img_sizes as $sizes) {
                             if (!is_dir($path . $sizes['width'] . 'x' . $sizes['height'])) {

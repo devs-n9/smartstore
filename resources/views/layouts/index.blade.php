@@ -142,7 +142,7 @@
                                                     <div class="description">
                                                         <a href="#">{{ $val['product'] }}</a><strong class="price">1 x ${{ $val['price'] }}</strong>
                                                     </div><!--Description-->
-                                                    <div class="buttons" data-id="{{ $val['id'] }}" id="delCart">
+                                                    <div class="buttons delCart" data-id="{{ $val['id'] }}">
                                                         <a href="#" class="fa fa-trash-o"></a>
                                                     </div>
                                                 </div><!--cart item-->

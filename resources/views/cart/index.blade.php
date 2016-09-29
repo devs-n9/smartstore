@@ -27,8 +27,8 @@
                     <td class="product-quantity">
                         <input type="number" value="1" min="1" class="fl qty-text" name="quantity">
                     </td>
-                    <td class="product-total"></td>
-                    <td class="product-delete"><a href="javascript://" id="delCart" data-id="{{ $val['id'] }}" data-toggle="tooltip" data-placement="top" title="Remove this item"><i class="fa fa-times"></i></a></td>
+                    <td class="product-total">${{ $val['price'] }}</td>
+                    <td class="product-delete"><a href="javascript://" class="delCart" data-id="{{ $val['id'] }}" data-toggle="tooltip" data-placement="top" title="Remove this item"><i class="fa fa-times"></i></a></td>
                 </tr>
             @endforeach
             @endif

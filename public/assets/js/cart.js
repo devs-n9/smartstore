@@ -18,7 +18,7 @@ $(document).ready(function() {
      * @return в случае успеха обновятся данные корзины на странице
      *
      */
-    $('#addCart').click(function () {
+    $('.addCart').click(function () {
         var csrftoken = $('meta[name=_token]').attr('content');
         var prodID = $(this).data('id');
         $.post('/cart/addToCart', { prodID: prodID, _token: csrftoken })
@@ -27,7 +27,7 @@ $(document).ready(function() {
                 var html = '<div class="cart-item clearfix" data-id="'+data.product['id']+'">';
                 html += '<div class="img"><img src="'+data.product['preview']+'" alt="img" class="img-responsive"></div>';
                 html += '<div class="description"><a href="product/'+data.product['alias']+'">'+data.product['product']+'</a><strong class="price">1 x $'+data.product['price']+'</strong></div>';
-                html += '<div class="buttons" id="delCart" data-id="'+data.product['id']+'"><a href="#" class="fa fa-trash-o"></a></div>';
+                html += '<div class="buttons delCart" data-id="'+data.product['id']+'"><a href="#" class="fa fa-trash-o"></a></div>';
                 html += '</div>';
                 $('.content-scroll').children().children().append(html);
             }, "json");
@@ -37,7 +37,8 @@ $(document).ready(function() {
 
     // При изменении кол-ва продукта в инпуте QUANTITY меняем TOTAL этого продукта
     $('.product-quantity input[name=quantity]').change(function(){
-        var price = $('.product-price').text();
+        var price = $(this).parent().siblings('.product-price').text();
+        pr(price);
         price = parseFloat(price.slice(1));
         var quantity = $(this).val();
         var total = price * quantity;
@@ -48,8 +49,7 @@ $(document).ready(function() {
         });
     });
 
-    // Считает значение TOTAL напротив каждого товара при загрузке корзины
-    total();
+
 
     /**
      *
@@ -59,7 +59,7 @@ $(document).ready(function() {
      * @return в случае успеха обновятся данные корзины на странице
      *
      */
-    $(document).on('click', '#delCart', function () {
+    $(document).on('click', '.delCart', function () {
         var csrftoken = $('meta[name=_token]').attr('content');
         var prodID = $(this).data('id');
         $.post('/cart/delToCart', { prodID: prodID, _token: csrftoken })
@@ -76,14 +76,4 @@ $(document).ready(function() {
 // Ф-ция для console.log()
 function pr(val) {
     console.log(val);
-}
-
-// Ф-ция считает значение TOTAL напротив каждого товара при загрузке корзины
-function total() {
-    var price = $('.product-price').text();
-    price = parseFloat(price.slice(1));
-    var quantity = $('.product-quantity input[name=quantity]').val();
-    var total = price * quantity;
-    total = total.toFixed(2);
-    $('.product-total').text('$'+total);
 }

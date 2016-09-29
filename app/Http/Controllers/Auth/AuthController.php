@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Code;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use Mail;
 use App\Http\Controllers\Auth\CodeController;

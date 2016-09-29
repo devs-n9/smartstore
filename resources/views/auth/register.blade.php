@@ -137,7 +137,7 @@
                     Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimusNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.
                 </p>
                 <br>
-                <a href="{{ url('login') }}" class="btn btn-light-dark btn-lg">Login Now</a>
+                <a href="{{ url('auth/login') }}" class="btn btn-light-dark btn-lg">Login Now</a>
             </div>
         </div>
     </div>

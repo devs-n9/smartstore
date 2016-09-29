@@ -33,7 +33,8 @@ return [
 
     'products_img' => [
         ['width' => 210, 'height' => 210], // храним картинки в 2х разрешениях
-        ['width' => 325, 'height' => 400]
+        ['width' => 325, 'height' => 400],
+        ['width' => 60, 'height' => 60]
     ],
 
 ];

@@ -20,7 +20,7 @@
             @foreach(Session::get('cart') as $k => $val)
                 <tr data-id="{{ $val['id'] }}">
                     <td class="product-image">
-                        <img src="{{ asset('assets/images/men/'.$val['preview']) }}" alt="" width="80">
+                        <img src="{{ asset('uploads/images/products/60x60/'.$val['preview']) }}" alt="" width="80">
                     </td>
                     <td class='product-name'><a href='#'>{{ $val['product'] }}</a></td>
                     <td class="product-price">${{ $val['price'] }}</td>

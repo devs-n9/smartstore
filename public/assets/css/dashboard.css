@@ -2,3 +2,11 @@
     display: inline-block;
     cursor: pointer;
 }
+#cropper{
+    width: 100%;
+}
+#cropper>.img-container, #cropper>.img-container>#image{
+    text-align: center;
+    //width: 100%;
+    max-height: 400px;
+}

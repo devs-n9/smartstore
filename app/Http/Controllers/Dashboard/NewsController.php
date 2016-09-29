@@ -27,23 +27,23 @@ class NewsController extends Controller
     {
 
         $news = News::all();
-        return view('dashboard.news.posts.index', [
+        return view('dashboard.news.index', [
             'news' => $news
         ]);
     }
 
     public function create()
     {
-        $categories = Categories::all();
-        return view('dashboard.news.posts.create', [
-            'categories' => $categories
+        $newscategories = NewsCategories::all();
+        return view('dashboard.news.create', [
+            'newscategories' => $newscategories
         ]);
     }
 
     public function insert(Request $request)
     {
-        $categories = [];
-        $category = [];
+        $newscategories = [];
+        $newscategory = [];
         $validator = Validator::make($request->all(), [
             'title' => 'unique:news|required'
         ]);
@@ -53,22 +53,22 @@ class NewsController extends Controller
         if (!$validator->fails()) {
             $data = $request->all();
 
-            $categories = $data['categories'];
+            $newscategories = $data['newscategories'];
 
-            unset($data['categories']);
+            unset($data['newscategories']);
 
             $n = News::create($data);
 
-            foreach($categories as $k => $cat){
-                $category[$k]['category_id'] = $cat;
-                $category[$k]['n_id'] = $n->id;
+            foreach($newscategories as $k => $newscat){
+                $newscategory[$k]['newscategory_id'] = $newscat;
+                $newscategory[$k]['n_id'] = $n->id;
             }
 
-            Newscategories::insert($category);
+            Newscategories::insert($newscategory);
             return redirect('/dashboard/news');
         }else{
 
-            return view('dashboard.news.posts.create', [
+            return view('dashboard.news.create', [
                 'errors' => $validator->errors()->all()
             ]);
         }
@@ -78,10 +78,10 @@ class NewsController extends Controller
     public function edit($id)
     {
         $n = News::find($id);
-        $categories = Categories::all();
-        return view('dashboard.news.posts.edit', [
+        $newscategories = NewsCategories::all();
+        return view('dashboard.news.edit', [
             'news' => $n,
-            'categories' => $categories
+            'newscategories' => $newscategories
         ]);
     }
 

@@ -2,8 +2,7 @@
 
 namespace App\Models\News;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\News\Categories;
-use App\Models\News\Newscategories;
+use App\Models\News\NewsCategories;
 use App\Models\News\NewsImages;
 
 class News extends Model
@@ -13,9 +12,9 @@ class News extends Model
     protected $guarded = [''];
       // relations begin
 
-    public function Categories()
+    public function Category()
     {
-        return $this->belongsToMany('App\Models\News\Categories', 'Newscategories', 'news_id', 'category_id');
+        return $this->belongsTo('App\Models\NewsCategories', 'category_id', 'id');
     }
  
     public function images()

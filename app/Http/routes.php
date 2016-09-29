@@ -22,13 +22,13 @@ Route::get('/dashboard/orders', 'Dashboard\OrdersController@orders');
 Route::get('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@edit');
 Route::post('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@update');
 Route::get('/dashboard/news', 'Dashboard\NewsController@news');
-Route::get('/dashboard/news/post/create', 'Dashboard\DashboardNewsController\DashboardNewsController@create');
-Route::post('/dashboard/news/post/create', 'Dashboard\DashboardNewsController\DashboardNewsController@insert');
+Route::get('/dashboard/news/post/create', 'Dashboard\NewsController@create');
+Route::post('/dashboard/news/post/create', 'Dashboard\NewsController@insert');
 
-Route::get('/dashboard/news/post/edit/{id}', 'Dashboard\DashboardNewsController\DashboardNewsController@edit');
-Route::post('/dashboard/news/post/edit/{id}', 'Dashboard\DashboardNewsController\DashboardNewsController@update');
+Route::get('/dashboard/news/post/edit/{id}', 'Dashboard\NewsController@edit');
+Route::post('/dashboard/news/post/edit/{id}', 'Dashboard\NewsController@update');
 
-Route::get('/dashboard/news/post/delete/{title}', 'Dashboard\DashboardNewsController\DashboardNewsController@delete');
+Route::get('/dashboard/news/post/delete/{title}', 'Dashboard\NewsController@delete');
 
 // Cart routes begin
 

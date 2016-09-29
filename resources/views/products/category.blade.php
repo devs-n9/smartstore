@@ -55,7 +55,7 @@
                                    data-id="{{ $product->id }}" data-alias="{{ $product->alias }}">
                                     <i class="fa fa-random"></i>
                                 </a>
-                                <a id="addCart" href="#" data-toggle="tooltip" data-placement="top" title="Add to cart" class="btn btn-skin"
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="Add to cart" class="btn btn-skin addCart"
                                    data-id="{{ $product->id }}" data-alias="{{ $product->alias }}">
                                     Add to cart
                                 </a>

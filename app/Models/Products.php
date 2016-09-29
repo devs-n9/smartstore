@@ -29,12 +29,15 @@ class Products extends Model
         return $this->hasOne('App\Models\Brands', 'id', 'brand_id');
     }
 
-    public function images()
+    public function images(){
+        return $this->hasMany('App\Models\ProductImages', 'product_id', 'id');
+    }
+
+    public function reviews()
     {
-        return $this->hasMany('App\Models\ProductImages', 'id', 'product_id');
+        return $this->hasMany('App\Models\Reviews', 'id', 'product_id');
     }
     // relations end
-
 
     public function getProduct($id)
     {

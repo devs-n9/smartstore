@@ -34,6 +34,7 @@ Route::post('/dashboard/product/add', 'Dashboard\ProductsController@addProduct')
 Route::get('/dashboard/product/edit/{id}', 'Dashboard\ProductsController@editProduct');
 Route::post('/dashboard/product/edit/{id}', 'Dashboard\ProductsController@editProduct');
 Route::post('/dashboard/product/delete', 'Dashboard\ProductsController@deleteProduct'); // ajax
+Route::post('/dashboard/brand/delete', 'Dashboard\ProductsController@deleteBrand'); // ajax
 
 ///dashboard products end here
 
@@ -52,4 +53,5 @@ Route::get('/api/products/test', 'Api\ProductsController@test');
 Route::get('/catalog', 'Products\ProductsController@catalog');
 Route::get('/category/{name}', 'Products\ProductsController@category');
 Route::get('/product/{name}', 'Products\ProductsController@product');
+Route::post('/product/{name}', 'Products\ProductsController@product');
 // Front Products end

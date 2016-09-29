@@ -1,68 +1,100 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
+use Validator;
+use App\Models\News\News;
+use App\Models\NewsCategories;
+use App\Models\NewsImages;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-  public function index()
+
+    public function __construct()
     {
-    return view('dashboard.news.index');
-    
-//        $news = News::all();//выводит все записи
-//        return view('dashboard.news.index', [
-//            'news' => $news
-//        ]);
-    }
         
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function news()
+    {
+
+        $news = News::all();
+        return view('dashboard.news.posts.index', [
+            'news' => $news
+        ]);
+    }
+
     public function create()
     {
-        return view('dashboard.news.posts.create');
+        $categories = Categories::all();
+        return view('dashboard.news.posts.create', [
+            'categories' => $categories
+        ]);
     }
-    
+
     public function insert(Request $request)
     {
+        $categories = [];
+        $category = [];
         $validator = Validator::make($request->all(), [
             'title' => 'unique:news|required'
         ]);
-        
+
+
+
         if (!$validator->fails()) {
             $data = $request->all();
-            News::create($data);
 
-            return redirect('/dashboard');
+            $categories = $data['categories'];
+
+            unset($data['categories']);
+
+            $n = News::create($data);
+
+            foreach($categories as $k => $cat){
+                $category[$k]['category_id'] = $cat;
+                $category[$k]['n_id'] = $n->id;
+            }
+
+            Newscategories::insert($category);
+            return redirect('/dashboard/news');
         }else{
-            
+
             return view('dashboard.news.posts.create', [
                 'errors' => $validator->errors()->all()
             ]);
         }
-        
+
     }
-    
+
     public function edit($id)
     {
-        $news = News::find($id);
+        $n = News::find($id);
+        $categories = Categories::all();
         return view('dashboard.news.posts.edit', [
-            'news' => $news
+            'news' => $n,
+            'categories' => $categories
         ]);
     }
-    
+
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        $news = News::find($id);
-        $news->update($data);
-        return redirect('/dashboard');
+        $n = News::find($id);
+        $n->update($data);
+        return redirect('/dashboard/news');
     }
-    
+
     public function delete($title)
     {
-        $news = News::where('title', $title)->delete();
-        return redirect('/dashboard');
+        return redirect('/dashboard/news');
     }
 }

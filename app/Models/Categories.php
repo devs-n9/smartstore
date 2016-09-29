@@ -10,3 +10,6 @@ class Categories extends Model
     public $timestamps = false;
     protected $guarded = [''];
 }
+
+
+

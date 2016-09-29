@@ -1,0 +1,38 @@
+<?php
+
+return [
+    'Alias' => 'Алиас',
+    'Add_product' => 'Добавить товар',
+    'Add_brand' => 'Добавить бренд',
+    'Brand' => 'Бренд',
+    'Brand_name' => 'Название бренда',
+    'Brands' => 'Бренды',
+    'Count' => 'Кол-во',
+    'Category' => 'Категория',
+    'Choose_photos' => 'Выбрать фото',
+    'Choose_logo' => 'Выбрать лого',
+    'Edit_product' => 'Редактировать товар',
+    'edited_succefully' => 'успешно отредактирован',
+    'Full_description' => 'Полное описание',
+    'Logo' => 'Логотип',
+    'Old_price' => 'Старая цена',
+    'Products' => 'Товары',
+    'Product' => 'Товар',
+    'Product_name' => 'Название товара',
+    'Product_category' => 'Категория товара',
+    'Product_brand' => 'Бренд товара',
+    'Price' => 'Цена',
+    'Price_from' => 'Действуйет с',
+    'Price_to' => 'Действуйет до',
+    'Photos' => 'Фотографии',
+    'Rating' => 'Рейтинг',
+    'Select_category' => 'Выберите категорию',
+    'Select_brand' => 'Выберите бренд',
+    'Show_products' => 'Все товары',
+    'Show_brands' => 'Все бренды',
+    'Short_description' => 'Короткое описание',
+    'succeffuly_deleted' => 'успешно удален',
+    'succeffuly_added' => 'успешно добавлен',
+    'Sure_remove' => 'Вы уверены что хотите удалить товар'
+
+];

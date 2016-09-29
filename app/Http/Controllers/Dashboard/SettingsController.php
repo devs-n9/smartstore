@@ -11,29 +11,25 @@ use App\Http\Controllers\Controller;
 
 class SettingsController extends Controller
 {
-//     public function index()
-//    { 
-//        return view('dashboard.settings.add_settings');
-//    }
-    
-    public function createContacts()
-    {
+     public function index_contacts()
+    { 
         $contacts = Contacts::all();
-        return view('dashboard.settings.add_contacts', [
-            'contacts' => $contacts
+        return view('dashboard.settings.index_contacts', [
+        'contacts' => $contacts
         ]);
     }
     
-    public function createSettings()
+    
+   public function index_settings()
     {
-        $settings = Settings::all();
-        return view('dashboard.settings.add_meta', [
+        $settings = Settings::find(1);
+        return view('dashboard.settings.edit_meta', [
             'settings' => $settings
         ]);
     }
     
     
-     public function insertContacts(Request $request)
+     public function insert_contacts(Request $request)
     {
         $contacts = [];
         $validator = Validator::make($request->all(), [
@@ -45,14 +41,9 @@ class SettingsController extends Controller
         if (!$validator->fails()) {
             $data_con = $request->all();
             
-            $contacts = $data_con['contacts'];
-                
-            unset($data_con['contacts']);
-            
-            $contacts = Contacts::create($data_con);
-            Contacts::insert($contacts);
-            
-            return redirect('/dashboard.settings.index_contacts');
+            Contacts::create($data_con);
+                        
+            return redirect('/dashboard/settings/edit_contacts');
         }else{
             
             return view('dashboard.settings.add_contacts', [
@@ -62,9 +53,9 @@ class SettingsController extends Controller
         
     }
     
-    public function insertSettings(Request $request)
+    public function insert_settings(Request $request)
     {
-        $setting = [];
+        $settings = [];
         $validator = Validator::make($request->all(), [
             'description' => 'unique:settings|required',
             'keywords' => 'unique:settings|required',
@@ -75,15 +66,10 @@ class SettingsController extends Controller
         if (!$validator->fails()) {
             
             $data_set = $request->all();
+          
+            Settings::create($data_set);
             
-            $settings = $data_set['settings'];
-            
-            unset($data_set['settings']);
-            
-            $ettings = Settings::create($data_set);
-            Settings::insert($settings);
-            
-            return redirect('/dashboard.settings.index_meta');
+            return redirect('/dashboard/settings/edit_meta');
         }else{
             
             return view('dashboard.settings.add_meta', [

@@ -13,13 +13,15 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach($contacts as $contact)
                 <tr>
-                  <td>{{ $contacts->id }}</td>
-                  <td>{{ $contacts->phone }}</td>
-                  <td>{{ $contacts->email }}</td>
-                  <td>{{ $contacts->address }}</td>
-                   <td><a class="glyphicon glyphicon-pencil" href="/dashboard/settings/edit_contacts/{{ $contacts->id }}"></a></td>
+                  <td>{{ $contact->id }}</td>
+                  <td>{{ $contact->phone }}</td>
+                  <td>{{ $contact->email }}</td>
+                  <td>{{ $contact->address }}</td>
+                   <td><a class="glyphicon glyphicon-pencil" href="/dashboard/settings/edit_contacts/{{ $contact->id }}"></a></td>
                 </tr>
+                @endforeach
         </tbody>
 </table>
 @endsection

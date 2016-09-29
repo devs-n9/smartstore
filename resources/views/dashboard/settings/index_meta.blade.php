@@ -13,15 +13,17 @@
                 </tr>
               </thead>
               <tbody>
+               @foreach($settings as $setting)
                 <tr>
-                  <td>{{ $settings->id }}</td>
-                  <td>{{ $settings->description }}</td>
-                  <td>{{ $settings->keywords }}</td>
-                  <td>{{ $settings->author }}</td>
-                  <td>{{ $settings->title }}</td>  
-                   <td><a class="glyphicon glyphicon-pencil" href="/dashboard/settings/edit_meta/{{ $setings->id }}"></a></td>
-                    <td><a class="glyphicon glyphicon-remove" href="/dashboard/settings/delete/{{ $settings->id }}"></a></td>
+                  <td>{{ $setting->id }}</td>
+                  <td>{{ $setting->description }}</td>
+                  <td>{{ $setting->keywords }}</td>
+                  <td>{{ $setting->author }}</td>
+                  <td>{{ $setting->title }}</td>  
+                   <td><a class="glyphicon glyphicon-pencil" href="/dashboard/settings/edit_meta/{{ $setting->id }}"></a></td>
+                    <td><a class="glyphicon glyphicon-remove" href="/dashboard/settings/delete/{{ $setting->id }}"></a></td>
                 </tr>
+                @endforeach
         </tbody>
 </table>
 @endsection

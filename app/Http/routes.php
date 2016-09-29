@@ -38,22 +38,14 @@ Route::post('/dashboard/product/delete', 'Dashboard\ProductsController@deletePro
 
 ///dashboard settings start here
 
-Route::get('/dashboard/settings/index_contacts', 'Dashboard\SettingsController@createContacts');
-Route::get('/dashboard/settings/index_meta', 'Dashboard\SettingsController@createSettings');
+Route::get('/dashboard/settings', 'Dashboard\SettingsController@index_contacts');
+Route::get('/dashboard/settings', 'Dashboard\SettingsController@index_settings');
 
-Route::get('/dashboard/settings/add_contacts', 'Dashboard\SettingsController@createContacts');
-Route::post('/dashboard/settings/add_contacts', 'Dashboard\SettingsController@insertContacts');
+Route::get('/dashboard/settings/add_meta','Dashboard\SettingsController@insert_settings');
+Route::get('/dashboard/settings/add_contacts','Dashboard\SettingsController@insert_contacts');
 
-Route::get('/dashboard/settings/edit_contacts/{id}', 'Dashboard\SettingController@editCotacts');
-Route::post('/dashboard/settings/edit_contacts/{id}', 'Dashboard\SettingsController@updateContacts');
-
-Route::get('/dashboard/settings/add_meta', 'Dashboard\SettingsController@createSettings');
-Route::post('/dashboard/settings/add_meta', 'Dashboard\SettingsController@insertSettings');
-
-Route::get('/dashboard/settings/edit_meta/{id}', 'Dashboard\SettingController@editSettings');
-Route::post('/dashboard/settings/edit_meta/{id}', 'Dashboard\SettingsController@updateSettings');
-
-Route::get('/dashboard/settings/deleteSettings/{id}', 'Dashboard\SettingsController@deleteSettings');
+Route::get('/dashboard/settings/edit_meta','Dashboard\SettingsController@index_settings');
+Route::get('/dashboard/settings/edit_contacts','Dashboard\SettingsController@index_contacts');
 
 ///dashboard settings end here
 

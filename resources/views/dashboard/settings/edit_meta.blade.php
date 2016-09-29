@@ -26,6 +26,8 @@
         <textarea name="description" cols="10" rows="5">{{ $settings->description }}</textarea>
         </div>
         
+         <div><p>Meta tags updated successfuly</p></div>
+         
         <div>
         <input class="btn btn-success" type="submit" value="Save">
         </div>

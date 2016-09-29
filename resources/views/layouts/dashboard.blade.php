@@ -93,7 +93,7 @@
 					<!-- /menu footer buttons -->
 					<div class="sidebar-footer hidden-small">
                         <!-- For contacts and settings changing -->
-						<a data-toggle="tooltip" data-placement="top" title="Settings" href="/dashboard/settings/edit_meta">
+						<a data-toggle="tooltip" data-placement="top" title="Settings" href="/dashboard/settings/add_meta">
 							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 						</a>
 						<a data-toggle="tooltip" data-placement="top" title="FullScreen">

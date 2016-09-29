@@ -172,6 +172,7 @@ class ProductsController extends Controller
                     foreach ($request->photos as $photo) {
                         $filename = $form_data['product'] . md5(time() . rand(1, 999)) . '.' . $photo->extension();
                         $curr_img = Image::make($photo->path());
+                        $img_result = ProductImages::create(['image' => $filename, 'product_id' => $result->id]);
                         foreach ($img_sizes as $sizes) {
                             if (!is_dir($path . $sizes['width'] . 'x' . $sizes['height'])) {
                                 mkdir($path . $sizes['width'] . 'x' . $sizes['height']);

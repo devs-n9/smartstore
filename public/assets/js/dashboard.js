@@ -1,9 +1,11 @@
 $().ready(function () {
 
     //translit in aliases
-    $('input[data-translit="true"]').liTranslit({
-        elAlias: $('input[name="alias"]')
-    });
+    if ($('input[name="alias"]').val().length < 1) {
+        $('input[data-translit="true"]').liTranslit({
+            elAlias: $('input[name="alias"]')
+        });
+    }
 
     // bootstrap file load button
     $('input[type=file]').bootstrapFileInput();
@@ -91,12 +93,12 @@ $().ready(function () {
     $('input[type="file"]').change(function (e) {
         var reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
-        reader.onload = function(){
+        reader.onload = function () {
             $('.img-container>img').attr('src', reader.result);
             var image = document.getElementById('image');
             cropper = new Cropper(image, {
                 aspectRatio: 16 / 9,
-                crop: function(e) {
+                crop: function (e) {
                     $('input[name="x"]').val(Math.ceil(e.detail.x));
                     $('input[name="y"]').val(Math.ceil(e.detail.y));
                     $('input[name="width"]').val(Math.ceil(e.detail.width));
@@ -109,7 +111,7 @@ $().ready(function () {
 
     });
     $('input[type="file"]').click(function () {
-        if(cropper){
+        if (cropper) {
             cropper.destroy();
         }
     });

@@ -24,6 +24,9 @@
     <!-- data tables -->
     <link href="{{ asset('bower_components/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
 
+	<!-- cropper -->
+    <link href="{{ asset('bower_components/cropperjs/dist/cropper.min.css') }}" rel="stylesheet">
+
 	<!-- datetimepicker -->
 	<link href="{{ asset('bower_components/datetimepicker/build/jquery.datetimepicker.min.css') }}" rel="stylesheet">
 
@@ -341,9 +344,6 @@
 	<script src="{{ asset('bower_components/gentelella/production/js/moment/moment.min.js') }}"></script>
 	<script src="{{ asset('bower_components/gentelella/production/js/datepicker/daterangepicker.js') }}"></script>
 
-	<!-- data tables -->
-	<script src="{{ asset('bower_components/gentelella/vendors/') }}"></script>
-
 	<!-- datetimepicker -->
 	<script src="{{ asset('bower_components/datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
 
@@ -441,6 +441,9 @@
     <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
     <script src="{{ asset('bower_components/gentelella/vendors/datatables.net-scroller/js/datatables.scroller.min.js') }}"></script>
     <!-- Datatables -->
+
+	<!-- cropper -->
+	<script src="{{ asset('bower_components/cropperjs/dist/cropper.min.js') }}"></script>
 
     <!-- jVectorMap -->
 	<script src="{{ asset('bower_components/gentelella/production/js/maps/jquery-jvectormap-world-mill-en.js') }}"></script>

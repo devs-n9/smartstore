@@ -43,12 +43,12 @@
                             <td>{{ $product->count }}</td>
                             <td>{{ $product->rating }}</td>
                             <td>
-                                <div class="product-edit" data-id="{{ $product->id }}"><span
-                                            class="fa fa-pencil fa-2x"></span></div>
+                                <div class="product-edit"><a href="/dashboard/product/edit/{{ $product->id }}"
+                                            class="fa fa-pencil fa-2x"></a></div>
                             </td>
                             <td>
-                                <div class="product-delete" data-id="{{ $product->id }}"><span
-                                            class="fa fa-close fa-2x"></span></div>
+                                <div class="product-delete" data-id="{{ $product->id }}"><a
+                                            class="fa fa-close fa-2x"></a></div>
                             </td>
                         </tr>
                     @endforeach

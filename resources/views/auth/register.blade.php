@@ -77,7 +77,7 @@
                         <div class="row">
                             <section class="col col-6">
                                 <label class="input">
-                                    <input type="text" name="first_name" placeholder="First name" required>
+                                    <input type="text" name="first_name" placeholder="First name">
                                 </label>
                             </section>
                             <section class="col col-6">
@@ -87,11 +87,10 @@
                             </section>
                             <section class="col col-6">
                                 <label class="select">
-                                    <select name="gender" required>
+                                    <select name="gender">
                                         <option value="Unknown" selected disabled>Gender</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
-                                        <option value="Other">Other</option>
                                     </select>
                                     <i></i>
                                 </label>
@@ -113,14 +112,14 @@
                                 </label>
                             </section>
                             <section class="col col-xs-12">
-                                <label class="input">
+                                <label class="textarea">
                                     <textarea name="address" id="" cols="30" rows="10"></textarea>
                                 </label>
                             </section>
                         </div>
                         <section>
                             <label class="checkbox"><input type="checkbox" name="subscription" id="subscription"><i></i>I want to receive news and  special offers</label>
-                            <label class="checkbox"><input type="checkbox" name="terms" id="terms" required><i></i>I agree with the Terms and Conditions</label>
+                            <label class="checkbox"><input type="checkbox" name="terms" id="terms"><i></i>I agree with the Terms and Conditions</label>
                         </section>
                     </fieldset>
                     <footer>

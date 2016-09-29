@@ -134,16 +134,16 @@
                                 <div class="dropdown-menu shopping-cart">
                                     <div class="cart-items content-scroll">
                                         @if(Session::get('cart'))
-                                            @foreach(Session::get('cart') as $val)
-                                                <div class="cart-item clearfix">
+                                            @foreach(Session::get('cart') as $k => $val)
+                                               <div class="cart-item clearfix">
                                                     <div class="img">
-                                                        <img src="{{ asset('assets/images/men/'.$val['product']['preview']) }}" alt="" class="img-responsive">
+                                                        <img src="{{ asset('assets/images/men/'.$val['preview']) }}" alt="" class="img-responsive">
                                                     </div><!--img-->
                                                     <div class="description">
-                                                        <a href="#">{{ $val['product']['product'] }}</a><strong class="price">1 x ${{ $val['product']['price'] }}</strong>
+                                                        <a href="#">{{ $val['product'] }}</a><strong class="price">1 x ${{ $val['price'] }}</strong>
                                                     </div><!--Description-->
-                                                    <div class="buttons">
-                                                        <a href="cart/del/{{ $val['product']['id'] }}" class="fa fa-trash-o"></a>
+                                                    <div class="buttons" id="delCart" data-id="{{ $val['id'] }}">
+                                                        <a href="#" class="fa fa-trash-o"></a>
                                                     </div>
                                                 </div><!--cart item-->
                                             @endforeach

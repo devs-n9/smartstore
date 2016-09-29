@@ -47,23 +47,21 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $prodID = (int)$request['prodID'];
+        //dd($prodID);
         if(!$prodID) {
             return false;
         }
         $sesProdID = array();
-        $sesArr = array();
         $product = Products::find($prodID)->getOriginal();
-        $sesArr['product'] = $product;
-        $sesArr['count'] = 1;
         
-        if(Session::has('cart')) {
-            $ses = Session::get('cart');
+        if(Session::has('cart.'.$prodID)) {
+            $ses = Session::get('cart.'.$prodID);
             $cntSes = count($ses);
             for($i = 0; $i < $cntSes; $i++) {
                 $sesProdID[] = $ses[$i]['product']['id'];
             }
-            if(Session::has('cart') && array_search($prodID, $sesProdID) === false) {
-                Session::push('cart.'.$prodID, $sesArr);
+            if(Session::has('cart.'.$prodID) && array_search($prodID, $sesProdID) === false) {
+                Session::put('cart.'.$prodID, $product);
                 $cntProd = count(Session::get('cart'));
                 Session::put('cntProd', $cntProd);
             } else {
@@ -71,7 +69,7 @@ class CartController extends Controller
             }
             
         } else {
-            Session::push('cart.'.$prodID,, $sesArr);
+            Session::put('cart.'.$prodID, $product);
             $cntProd = count(Session::get('cart'));
             Session::put('cntProd', $cntProd);
         }
@@ -80,9 +78,22 @@ class CartController extends Controller
         
     }
 
-    public function delToCart()
+    /**
+     * Удаление продукта из корзины
+     *
+     * @param integer $id GET параметр - ID удаляемого продукта
+     * @return json информация об операции (продукт, кол-во элементов в корзине)
+     */
+    public function delToCart(Request $request)
     {
-
-        return view('cart.index');
+        $prodID = (int)$request['prodID'];
+        dd($prodID);
+        if(!$prodID) {
+            return false;
+        }
+        Session::forget('cart.'.$prodID);
+        $cntProd = count(Session::get('cart'));
+        Session::put('cntProd', $cntProd);
+        return response()->json(['cntprod' => $cntProd]);
     }
 }

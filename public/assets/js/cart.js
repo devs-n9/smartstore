@@ -14,20 +14,21 @@ $(document).ready(function() {
      *
      * Добавления товара в корзину
      *
-     * @param integer itemId ID продукта
+     * @param integer prodId ID продукта
      * @return в случае успеха обновятся данные корзины на странице
      *
      */
     $('#addCart').click(function () {
         var csrftoken = $('meta[name=_token]').attr('content');
         var prodID = $(this).data('id');
+        pr(prodID);
         $.post('/cart/addToCart', { prodID: prodID, _token: csrftoken })
             .done(function(data) {
                 $('.badge').html(data.cntprod);
                 var html = '<div class="cart-item clearfix">';
                 html += '<div class="img"><img src="'+data.product['preview']+'" alt="img" class="img-responsive"></div>';
                 html += '<div class="description"><a href="product/'+data.product['alias']+'">'+data.product['product']+'</a><strong class="price">1 x $'+data.product['price']+'</strong></div>';
-                html += '<div class="buttons"><a href="#" class="fa fa-trash-o"></a></div>';
+                html += '<div class="buttons" id="delCart" data-id="'+data.product['id']+'"><a href="#" class="fa fa-trash-o"></a></div>';
                 html += '</div>';
                 $('.content-scroll').children().children().append(html);
             }, "json");
@@ -50,6 +51,27 @@ $(document).ready(function() {
 
     // Считает значение TOTAL напротив каждого товара при загрузке корзины
     total();
+
+    /**
+     *
+     * Удаление товара из корзину
+     *
+     * @param integer prodId ID продукта
+     * @return в случае успеха обновятся данные корзины на странице
+     *
+     */
+    $('#delCart').click(function () {
+        var csrftoken = $('meta[name=_token]').attr('content');
+        var prodID = $(this).data('id');
+        $.post('/cart/delToCart', { prodID: prodID, _token: csrftoken })
+            .done(function(data) {
+                $('.badge').html(data.cntprod);
+                $('#delCart').parent().remove();
+                //location.reload();
+            }, "json");
+
+        return false;
+    });
 });
 
 // Ф-ция для console.log()

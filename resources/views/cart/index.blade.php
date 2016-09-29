@@ -4,7 +4,6 @@
 <div class="space-60"></div>
 <div class="container">
     <div class="table-responsive">
-        @if(Session::get('cart'))
         <table class="table table-condensed cart-table">
             <thead>
                 <tr>
@@ -17,23 +16,24 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach(Session::get('cart') as $val)
+            @if(Session::get('cart'))
+            @foreach(Session::get('cart') as $k => $val)
                 <tr>
                     <td class="product-image">
-                        <img src="{{ asset('assets/images/men/'.$val['product']['preview']) }}" alt="" width="80">
+                        <img src="{{ asset('assets/images/men/'.$val['preview']) }}" alt="" width="80">
                     </td>
-                    <td class='product-name'><a href='#'>{{ $val['product']['product'] }}</a></td>
-                    <td class="product-price">${{ $val['product']['price'] }}</td>
+                    <td class='product-name'><a href='#'>{{ $val['product'] }}</a></td>
+                    <td class="product-price">${{ $val['price'] }}</td>
                     <td class="product-quantity">
                         <input type="number" value="1" min="1" class="fl qty-text" name="quantity">
                     </td>
                     <td class="product-total"></td>
-                    <td class="product-delete"><a href="cart/del/{{ $val['product']['id'] }}" data-toggle="tooltip" data-placement="top" title="Remove this item"><i class="fa fa-times"></i></a></td>
+                    <td class="product-delete"><a href="cart/del/{{ $val['id'] }}" data-toggle="tooltip" data-placement="top" title="Remove this item"><i class="fa fa-times"></i></a></td>
                 </tr>
             @endforeach
+            @endif
             </tbody>
         </table><!--cart table-->
-        @endif
     </div>
     <div class="space-20"></div>
     <div class="coupon-row">

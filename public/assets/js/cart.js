@@ -21,11 +21,10 @@ $(document).ready(function() {
     $('#addCart').click(function () {
         var csrftoken = $('meta[name=_token]').attr('content');
         var prodID = $(this).data('id');
-        pr(prodID);
         $.post('/cart/addToCart', { prodID: prodID, _token: csrftoken })
             .done(function(data) {
                 $('.badge').html(data.cntprod);
-                var html = '<div class="cart-item clearfix">';
+                var html = '<div class="cart-item clearfix" data-id="'+data.product['id']+'">';
                 html += '<div class="img"><img src="'+data.product['preview']+'" alt="img" class="img-responsive"></div>';
                 html += '<div class="description"><a href="product/'+data.product['alias']+'">'+data.product['product']+'</a><strong class="price">1 x $'+data.product['price']+'</strong></div>';
                 html += '<div class="buttons" id="delCart" data-id="'+data.product['id']+'"><a href="#" class="fa fa-trash-o"></a></div>';
@@ -60,14 +59,14 @@ $(document).ready(function() {
      * @return в случае успеха обновятся данные корзины на странице
      *
      */
-    $('#delCart').click(function () {
+    $(document).on('click', '#delCart', function () {
         var csrftoken = $('meta[name=_token]').attr('content');
         var prodID = $(this).data('id');
         $.post('/cart/delToCart', { prodID: prodID, _token: csrftoken })
             .done(function(data) {
                 $('.badge').html(data.cntprod);
-                $('#delCart').parent().remove();
-                //location.reload();
+                $('div.cart-item[data-id="'+ prodID +'"]').remove();
+                $('tr[data-id="'+ prodID +'"]').remove();
             }, "json");
 
         return false;

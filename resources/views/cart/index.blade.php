@@ -18,7 +18,7 @@
             <tbody>
             @if(Session::get('cart'))
             @foreach(Session::get('cart') as $k => $val)
-                <tr>
+                <tr data-id="{{ $val['id'] }}">
                     <td class="product-image">
                         <img src="{{ asset('assets/images/men/'.$val['preview']) }}" alt="" width="80">
                     </td>
@@ -28,7 +28,7 @@
                         <input type="number" value="1" min="1" class="fl qty-text" name="quantity">
                     </td>
                     <td class="product-total"></td>
-                    <td class="product-delete"><a href="cart/del/{{ $val['id'] }}" data-toggle="tooltip" data-placement="top" title="Remove this item"><i class="fa fa-times"></i></a></td>
+                    <td class="product-delete"><a href="javascript://" id="delCart" data-id="{{ $val['id'] }}" data-toggle="tooltip" data-placement="top" title="Remove this item"><i class="fa fa-times"></i></a></td>
                 </tr>
             @endforeach
             @endif

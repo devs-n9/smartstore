@@ -135,14 +135,14 @@
                                     <div class="cart-items content-scroll">
                                         @if(Session::get('cart'))
                                             @foreach(Session::get('cart') as $k => $val)
-                                               <div class="cart-item clearfix">
+                                               <div class="cart-item clearfix" data-id="{{ $val['id'] }}">
                                                     <div class="img">
                                                         <img src="{{ asset('assets/images/men/'.$val['preview']) }}" alt="" class="img-responsive">
                                                     </div><!--img-->
                                                     <div class="description">
                                                         <a href="#">{{ $val['product'] }}</a><strong class="price">1 x ${{ $val['price'] }}</strong>
                                                     </div><!--Description-->
-                                                    <div class="buttons" id="delCart" data-id="{{ $val['id'] }}">
+                                                    <div class="buttons" data-id="{{ $val['id'] }}" id="delCart">
                                                         <a href="#" class="fa fa-trash-o"></a>
                                                     </div>
                                                 </div><!--cart item-->

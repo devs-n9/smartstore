@@ -87,7 +87,7 @@ class CartController extends Controller
     public function delToCart(Request $request)
     {
         $prodID = (int)$request['prodID'];
-        dd($prodID);
+        //dd($prodID);
         if(!$prodID) {
             return false;
         }

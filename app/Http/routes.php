@@ -13,7 +13,16 @@
 App::setLocale('ru');
 Route::get('/', 'DefaultController@index');
 
-Route::get('/dashboard', 'Dashboard\DashboardController@index');
+Route::group(['middleware' => ['admin']], function () {
+	Route::get('/dashboard', 'Dashboard\DashboardController@index');
+
+});
+
+Route::group(['middleware' => ['manager']], function () {
+	Route::get('/dashboard', 'Dashboard\DashboardController@index');
+
+});
+			 
 Route::get('/dashboard/orders', 'Dashboard\OrdersController@orders');
 Route::get('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@edit');
 Route::post('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@update');

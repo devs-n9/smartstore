@@ -23,7 +23,8 @@ $(document).ready(function() {
         var prodID = $(this).data('id');
         $.post('/cart/addToCart', { prodID: prodID, _token: csrftoken })
             .done(function(data) {
-                $('.badge').html(data.cntprod);
+                $('.badge').removeClass('hide');
+                $('.badge').text(data.cntprod);
                 var html = '<div class="cart-item clearfix" data-id="'+data.product['id']+'">';
                 html += '<div class="img"><img src="'+data.product['preview']+'" alt="img" class="img-responsive"></div>';
                 html += '<div class="description"><a href="product/'+data.product['alias']+'">'+data.product['product']+'</a><strong class="price">1 x $'+data.product['price']+'</strong></div>';
@@ -49,11 +50,16 @@ $(document).ready(function() {
         });
     });
 
+    // Если корзина пустая, то скрыть индикатор кол-ва продуктов в корзине
+    var badge = $('.badge').text();
+    if(badge == 0) {
+        $('.badge').addClass('hide');
+    }
 
 
     /**
      *
-     * Удаление товара из корзину
+     * Удаление товара из корзины
      *
      * @param integer prodId ID продукта
      * @return в случае успеха обновятся данные корзины на странице

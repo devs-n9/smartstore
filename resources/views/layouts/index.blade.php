@@ -130,7 +130,9 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" role="button" aria-haspopup="true"><i class="pe-7s-cart"></i> <span class="badge">{{ Session::get('cntProd') }}</span></a>
+                                <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" role="button" aria-haspopup="true"><i class="pe-7s-cart"></i>
+                                    <span class="badge">{{ Session::get('cntProd') }}</span>
+                                </a>
                                 <div class="dropdown-menu shopping-cart">
                                     <div class="cart-items content-scroll">
                                         @if(Session::get('cart'))

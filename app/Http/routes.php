@@ -55,3 +55,14 @@ Route::get('/category/{name}', 'Products\ProductsController@category');
 Route::get('/product/{name}', 'Products\ProductsController@product');
 Route::post('/product/{name}', 'Products\ProductsController@product');
 // Front Products end
+
+
+
+Route::auth();
+
+// Front auth
+Route::get('/auth/register', 'Auth\AuthController@getRegister');
+Route::post('/auth/register', 'Auth\AuthController@postRegister');
+// Front auth end
+
+

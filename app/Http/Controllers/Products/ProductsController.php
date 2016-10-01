@@ -16,15 +16,15 @@ class ProductsController extends Controller
     // Catalog - categories page
     public function catalog()
     {
-        $categories = Categories::all();
+        $categories = Categories::paginate(6);
         return view('products.catalog', ['categories'=>$categories]);
     }
 
     // Category - products list
     public function category($alias)
     {
-        $category = Categories::all()->where('alias', $alias)->first();
-        $category_products = Products::all()->where('category_id', $category['id']);
+        $category = Categories::where('alias', $alias)->first();
+        $category_products = Products::where('category_id', $category['id'])->paginate(6);
         $categories = Categories::all();
         return view('products.category', ['categories'=>$categories,'category'=>$category,'category_products'=>$category_products]);
     }

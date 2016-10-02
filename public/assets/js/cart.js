@@ -39,15 +39,12 @@ $(document).ready(function() {
     // При изменении кол-ва продукта в инпуте QUANTITY меняем TOTAL этого продукта
     $('.product-quantity input[name=quantity]').change(function(){
         var price = $(this).parent().siblings('.product-price').text();
-        pr(price);
         price = parseFloat(price.slice(1));
         var quantity = $(this).val();
         var total = price * quantity;
         total = total.toFixed(2);
         $(this).parent().siblings('.product-total').text('$'+total);
-        $('.product-total').each(function(){
-            var alltotal = parseFloat($(this).text().slice(1));
-        });
+        productTotal();
     });
 
     // Если корзина пустая, то скрыть индикатор кол-ва продуктов в корзине
@@ -73,13 +70,30 @@ $(document).ready(function() {
                 $('.badge').html(data.cntprod);
                 $('div.cart-item[data-id="'+ prodID +'"]').remove();
                 $('tr[data-id="'+ prodID +'"]').remove();
+                productTotal();
             }, "json");
 
         return false;
+
     });
+
+    productTotal();
+
+
 });
 
 // Ф-ция для console.log()
 function pr(val) {
     console.log(val);
+}
+
+// Ф-ция подсчета TOTAL в корзине
+function productTotal() {
+    var sum = 0;
+    $('.product-total').each(function () {
+        var res = parseFloat($(this).text().slice(1));
+        sum += +res;
+    });
+    $('.subtotal').text('$'+sum);
+    $('.total').text('$'+sum);
 }

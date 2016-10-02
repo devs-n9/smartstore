@@ -26,18 +26,7 @@ class CartController extends Controller
         //dd(Session::get('cart'));
         return view('cart.index');
     }
-
-    /**
-     *
-     * Action to checkout page
-     * Переход на оформление товара
-     *
-     */
-    public function checkout()
-    {
-        return view('cart.checkout');
-    }
-
+    
     /**
      * Добавлени продукта в корзину
      *

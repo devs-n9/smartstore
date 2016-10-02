@@ -1,14 +1,14 @@
 @extends('layouts.dashboard')
 @section('content')
 
-    <h3>Chang meta tag's information</h3>
+    <h3>Change meta tag's information</h3>
 
     <form method="post">
         {{ csrf_field() }}
         
         <label for="">Title</label>
         <div>
-            <input type="text" name="title" value="{{ $settings->title }}">
+        <input type="text" name="title" value="{{ $settings->title }}">
         </div>
         
         <label for="">Author</label>

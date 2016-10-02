@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('content')
 
-<h3>Contact information</h3>
+<h3>Add new contact information</h3>
 
     <form method="post">
         {{ csrf_field() }}
@@ -30,7 +30,7 @@
         @endif
         
         <div>
-        <input type="submit" value="Save">
+        <input class="btn btn-success" type="submit" value="Save">
         </div>
     </form>
 

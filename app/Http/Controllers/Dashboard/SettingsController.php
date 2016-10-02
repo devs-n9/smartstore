@@ -11,7 +11,8 @@ use App\Http\Controllers\Controller;
 
 class SettingsController extends Controller
 {
-     public function index_contacts()
+    //show view with contacts information
+    public function index_contacts()
     { 
         $contacts = Contacts::all();
         return view('dashboard.settings.index_contacts', [
@@ -19,7 +20,7 @@ class SettingsController extends Controller
         ]);
     }
     
-    
+   //show view with meta tags information 
    public function index_settings()
     {
         $settings = Settings::find(1);
@@ -28,8 +29,17 @@ class SettingsController extends Controller
         ]);
     }
     
+    //show view for adding contacts
+    public function add_contacts()
+    {
+        $contacts = Contacts::all();
+        return view('dashboard.settings.add_contacts', [
+        'contacts' => $contacts
+        ]);
+    }
     
-     public function insert_contacts(Request $request)
+    //add contacts to DB
+    public function insert_contacts(Request $request)
     {
         $contacts = [];
         $validator = Validator::make($request->all(), [
@@ -53,6 +63,7 @@ class SettingsController extends Controller
         
     }
     
+    //add meta tags to DB
     public function insert_settings(Request $request)
     {
         $settings = [];
@@ -79,43 +90,29 @@ class SettingsController extends Controller
         
     }
     
-    
-    public function editContacts($id)
+    //show view for changing contact information by $id
+    public function edit_contacts($id)
     {
-        $contacts = Contacts::find($id);
+        $contacts = Contacts::all();
         return view('dashboard.settings.edit_contacts', [
             'contacts' => $contacts
         ]);
     }
     
-    public function editSettings($id)
-    {
-        $settings = Settings::find($id);
-        return view('dashboard.settings.edit_meta', [
-            'settings' => $settings
-        ]);
-    }
-    
-    public function updateContacts(Request $request, $id)
+    //update contact's information by $id
+    public function update_contacts(Request $request, $id)
     {
         $data_cont = $request->all();
         $contacts = Contacts::find($id);
         $contacts ->update($data_cont);
-        return redirect('/dashboard.settings.index_contacts');
+        return redirect('/dashboard/settings/index_contacts');
     }
     
-    public function updateSettings(Request $request, $id)
+    //delete contact's informations by $id
+     public function delete_contacts($id)
     {
-        $data_set = $request->all();
-        $settings = Settings::find($id);
-        $settings ->update($data_set);
-        return redirect('/dashboard.settings.index_meta');
-    }
-    
-     public function deleteSettings($id)
-    {
-        $post = Settings::where('id', $id)->delete();
-        return redirect('/dashboard.settings.index_meta');
+        $contacts = Contacts::where('id', $id)->delete();
+        return redirect('/dashboard/settings/index_contacts');
     }
     
 }

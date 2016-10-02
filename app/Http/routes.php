@@ -36,18 +36,32 @@ Route::post('/dashboard/product/delete', 'Dashboard\ProductsController@deletePro
 
 ///dashboard products end here
 
-///dashboard settings start here
+///dashboard settings for meta tags start here
 
-Route::get('/dashboard/settings', 'Dashboard\SettingsController@index_contacts');
-Route::get('/dashboard/settings', 'Dashboard\SettingsController@index_settings');
+Route::get('/dashboard/settings/index_meta','Dashboard\SettingsController@index_settings');
 
-Route::get('/dashboard/settings/add_meta','Dashboard\SettingsController@insert_settings');
-Route::get('/dashboard/settings/add_contacts','Dashboard\SettingsController@insert_contacts');
+Route::get('/dashboard/settings/add_meta','Dashboard\SettingsController@index_settings');
+Route::post('/dashboard/settings/add_meta','Dashboard\SettingsController@insert_settings');
 
 Route::get('/dashboard/settings/edit_meta','Dashboard\SettingsController@index_settings');
+
+///dashboard settings for meta tags end here
+
+///dashboard settings for contacts start here
+
+Route::get('/dashboard/settings/index_contacts','Dashboard\SettingsController@index_contacts');
+
+Route::get('/dashboard/settings/add_contacts','Dashboard\SettingsController@add_contacts');
+Route::post('/dashboard/settings/add_contacts','Dashboard\SettingsController@insert_contacts');
+
 Route::get('/dashboard/settings/edit_contacts','Dashboard\SettingsController@index_contacts');
 
-///dashboard settings end here
+Route::get('/dashboard/settings/edit_contacts/{id}','Dashboard\SettingsController@edit_contacts');
+Route::post('/dashboard/settings/edit_contacts/{id}','Dashboard\SettingsController@update_contacts');
+
+Route::get('/dashboard/settings/delete/{id}', 'Dashboard\SettingsController@delete_contacts');
+
+///dashboard settings for contacts end here
 
 
 //dashboard brands begin here

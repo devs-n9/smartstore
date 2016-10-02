@@ -93,12 +93,17 @@
 					<!-- /menu footer buttons -->
 					<div class="sidebar-footer hidden-small">
                         <!-- For contacts and settings changing -->
-						<a data-toggle="tooltip" data-placement="top" title="Settings" href="/dashboard/settings/add_meta">
+						<a data-toggle="tooltip" data-placement="top" title="Settings" href="/dashboard/settings/edit_meta">
 							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
 						</a>
+                        <a data-toggle="tooltip" data-placement="top" title="Contacts" href="/dashboard/settings/index_contacts">
+							<span class="fa fa-phone" aria-hidden="true"></span>
+						</a>
+<!--need to be deleted
 						<a data-toggle="tooltip" data-placement="top" title="FullScreen">
 							<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
 						</a>
+-->
 						<a data-toggle="tooltip" data-placement="top" title="Lock">
 							<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
 						</a>

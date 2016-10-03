@@ -14,7 +14,7 @@ class CreateProfileTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('gender');
+            $table->integer('gender');
             $table->integer('age');
             $table->string('avatar');
             $table->string('tel');

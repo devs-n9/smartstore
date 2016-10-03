@@ -88,16 +88,16 @@
                             <section class="col col-6">
                                 <label class="select">
                                     <select name="gender">
-                                        <option value="Unknown" selected disabled>Gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option value="0" selected>Не указывать</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
                                     </select>
                                     <i></i>
                                 </label>
                             </section>
                             <section class="col col-6">
                                 <label class="input">
-                                    <input type="text" name="age" placeholder="Age">
+                                    <input type="number" name="age" placeholder="Age">
                                 </label>
                             </section>
                             <section class="col col-xs-12">

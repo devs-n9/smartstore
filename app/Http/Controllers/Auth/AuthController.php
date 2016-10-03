@@ -46,15 +46,15 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-//        $this_user_id = User::where('email', $data['email'])->select('id')->first();
-//        $user_profile = Profile::create([
-//            'user_id' => $this_user_id['id'],
-//            'first_name' => $data['first_name'],
-//            'last_name' => $data['last_name'],
-//            'gender' => $data['gender'],
-//            'tel' => $data['tel'],
-//            'address' => $data['address']
-//        ]);
+        $this_user_id = User::where('email', $data['email'])->select('id')->first();
+        $user_profile = Profile::create([
+            'user_id' => $this_user_id['id'],
+            'first_name' => '',
+            'last_name' => '',
+            'gender' => $data['gender'],
+            'tel' => '',
+            'address' => ''
+        ]);
         return $user;
     }
 

@@ -23,123 +23,135 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="details">
-                    <div class="col-md-6">
-                        <div class="sky-form-login">
-                            <form action="{{ url('register') }}" id="sky-form" class="sky-form" role="form" method="post">
+                    <div class="sky-form-login">
+                        <form action="{{ url('profile') }}" id="sky-form" class="sky-form" role="form" method="post">
 
-                                {{ csrf_field() }}
+                            {{ csrf_field() }}
 
-                                <h3 class="text-left"><i class="fa fa-user"></i>Create new account with assan</h3>
+                            <h3 class="text-left"><i class="fa fa-user"></i>Create new account with assan</h3>
 
-                                {{--Ошибки--}}
-                                @if ($errors->has())
-                                    <div>
-                                        <br>
-                                        <div class="alert alert-danger" role="alert">
-                                            <button class="close" aria-label="Close" data-dismiss="alert" type="button">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                            <div>
-                                                @foreach($errors->all() as $error)
-                                                    <div>{{ $error }}</div>
-                                                @endforeach
+                            {{--Ошибки--}}
+                            {{--@if ($errors->has())--}}
+                            {{--<div>--}}
+                            {{--<br>--}}
+                            {{--<div class="alert alert-danger" role="alert">--}}
+                            {{--<button class="close" aria-label="Close" data-dismiss="alert" type="button">--}}
+                            {{--<span aria-hidden="true">×</span>--}}
+                            {{--</button>--}}
+                            {{--<div>--}}
+                            {{--@foreach($errors->all() as $error)--}}
+                            {{--<div>{{ $error }}</div>--}}
+                            {{--@endforeach--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--@endif--}}
+                            {{--{{ $user }}--}}
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <section>
+                                            <label class="input">
+                                                <i class="icon-append fa fa-user"></i>
+                                                <input type="text" name="login" value="{{ $user->login }}">
+                                                <b class="tooltip tooltip-bottom-right">Enter Username</b>
+                                            </label>
+                                        </section>
+                                        <section>
+                                            <div class="profile__avatar">
+                                                @if($user->avatar)
+                                                    <img class="media-object img-circle" src="{{ asset('/uploads/images/reviews/' . $user->avatar) }}" alt="">
+                                                @else
+                                                    <img class="media-object img-circle" src="{{ asset('/assets/images/default-user-image.png' . $user->avatar) }}" alt="">
+                                                @endif
                                             </div>
-                                        </div>
-                                    </div>
-                                @endif
-
-
-                                <fieldset>
-                                    <section>
-                                        <label class="input">
-                                            <i class="icon-append fa fa-user"></i>
-                                            <input type="text" name="login" placeholder="Username">
-                                            <b class="tooltip tooltip-bottom-right">Enter Username</b>
-                                        </label>
-                                    </section>
-
-                                    <section>
-                                        <label class="input">
-                                            <i class="icon-append fa fa-envelope-o"></i>
-                                            <input type="email" name="email" placeholder="Email address">
-                                            <b class="tooltip tooltip-bottom-right">Enter valid email address</b>
-                                        </label>
-                                    </section>
-
-                                    <section>
-                                        <label class="input">
-                                            <i class="icon-append fa fa-lock"></i>
-                                            <input type="password" name="password" placeholder="Password" id="password">
-                                            <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
-                                        </label>
-                                    </section>
-
-                                    <section>
-                                        <label class="input">
-                                            <i class="icon-append fa fa-lock"></i>
-                                            <input type="password" name="password_confirmation" placeholder="Confirm password">
-                                            <b class="tooltip tooltip-bottom-right">Please confirm your password</b>
-                                        </label>
-                                    </section>
-                                </fieldset>
-
-                                <fieldset>
-                                    <div class="row">
-                                        <section class="col col-6">
-                                            <label class="input">
-                                                <input type="text" name="first_name" placeholder="First name">
-                                            </label>
-                                        </section>
-                                        <section class="col col-6">
-                                            <label class="input">
-                                                <input type="text" name="last_name" placeholder="Last name">
-                                            </label>
-                                        </section>
-                                        <section class="col col-6">
-                                            <label class="select">
-                                                <select name="gender">
-                                                    <option value="Unknown" selected disabled>Gender</option>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                </select>
-                                                <i></i>
-                                            </label>
-                                        </section>
-                                        <section class="col col-6">
-                                            <label class="input">
-                                                <input type="text" name="age" placeholder="Age">
-                                            </label>
-                                        </section>
-                                        <section class="col col-xs-12">
                                             <label class="input">
                                                 Avatar
                                                 <input type="file" name="tel">
                                             </label>
                                         </section>
-                                        <section class="col col-xs-12">
+                                        <section>
                                             <label class="input">
-                                                <input type="tel" name="tel" placeholder="Phone">
+                                                <i class="icon-append fa fa-lock"></i>
+                                                <input type="password" name="password" placeholder="Password" id="password">
+                                                <b class="tooltip tooltip-bottom-right">Edit password password</b>
                                             </label>
                                         </section>
-                                        <section class="col col-xs-12">
-                                            <label class="textarea">
-                                                <textarea name="address" id="" cols="30" rows="10"></textarea>
+                                        <section>
+                                            <label class="input">
+                                                <i class="icon-append fa fa-lock"></i>
+                                                <input type="password" name="password_confirmation" placeholder="Confirm password">
+                                                <b class="tooltip tooltip-bottom-right">Please confirm your password</b>
                                             </label>
                                         </section>
-                                    </div>
-                                    <section>
-                                        <label class="checkbox"><input type="checkbox" name="subscription" id="subscription"><i></i>I want to receive news and  special offers</label>
-                                        <label class="checkbox"><input type="checkbox" name="terms" id="terms"><i></i>I agree with the Terms and Conditions</label>
-                                    </section>
-                                </fieldset>
-                                <footer>
-                                    <button type="submit" class="btn btn-skin btn-lg">Create account</button>
-                                </footer>
-                            </form>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="input">
+                                                    <input type="text" name="first_name" placeholder="First name" value="{{ $user->first_name }}">
+                                                </label>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label class="input">
+                                                    <input type="text" name="last_name" placeholder="Last name" value="{{ $user->last_name }}">
+                                                </label>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label class="select">
+                                                    <select name="gender">
+                                                        <option value="0"
+                                                                @if($user->gender == 0)
+                                                                selected
+                                                                @endif
+                                                        >Gender</option>
+                                                        <option value="1"
+                                                                @if($user->gender == 1)
+                                                                selected
+                                                                @endif
+                                                        >Male</option>
+                                                        <option value="2"
+                                                                @if($user->gender == 2)
+                                                                selected
+                                                                @endif
+                                                        >Female</option>
+                                                    </select>
+                                                    <i></i>
+                                                </label>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label class="input">
+                                                    <input type="number" name="age" placeholder="Age" value="{{ $user->age }}">
+                                                </label>
+                                            </section>
+                                            <section class="col col-xs-12">
+                                                <label class="input">
+                                                    <input type="tel" name="tel" value="{{ $user->tel }}">
+                                                </label>
+                                            </section>
+                                            <section class="col col-xs-12">
+                                                <label class="textarea">
+                                                    <textarea name="address" id="" cols="30" rows="10">{{ $user->address }}</textarea>
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
 
 
-                        </div>
-                    </div><!--col end-->
+
+
+                            <footer>
+                                <button type="submit" class="btn btn-skin btn-lg">Save account</button>
+                            </footer>
+                        </form>
+
+
+                    </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="history">
                     <div class="row">
@@ -246,25 +258,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <nav>
-                        <ul class="pagination pull-right clearfix">
-                            <li>
-                                <a href="#" aria-label="Previous">
-                                    <span aria-hidden="true">«</span>
-                                </a>
-                            </li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">
-                                    <span aria-hidden="true">»</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                 </div>
             </div>
         </div>

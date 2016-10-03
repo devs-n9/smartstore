@@ -60,8 +60,11 @@ Route::post('/product/{name}', 'Products\ProductsController@product');
 Route::auth();
 
 // Front auth
-Route::get('/auth/register', 'Auth\AuthController@getRegister');
-Route::post('/auth/register', 'Auth\AuthController@postRegister');
+Route::get('/register', 'Auth\AuthController@getRegister');
+Route::post('/register', 'Auth\AuthController@postRegister');
+Route::get('/activate','Auth\AuthController@activate');
+Route::post('/login','Auth\AuthController@postLogin');
+Route::get('/profile','Auth\AuthController@userProfile');
 // Front auth end
 
 

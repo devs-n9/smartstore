@@ -23,19 +23,19 @@
 
                     {{--Ошибки--}}
                     @if ($errors->has())
-                    <div>
-                        <br>
-                        <div class="alert alert-danger" role="alert">
-                            <button class="close" aria-label="Close" data-dismiss="alert" type="button">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <div>
-                                @foreach($errors->all() as $error)
-                                <div>{{{ $error }}}</div>
-                                @endforeach
+                        <div>
+                            <br>
+                            <div class="alert alert-danger" role="alert">
+                                <button class="close" aria-label="Close" data-dismiss="alert" type="button">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <div>
+                                    @foreach($errors->all() as $error)
+                                        <div>{{ $error }}</div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endif
 
 
@@ -43,7 +43,7 @@
                         <section>
                             <label class="input">
                                 <i class="icon-append fa fa-user"></i>
-                                <input type="text" name="name" placeholder="Username">
+                                <input type="text" name="login" placeholder="Username">
                                 <b class="tooltip tooltip-bottom-right">Enter Username</b>
                             </label>
                         </section>
@@ -137,7 +137,7 @@
                     Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimusNam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.
                 </p>
                 <br>
-                <a href="{{ url('auth/login') }}" class="btn btn-light-dark btn-lg">Login Now</a>
+                <a href="{{ url('login') }}" class="btn btn-light-dark btn-lg">Login Now</a>
             </div>
         </div>
     </div>

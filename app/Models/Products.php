@@ -39,7 +39,6 @@ class Products extends Model
     }
     // relations end
 
-
     public function getProduct($id)
     {
         return $this->where('id', $id)->get();

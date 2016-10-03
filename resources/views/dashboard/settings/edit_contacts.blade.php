@@ -5,6 +5,10 @@
 
     <form method="post">
         {{ csrf_field() }}
+             
+@foreach ($contacts as $c)
+<p>for contact ingormation № {{$contacts->id}}</p>
+@endforeach
                 
         <label for="">Phone</label>
         <div>

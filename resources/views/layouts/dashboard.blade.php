@@ -99,12 +99,7 @@
                         <a data-toggle="tooltip" data-placement="top" title="Contacts" href="/dashboard/settings/index_contacts">
 							<span class="fa fa-phone" aria-hidden="true"></span>
 						</a>
-<!--need to be deleted
-						<a data-toggle="tooltip" data-placement="top" title="FullScreen">
-							<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-						</a>
--->
-						<a data-toggle="tooltip" data-placement="top" title="Lock">
+			<a data-toggle="tooltip" data-placement="top" title="Lock">
 							<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
 						</a>
 						<a data-toggle="tooltip" data-placement="top" title="Logout">

@@ -44,6 +44,7 @@ Route::get('/dashboard/settings/add_meta','Dashboard\SettingsController@index_se
 Route::post('/dashboard/settings/add_meta','Dashboard\SettingsController@insert_settings');
 
 Route::get('/dashboard/settings/edit_meta','Dashboard\SettingsController@index_settings');
+Route::post('/dashboard/settings/edit_meta','Dashboard\SettingsController@insert_settings');
 
 ///dashboard settings for meta tags end here
 

@@ -35,35 +35,30 @@ class CartController extends Controller
      */
     public function addToCart(Request $request)
     {
-        $prodID = (int)$request['prodID'];
+        $prodID = (int)$request['prodID']; // принимаем id продукта, который передали AJAX(POST)
         //dd($prodID);
-        if(!$prodID) {
+        if(!$prodID) { // проверяем есть ли id (на всякий случай)
             return false;
         }
-        $sesProdID = array();
-        $product = Products::find($prodID)->getOriginal();
+        $sesProdID = array(); // создаем массив, в который будем записывать id выбранного товара
+        $product = Products::find($prodID)->getOriginal(); // получаем все данные по продукту (ищем продукт по id)
         
-        if(Session::has('cart.'.$prodID)) {
-            $ses = Session::get('cart.'.$prodID);
-            $cntSes = count($ses);
-            for($i = 0; $i < $cntSes; $i++) {
-                $sesProdID[] = $ses[$i]['product']['id'];
-            }
-            if(Session::has('cart.'.$prodID) && array_search($prodID, $sesProdID) === false) {
-                Session::put('cart.'.$prodID, $product);
-                $cntProd = count(Session::get('cart'));
-                Session::put('cntProd', $cntProd);
-            } else {
+        if(Session::has('cart')) { // проверяем наличие сессии
+            if(!Session::has('cart.'.$prodID)) { // если нет товара с таким id (ключ сессии соответсвует id товара)
+                Session::put('cart.'.$prodID, $product); // добавляем данные по новому товару в сессию с ключем равным id этого товара
+                $cntProd = count(Session::get('cart')); // считаем сколько товаров в сессии
+                Session::put('cntProd', $cntProd); // записываем кол-во товаров в отдельную сессию
+            } else { // если продукт с таким id уже есть в сессии, то... всё :)
                 return false;
             }
             
-        } else {
+        } else { // если сессии еще нет, то создаём её и считаем кол-во продуктов в ней
             Session::put('cart.'.$prodID, $product);
             $cntProd = count(Session::get('cart'));
             Session::put('cntProd', $cntProd);
         }
             
-        return response()->json(['cntprod' => $cntProd, 'product' => $product]);
+        return response()->json(['cntprod' => $cntProd, 'product' => $product]); // возвращаем данные в AJAX
         
     }
 
@@ -76,7 +71,6 @@ class CartController extends Controller
     public function delToCart(Request $request)
     {
         $prodID = (int)$request['prodID'];
-        //dd($prodID);
         if(!$prodID) {
             return false;
         }

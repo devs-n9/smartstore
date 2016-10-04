@@ -142,7 +142,7 @@
                                                         <img src="{{ asset('assets/images/men/'.$val['preview']) }}" alt="" class="img-responsive">
                                                     </div><!--img-->
                                                     <div class="description">
-                                                        <a href="#">{{ $val['product'] }}</a><strong class="price">1 x ${{ $val['price'] }}</strong>
+                                                        <a href="category/{{ $val['alias'] }}">{{ $val['product'] }}</a><strong class="price">1 x ${{ $val['price'] }}</strong>
                                                     </div><!--Description-->
                                                     <div class="buttons delCart" data-id="{{ $val['id'] }}">
                                                         <a href="#" class="fa fa-trash-o"></a>

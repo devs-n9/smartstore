@@ -22,7 +22,7 @@
                     <td class="product-image">
                         <img src="{{ asset('uploads/images/products/60x60/'.$val['preview']) }}" alt="" width="80">
                     </td>
-                    <td class='product-name'><a href='#'>{{ $val['product'] }}</a></td>
+                    <td class='product-name'><a href='category/{{ $val['alias'] }}'>{{ $val['product'] }}</a></td>
                     <td class="product-price">${{ $val['price'] }}</td>
                     <td class="product-quantity">
                         <input type="number" value="1" min="1" class="fl qty-text" name="quantity">
@@ -35,20 +35,7 @@
             </tbody>
         </table><!--cart table-->
     </div>
-    <div class="space-20"></div>
-    <div class="coupon-row">
-        <div class="row">
-            <div class="col-sm-4">
-                <form class="coupon-form">
-                    <input type="text" class="form-control" placeholder="Coupon code">
-                    <button type="button">Apply</button>
-                </form>
-            </div>
-            <div class="col-sm-3 col-sm-offset-5 text-right">
-                <a href="#" class="btn btn-light-dark">Update Cart</a>
-            </div>
-        </div>
-    </div>
+    <hr>
     <!--cart row-->
     <div class="space-30"></div>
     <div class="cart-total">
@@ -76,7 +63,7 @@
                             <td class="total"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"> <a href="/checkout" class="btn btn-lg btn-skin">Proceed to checkout</a></td>
+                            <td colspan="2"> <a href="/checkout" class="btn btn-lg btn-skin">Place order</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -86,7 +73,6 @@
 </div>
 <div class="space-60"></div>
 
-<div class="space-60"></div>
 <div class="container sky-checkout-form">
 
     <form action="" id="checkout-form" class="sky-form">
@@ -482,7 +468,7 @@
                     <tbody>
                     <tr>
                         <td>Subtotal</td>
-                        <td class="color">$2456.00</td>
+                        <td class="subtotal color">$2456.00</td>
                     </tr>
                     <tr>
                         <td>Shipping</td>
@@ -505,5 +491,4 @@
     </form>
 
 </div>
-<div class="space-60"></div>
 @endsection

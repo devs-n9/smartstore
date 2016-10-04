@@ -14,6 +14,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 item-more-info">
+
             <!-- Nav tabs -->
             <ul class="nav nav-justified" role="tablist">
                 <li role="presentation" class="active"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Profile details</a></li>
@@ -154,24 +155,10 @@
                                     </footer>
                                 </div>
                             </div>
-
-
-
-
                         </form>
-
-
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="history">
-                    <div class="row">
-                        <div class="col-sm-4 col-sm-offset-8">
-                            <form class="search-form">
-                                <input type="text" class="form-control" placeholder="Search Order">
-                                <i class="fa fa-search"></i>
-                            </form>
-                        </div>
-                    </div>
                     <div class="table-responsive table-order-history">
                         <table class="table table-bordered">
                             <thead>

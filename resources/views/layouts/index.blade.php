@@ -61,9 +61,13 @@
                         </div>
                         <div class="col-sm-6 text-right">
                             <ul class="list-inline">
-                                <li class="hidden-xs"><a href="#" class="offers">offers</a></li>                              
-                                <li class="hidden-xs"><a href="{{ url('register') }}"><i class="pe-7s-user"></i> Register</a></li>
-                                <li><a href="{{ url('login') }}"><i class="pe-7s-lock"></i> Login</a></li>
+                                @if( Auth::check() )
+                                    <li><a href="{{ url('profile') }}"><i class="pe-7s-lock"></i> User</a></li>
+                                    <li><a href="{{ url('logout') }}"><i class="pe-7s-lock"></i> Logout</a></li>
+                                @else
+                                    <li class="hidden-xs"><a href="{{ url('register') }}"><i class="pe-7s-user"></i> Register</a></li>
+                                    <li><a href="{{ url('login') }}"><i class="pe-7s-lock"></i> Login</a></li>
+                                @endif
                                 <li><a href="javascript:void(0)" class="search-toggle"><i class="fa fa-search"></i></a></li>
                             </ul>
                         </div>

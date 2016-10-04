@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Models\Profile;
-use Illuminate\Support\Facades\Auth;
 use Validator;
 use Mail;
 use App\Http\Controllers\Controller;
@@ -13,11 +12,16 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
+use Auth;
 
 
-class UserProfileController extends Controller
+class ProfileController extends Controller
 {
-    public $id = 21;
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     // Validation reg form
     protected function validator(array $data)
@@ -32,7 +36,7 @@ class UserProfileController extends Controller
         $user = DB::table('users')
             ->join('profile', function ($join) {
                 $join->on('users.id', '=', 'profile.user_id')
-                    ->where('profile.user_id', '=', $this->id);
+                    ->where('profile.user_id', '=', Auth::user()->id);
             })
             ->get();
         return $user[0];
@@ -62,7 +66,7 @@ class UserProfileController extends Controller
                     $file->move($uploadPath, $fileName);
                 }
                 // Update profile
-                $user_profile = Profile::where('user_id', $this->id)->update([
+                $user_profile = Profile::where('user_id', Auth::user()->id)->update([
                   'first_name' => $data['first_name'],
                   'last_name' => $data['last_name'],
                   'gender' => $data['gender'],
@@ -72,7 +76,7 @@ class UserProfileController extends Controller
                   'avatar' => $fileName
                 ]);
                 // Update user
-                $user = User::where('id', $this->id)->update([
+                $user = User::where('id', Auth::user()->id)->update([
                   'password' => bcrypt($data['password'])
                 ]);
 

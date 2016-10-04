@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -21,6 +22,11 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     protected $redirectTo = '/';
+
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     // Default view
     public function getRegister()
@@ -60,7 +66,7 @@ class AuthController extends Controller
 
 
     // Register user
-    public function postRegister(Request $request)
+    public function userRegister(Request $request)
     {
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
@@ -99,10 +105,13 @@ class AuthController extends Controller
     }
 
     // Authorization
-    public function postLogin(Request $request)
+    public function getLogin()
+    {
+        return view('auth.login');
+    }
+    public function userLogin(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password,'activated' => 1])){
-
             return redirect()->to('/profile');
         } else {
             return redirect()->to('/login');

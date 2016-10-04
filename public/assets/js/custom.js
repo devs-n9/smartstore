@@ -141,13 +141,17 @@ jQuery(document).ready(function () {
 
 /** product single slider**/
 $(document).ready(function() {
-  $("#product-single").owlCarousel({
-      navigation : true, 
-      slideSpeed : 300,
-      pagination : false,
-      singleItem:true,
-      navigationText: ["<i class='pe-7s-angle-left'>", "<i class='pe-7s-angle-right'>"]
-  });
+    $("#product-single").owlCarousel({
+        navigation : true,
+        slideSpeed : 300,
+        pagination : false,
+        singleItem:true,
+        navigationText: ["<i class='pe-7s-angle-left'>", "<i class='pe-7s-angle-right'>"]
+    });
+
+    setTimeout(function () {
+        $(".tooltip").removeClass("active");
+    }, 7000);
 });
 
 
@@ -189,8 +193,3 @@ $('#stars li').on('click', function(){
     var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
     $("#inputRating").val(ratingValue);
 });
-
-
-setTimeout(function () {
-   $(".tooltip").removeClass("active");
-}, 7000);

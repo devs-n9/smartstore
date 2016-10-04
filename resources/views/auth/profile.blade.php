@@ -24,65 +24,77 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="details">
                     <div class="sky-form-login">
-                        <form action="{{ url('profile') }}" id="sky-form" class="sky-form" role="form" method="post">
+                        <form action="{{ url('profile') }}" id="sky-form" class="sky-form" role="form" method="post" enctype="multipart/form-data">
 
                             {{ csrf_field() }}
 
-                            <h3 class="text-left"><i class="fa fa-user"></i>Create new account with assan</h3>
+                            <h3 class="text-left"><i class="fa fa-user"></i>Edit your account</h3>
 
                             {{--Ошибки--}}
-                            {{--@if ($errors->has())--}}
-                            {{--<div>--}}
-                            {{--<br>--}}
-                            {{--<div class="alert alert-danger" role="alert">--}}
-                            {{--<button class="close" aria-label="Close" data-dismiss="alert" type="button">--}}
-                            {{--<span aria-hidden="true">×</span>--}}
-                            {{--</button>--}}
-                            {{--<div>--}}
-                            {{--@foreach($errors->all() as $error)--}}
-                            {{--<div>{{ $error }}</div>--}}
-                            {{--@endforeach--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--@endif--}}
-                            {{--{{ $user }}--}}
+                            @if ($errors->has())
+                                <div>
+                                    <br>
+                                    <div class="alert alert-danger" role="alert">
+                                        <button class="close" aria-label="Close" data-dismiss="alert" type="button">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <div>
+                                            @foreach($errors->all() as $error)
+                                                <div>{{ $error }}</div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <fieldset>
                                         <section>
-                                            <label class="input">
-                                                <i class="icon-append fa fa-user"></i>
-                                                <input type="text" name="login" value="{{ $user->login }}">
-                                                <b class="tooltip tooltip-bottom-right">Enter Username</b>
-                                            </label>
-                                        </section>
-                                        <section>
                                             <div class="profile__avatar">
                                                 @if($user->avatar)
-                                                    <img class="media-object img-circle" src="{{ asset('/uploads/images/reviews/' . $user->avatar) }}" alt="">
+                                                    <img class="media-object img-circle" src="{{ asset('/uploads/images/users/' . $user->avatar) }}" alt="">
                                                 @else
                                                     <img class="media-object img-circle" src="{{ asset('/assets/images/default-user-image.png' . $user->avatar) }}" alt="">
                                                 @endif
                                             </div>
                                             <label class="input">
                                                 Avatar
-                                                <input type="file" name="tel">
+                                                <input type="file" name="avatar">
+                                            </label>
+                                        </section>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="input">
+                                                    First name
+                                                    <input type="text" name="first_name" placeholder="First name" value="{{ $user->first_name }}">
+                                                </label>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label class="input">
+                                                    Last name
+                                                    <input type="text" name="last_name" placeholder="Last name" value="{{ $user->last_name }}">
+                                                </label>
+                                            </section>
+                                        </div>
+                                        <section>
+                                            <label class="input">
+                                                Edit password
+                                                <div style="position: relative;">
+                                                    <i class="icon-append fa fa-lock"></i>
+                                                    <input type="password" name="password" placeholder="Password" id="password">
+                                                    <b class="tooltip tooltip-bottom-right">Edit password password</b>
+                                                </div>
                                             </label>
                                         </section>
                                         <section>
                                             <label class="input">
-                                                <i class="icon-append fa fa-lock"></i>
-                                                <input type="password" name="password" placeholder="Password" id="password">
-                                                <b class="tooltip tooltip-bottom-right">Edit password password</b>
-                                            </label>
-                                        </section>
-                                        <section>
-                                            <label class="input">
-                                                <i class="icon-append fa fa-lock"></i>
-                                                <input type="password" name="password_confirmation" placeholder="Confirm password">
-                                                <b class="tooltip tooltip-bottom-right">Please confirm your password</b>
+                                                Confirm password
+                                                <div style="position: relative;">
+                                                    <i class="icon-append fa fa-lock"></i>
+                                                    <input type="password" name="password_confirmation" placeholder="Confirm password">
+                                                    <b class="tooltip tooltip-bottom-right">Please confirm your password</b>
+                                                </div>
                                             </label>
                                         </section>
                                     </fieldset>
@@ -91,63 +103,61 @@
                                     <fieldset>
                                         <div class="row">
                                             <section class="col col-6">
-                                                <label class="input">
-                                                    <input type="text" name="first_name" placeholder="First name" value="{{ $user->first_name }}">
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label class="input">
-                                                    <input type="text" name="last_name" placeholder="Last name" value="{{ $user->last_name }}">
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
                                                 <label class="select">
-                                                    <select name="gender">
-                                                        <option value="0"
+                                                    Select your gender
+                                                    <div style="position: relative;">
+                                                        <select name="gender">
+                                                            <option value="0"
                                                                 @if($user->gender == 0)
                                                                 selected
                                                                 @endif
-                                                        >Gender</option>
-                                                        <option value="1"
+                                                                >Gender</option>
+                                                            <option value="1"
                                                                 @if($user->gender == 1)
                                                                 selected
                                                                 @endif
-                                                        >Male</option>
-                                                        <option value="2"
+                                                                >Male</option>
+                                                            <option value="2"
                                                                 @if($user->gender == 2)
                                                                 selected
                                                                 @endif
-                                                        >Female</option>
-                                                    </select>
-                                                    <i></i>
+                                                                >Female</option>
+                                                        </select>
+                                                        <i></i>
+                                                    </div>
                                                 </label>
                                             </section>
                                             <section class="col col-6">
                                                 <label class="input">
+                                                    Age
                                                     <input type="number" name="age" placeholder="Age" value="{{ $user->age }}">
                                                 </label>
                                             </section>
                                             <section class="col col-xs-12">
                                                 <label class="input">
+                                                    Phone
                                                     <input type="tel" name="tel" value="{{ $user->tel }}">
                                                 </label>
                                             </section>
                                             <section class="col col-xs-12">
                                                 <label class="textarea">
+                                                    Address
                                                     <textarea name="address" id="" cols="30" rows="10">{{ $user->address }}</textarea>
                                                 </label>
                                             </section>
                                         </div>
                                     </fieldset>
                                 </div>
+                                <div class="col-xs-12">
+                                    <footer>
+                                        <button type="submit" class="btn btn-skin btn-lg">Save account</button>
+                                    </footer>
+                                </div>
                             </div>
 
 
 
 
-                            <footer>
-                                <button type="submit" class="btn btn-skin btn-lg">Save account</button>
-                            </footer>
                         </form>
 
 

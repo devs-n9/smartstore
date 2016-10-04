@@ -21,22 +21,21 @@
                     <h3 class="text-left"><i class="fa fa-unlock"></i>Log in to your account</h3>
 
                     {{--Ошибки--}}
-                    @if ($errors->has())
-                        <div>
-                            <br>
-                            <div class="alert alert-danger" role="alert">
-                                <button class="close" aria-label="Close" data-dismiss="alert" type="button">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                                <div>
-                                    @foreach($errors->all() as $error)
-                                        <div>{{ $error }}</div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
+                    {{--@if ($errors->has())--}}
+                        {{--<div>--}}
+                            {{--<br>--}}
+                            {{--<div class="alert alert-danger" role="alert">--}}
+                                {{--<button class="close" aria-label="Close" data-dismiss="alert" type="button">--}}
+                                    {{--<span aria-hidden="true">×</span>--}}
+                                {{--</button>--}}
+                                {{--<div>--}}
+                                    {{--@foreach($errors->all() as $error)--}}
+                                        {{--<div>{{ $error }}</div>--}}
+                                    {{--@endforeach--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--@endif--}}
 
                     <fieldset>
                         <section>
@@ -46,6 +45,11 @@
                                     <label class="input">
                                         <i class="icon-append fa fa-user"></i>
                                         <input type="email" name="email" value="{{ old('email') }}">
+                                        @if ($errors->has('email'))
+                                            <b class="tooltip active tooltip-bottom-right">{{ $errors->first('email') }}</b>
+                                        @else
+                                            <b class="tooltip tooltip-bottom-right">Enter your email address</b>
+                                        @endif
                                     </label>
                                 </div>
                             </div>
@@ -58,6 +62,11 @@
                                     <label class="input">
                                         <i class="icon-append fa fa-lock"></i>
                                         <input type="password" name="password">
+                                        @if ($errors->has('password'))
+                                            <b class="tooltip active tooltip-bottom-right">{{ $errors->first('password') }}</b>
+                                        @else
+                                            <b class="tooltip tooltip-bottom-right">Enter your password</b>
+                                        @endif
                                     </label>
                                     <div class="note"><a href="#sky-form2" class="modal-opener">Forgot password?</a></div>
                                 </div>

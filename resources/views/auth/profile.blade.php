@@ -32,21 +32,21 @@
                             <h3 class="text-left"><i class="fa fa-user"></i>Edit your account</h3>
 
                             {{--Ошибки--}}
-                            @if ($errors->has())
-                                <div>
-                                    <br>
-                                    <div class="alert alert-danger" role="alert">
-                                        <button class="close" aria-label="Close" data-dismiss="alert" type="button">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <div>
-                                            @foreach($errors->all() as $error)
-                                                <div>{{ $error }}</div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
+                            {{--@if ($errors->has())--}}
+                                {{--<div>--}}
+                                    {{--<br>--}}
+                                    {{--<div class="alert alert-danger" role="alert">--}}
+                                        {{--<button class="close" aria-label="Close" data-dismiss="alert" type="button">--}}
+                                            {{--<span aria-hidden="true">×</span>--}}
+                                        {{--</button>--}}
+                                        {{--<div>--}}
+                                            {{--@foreach($errors->all() as $error)--}}
+                                                {{--<div>{{ $error }}</div>--}}
+                                            {{--@endforeach--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--@endif--}}
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -69,12 +69,22 @@
                                                 <label class="input">
                                                     First name
                                                     <input type="text" name="first_name" placeholder="First name" value="{{ $user->first_name }}">
+                                                    @if ($errors->has('first_name'))
+                                                        <b class="tooltip active tooltip-bottom-right">{{ $errors->first('first_name') }}</b>
+                                                    @else
+                                                        <b class="tooltip tooltip-bottom-right">Your First name</b>
+                                                    @endif
                                                 </label>
                                             </section>
                                             <section class="col col-6">
                                                 <label class="input">
                                                     Last name
                                                     <input type="text" name="last_name" placeholder="Last name" value="{{ $user->last_name }}">
+                                                    @if ($errors->has('last_name'))
+                                                        <b class="tooltip active tooltip-bottom-right">{{ $errors->first('last_name') }}</b>
+                                                    @else
+                                                        <b class="tooltip tooltip-bottom-right">Your Last name</b>
+                                                    @endif
                                                 </label>
                                             </section>
                                         </div>
@@ -84,7 +94,11 @@
                                                 <div style="position: relative;">
                                                     <i class="icon-append fa fa-lock"></i>
                                                     <input type="password" name="password" placeholder="Password" id="password">
-                                                    <b class="tooltip tooltip-bottom-right">Edit password password</b>
+                                                    @if ($errors->has('password'))
+                                                        <b class="tooltip active tooltip-bottom-right">{{ $errors->first('password') }}</b>
+                                                    @else
+                                                        <b class="tooltip tooltip-bottom-right">Edit password password</b>
+                                                    @endif
                                                 </div>
                                             </label>
                                         </section>
@@ -94,7 +108,11 @@
                                                 <div style="position: relative;">
                                                     <i class="icon-append fa fa-lock"></i>
                                                     <input type="password" name="password_confirmation" placeholder="Confirm password">
-                                                    <b class="tooltip tooltip-bottom-right">Please confirm your password</b>
+                                                    @if ($errors->has('password'))
+                                                        <b class="tooltip active tooltip-bottom-right">{{ $errors->first('password') }}</b>
+                                                    @else
+                                                        <b class="tooltip tooltip-bottom-right">Please confirm your password</b>
+                                                    @endif
                                                 </div>
                                             </label>
                                         </section>
@@ -138,6 +156,11 @@
                                                 <label class="input">
                                                     Phone
                                                     <input type="tel" name="tel" value="{{ $user->tel }}">
+                                                    @if ($errors->has('tel'))
+                                                        <b class="tooltip active tooltip-bottom-right">{{ $errors->first('tel') }}</b>
+                                                    @else
+                                                        <b class="tooltip tooltip-bottom-right">Please enter your Phone</b>
+                                                    @endif
                                                 </label>
                                             </section>
                                             <section class="col col-xs-12">

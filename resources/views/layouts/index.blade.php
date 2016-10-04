@@ -57,7 +57,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6 hidden-xs">
-                            <span>Welcome message goes here...</span>
+                            @if(Auth::check())
+                            <span>Welcome {{ Auth::user()->login }}</span>
+                            @endif
                         </div>
                         <div class="col-sm-6 text-right">
                             <ul class="list-inline">
@@ -307,7 +309,7 @@
         <script src="{{ asset('assets/libs/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('bower_components/flexslider/jquery.flexslider-min.js') }}"></script>
         <script src="{{ asset('assets/libs/owl-carousel/owl.carousel.min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('assets/js/tweetie.min.js') }}" type="text/javascript"></script>
+        {{--<script src="{{ asset('assets/js/tweetie.min.js') }}" type="text/javascript"></script>--}}
         <script src="{{ asset('assets/js/custom.js') }}" type="text/javascript"></script>
         <script src="{{ asset('bower_components/lightbox2/dist/js/lightbox.min.js') }}" type="text/javascript"></script>
         <!--revolution slider extentions-->

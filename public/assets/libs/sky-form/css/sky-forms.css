@@ -564,7 +564,8 @@
 	position: absolute;
 }
 .sky-form .input input:focus + .tooltip,
-.sky-form .textarea textarea:focus + .tooltip {
+.sky-form .textarea textarea:focus + .tooltip,
+.sky-form .invalid .tooltip{
 	opacity: 1;	
 }
 
@@ -580,7 +581,8 @@
 	border-left: 4px solid transparent;
 }
 .sky-form .input input:focus + .tooltip-top-right,
-.sky-form .textarea textarea:focus + .tooltip-top-right {
+.sky-form .textarea textarea:focus + .tooltip-top-right ,
+.sky-form .invalid .tooltip{
 	right: 0;
 	left: auto;
 	margin-bottom: 5px;
@@ -657,6 +659,13 @@
 	right: 0;
 	left: auto;
 	margin-top: 5px;
+}
+
+.tooltip-bottom-right.active {
+	right: 0;
+	left: auto;
+	margin-top: 5px;
+	opacity: 1;
 }
 
 .sky-form .tooltip-bottom-left {

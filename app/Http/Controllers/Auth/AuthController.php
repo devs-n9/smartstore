@@ -8,13 +8,11 @@ use App\Models\Code;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Mail;
-use App\Http\Controllers\Auth\CodeController;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -35,13 +33,22 @@ class AuthController extends Controller
     }
 
     // Validation reg form
-    protected function validator(array $data)
+    protected function validator(array $data, $form)
     {
-        return Validator::make($data, [
-            'login' => 'required|unique:users',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+        $validator = null;
+        if( $form == 'register' ){
+            $validator = Validator::make($data, [
+              'login' => 'required|unique:users',
+              'email' => 'required|email|max:255|unique:users',
+              'password' => 'required|confirmed|min:6',
+            ]);
+        } elseif ( $form == 'login' ){
+            $validator = Validator::make($data, [
+              'email' => 'required|email|max:255',
+              'password' => 'required|min:6',
+            ]);
+        }
+        return $validator;
     }
 
     // Create user
@@ -57,20 +64,20 @@ class AuthController extends Controller
             'user_id' => $this_user_id['id'],
             'first_name' => '',
             'last_name' => '',
-            'gender' => $data['gender'],
+            'gender' => 0,
             'tel' => '',
             'address' => ''
         ]);
         return $user;
     }
 
-
     // Register user
     public function userRegister(Request $request)
     {
-        $validator = $this->validator($request->all());
+        $validator = $this->validator($request->all(), 'register');
         if ($validator->fails()) {
-            return redirect('/register')->withErrors($validator);
+            return back()->withInput()->withErrors($validator);
+//            return redirect('/register')->withErrors($validator);
         };
 
         $user = $this->create($request->all());
@@ -111,17 +118,14 @@ class AuthController extends Controller
     }
     public function userLogin(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password,'activated' => 1])){
+        $validator = $this->validator($request->all(), 'login');
+        if ($validator->fails()) {
+            return redirect('/login')->withErrors($validator);
+        } else if (Auth::attempt(['email' => $request->email, 'password' => $request->password,'activated' => 1])){
             return redirect()->to('/profile');
         } else {
-            return redirect()->to('/login');
+            return redirect('/login');
         }
-    }
-
-    // Profile
-    public function userProfile()
-    {
-        return view('auth.profile');
     }
 
 }

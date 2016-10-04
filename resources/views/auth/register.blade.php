@@ -22,21 +22,21 @@
                     <h3 class="text-left"><i class="fa fa-user"></i>Create new account with assan</h3>
 
                     {{--Ошибки--}}
-                    @if ($errors->has())
-                        <div>
-                            <br>
-                            <div class="alert alert-danger" role="alert">
-                                <button class="close" aria-label="Close" data-dismiss="alert" type="button">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                                <div>
-                                    @foreach($errors->all() as $error)
-                                        <div>{{ $error }}</div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    @endif
+                    {{--@if ($errors->has())--}}
+                        {{--<div>--}}
+                            {{--<br>--}}
+                            {{--<div class="alert alert-danger" role="alert">--}}
+                                {{--<button class="close" aria-label="Close" data-dismiss="alert" type="button">--}}
+                                    {{--<span aria-hidden="true">×</span>--}}
+                                {{--</button>--}}
+                                {{--<div>--}}
+                                    {{--@foreach($errors->all() as $error)--}}
+                                        {{--<div>{{ $error }}</div>--}}
+                                    {{--@endforeach--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--@endif--}}
 
 
                     <fieldset>
@@ -44,7 +44,11 @@
                             <label class="input">
                                 <i class="icon-append fa fa-user"></i>
                                 <input type="text" name="login" placeholder="Username">
-                                <b class="tooltip tooltip-bottom-right">Enter Username</b>
+                                @if ($errors->has('login'))
+                                    <b class="tooltip active tooltip-bottom-right">{{ $errors->first('login') }}</b>
+                                @else
+                                    <b class="tooltip tooltip-bottom-right">Enter Username</b>
+                                @endif
                             </label>
                         </section>
 
@@ -52,7 +56,11 @@
                             <label class="input">
                                 <i class="icon-append fa fa-envelope-o"></i>
                                 <input type="email" name="email" placeholder="Email address">
-                                <b class="tooltip tooltip-bottom-right">Enter valid email address</b>
+                                @if ($errors->has('email'))
+                                    <b class="tooltip active tooltip-bottom-right">{{ $errors->first('email') }}</b>
+                                @else
+                                    <b class="tooltip tooltip-bottom-right">Enter valid email address</b>
+                                @endif
                             </label>
                         </section>
 
@@ -60,7 +68,11 @@
                             <label class="input">
                                 <i class="icon-append fa fa-lock"></i>
                                 <input type="password" name="password" placeholder="Password" id="password">
-                                <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                @if ($errors->has('password'))
+                                    <b class="tooltip active tooltip-bottom-right">{{ $errors->first('password') }}</b>
+                                @else
+                                    <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                @endif
                             </label>
                         </section>
 
@@ -68,60 +80,20 @@
                             <label class="input">
                                 <i class="icon-append fa fa-lock"></i>
                                 <input type="password" name="password_confirmation" placeholder="Confirm password">
-                                <b class="tooltip tooltip-bottom-right">Please confirm your password</b>
+                                @if ($errors->has('password_confirmation'))
+                                    <b class="tooltip active tooltip-bottom-right">{{ $errors->first('password_confirmation') }}</b>
+                                @else
+                                    <b class="tooltip tooltip-bottom-right">Please confirm your password</b>
+                                @endif
                             </label>
+                        </section>
+
+                        <section>
+                            {{--<label class="checkbox"><input type="checkbox" name="subscription" id="subscription"><i></i>I want to receive news and  special offers</label>--}}
+                            <label class="checkbox"><input type="checkbox" required checked="checked" name="terms" id="terms"><i></i>I agree with the Terms and Conditions</label>
                         </section>
                     </fieldset>
 
-                    <fieldset>
-                        <div class="row">
-                            <section class="col col-6">
-                                <label class="input">
-                                    <input type="text" name="first_name" placeholder="First name">
-                                </label>
-                            </section>
-                            <section class="col col-6">
-                                <label class="input">
-                                    <input type="text" name="last_name" placeholder="Last name">
-                                </label>
-                            </section>
-                            <section class="col col-6">
-                                <label class="select">
-                                    <select name="gender">
-                                        <option value="0" selected>Не указывать</option>
-                                        <option value="1">Male</option>
-                                        <option value="2">Female</option>
-                                    </select>
-                                    <i></i>
-                                </label>
-                            </section>
-                            <section class="col col-6">
-                                <label class="input">
-                                    <input type="number" name="age" placeholder="Age">
-                                </label>
-                            </section>
-                            <section class="col col-xs-12">
-                                <label class="input">
-                                    Avatar
-                                    <input type="file" name="tel">
-                                </label>
-                            </section>
-                            <section class="col col-xs-12">
-                                <label class="input">
-                                    <input type="tel" name="tel" placeholder="Phone">
-                                </label>
-                            </section>
-                            <section class="col col-xs-12">
-                                <label class="textarea">
-                                    <textarea name="address" id="" cols="30" rows="10"></textarea>
-                                </label>
-                            </section>
-                        </div>
-                        <section>
-                            <label class="checkbox"><input type="checkbox" name="subscription" id="subscription"><i></i>I want to receive news and  special offers</label>
-                            <label class="checkbox"><input type="checkbox" name="terms" id="terms"><i></i>I agree with the Terms and Conditions</label>
-                        </section>
-                    </fieldset>
                     <footer>
                         <button type="submit" class="btn btn-skin btn-lg">Create account</button>
                     </footer>

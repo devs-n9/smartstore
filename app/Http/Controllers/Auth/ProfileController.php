@@ -24,11 +24,18 @@ class ProfileController extends Controller
     }
 
     // Validation reg form
-    protected function validator(array $data)
+    protected function validator(array $data, $form)
     {
-        return Validator::make($data, [
-            'password' => 'confirmed|min:6',
-        ]);
+        $validator = null;
+        if( $form == 'profile' ){
+            $validator = Validator::make($data, [
+                'first_name' => 'required|min:3',
+                'last_name' => 'required|min:3',
+                'tel' => 'required',
+                'password' => 'confirmed|min:6',
+            ]);
+        }
+        return $validator;
     }
 
     public function thisUser()
@@ -49,7 +56,7 @@ class ProfileController extends Controller
     public function updateProfile(Request $request)
     {
         if($request){
-            $validator = $this->validator($request->all());
+            $validator = $this->validator($request->all(), 'profile');
             $data = $request->all();
             if ($validator->fails()) {
                 return redirect('/profile')->withErrors($validator);

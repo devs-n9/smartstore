@@ -47,6 +47,11 @@ class AuthController extends Controller
               'email' => 'required|email|max:255',
               'password' => 'required|min:6',
             ]);
+        } elseif ( $form == 'login_dashboard' ){
+            $validator = Validator::make($data, [
+              'login' => 'required',
+              'password' => 'required|min:6',
+            ]);
         }
         return $validator;
     }
@@ -77,7 +82,6 @@ class AuthController extends Controller
         $validator = $this->validator($request->all(), 'register');
         if ($validator->fails()) {
             return back()->withInput()->withErrors($validator);
-//            return redirect('/register')->withErrors($validator);
         };
 
         $user = $this->create($request->all());
@@ -125,6 +129,23 @@ class AuthController extends Controller
             return redirect()->to('/profile');
         } else {
             return redirect('/login');
+        }
+    }
+
+    // Dashboard
+    public function getDashboardLogin()
+    {
+        return view('dashboard.login');
+    }
+    public function userDashboardLogin(Request $request)
+    {
+        $validator = $this->validator($request->all(), 'login_dashboard');
+        if ($validator->fails()) {
+            return view('dashboard.login')->withErrors($validator);
+        } else if (Auth::attempt(['login' => $request->login, 'password' => $request->password,'activated' => 1])){
+            return redirect()->to('/dashboard');
+        } else {
+            return view('dashboard.login')->with('message', 'Неправильный логин или пароль.');
         }
     }
 

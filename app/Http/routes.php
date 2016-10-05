@@ -13,7 +13,6 @@
 App::setLocale('ru');
 Route::get('/', 'DefaultController@index');
 
-Route::get('/dashboard', 'Dashboard\DashboardController@index');
 Route::get('/dashboard/orders', 'Dashboard\OrdersController@orders');
 Route::get('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@edit');
 Route::post('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@update');
@@ -60,18 +59,29 @@ Route::post('/product/{name}', 'Products\ProductsController@product');
 
 Route::auth();
 
-// Front auth
-Route::group([ 'middleware' => 'guest'], function () {
-  Route::get('/register', 'Auth\AuthController@getRegister');
-  Route::post('/register', 'Auth\AuthController@userRegister');
-  Route::get('/activate','Auth\AuthController@activate');
-  Route::get('/login','Auth\AuthController@getLogin');
-  Route::post('/login','Auth\AuthController@userLogin');
+// Auth
+Route::group(['middleware' => 'web'], function() {
+  
+  Route::group([ 'middleware' => 'guest'], function () {
+    Route::get('/register', 'Auth\AuthController@getRegister');
+    Route::post('/register', 'Auth\AuthController@userRegister');
+    Route::get('/activate','Auth\AuthController@activate');
+    Route::get('/login','Auth\AuthController@getLogin');
+    Route::post('/login','Auth\AuthController@userLogin');
+  });
+  Route::group([ 'middleware' => 'auth'], function () {
+    Route::get('/profile', 'Auth\ProfileController@getProfile');
+    Route::post('/profile', 'Auth\ProfileController@updateProfile');
+  });
+  Route::group([ 'middleware' => 'auth.dashboard'], function () {
+    Route::get('/dashboard', 'Dashboard\DashboardController@index');
+  });
+  Route::group([ 'middleware' => 'guest'], function () {
+    Route::get('/dashboard/login', 'Auth\AuthController@getDashboardLogin');
+    Route::post('/dashboard/login', 'Auth\AuthController@userDashboardLogin');
+  });
+
 });
-Route::group([ 'middleware' => 'auth'], function () {
-  Route::get('/profile', 'Auth\ProfileController@getProfile');
-  Route::post('/profile', 'Auth\ProfileController@updateProfile');
-});
-// Front auth end
+// Auth end
 
 

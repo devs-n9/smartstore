@@ -1,6 +1,6 @@
 @extends('layouts.dashboard') @section('content')
 
-    <h1>{{ trans('messages.Products') }}</h1>
+    <h1>{{ trans('messages.Brands') }}</h1>
     <div class="alert alert-success alert-dismissible fade in" style="display: none;" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                     aria-hidden="true">×</span>
@@ -17,7 +17,10 @@
                     <tr role="row">
                         <th>ID</th>
                         <th>{{ trans('messages.Brand') }}</th>
+                        <th>{{ trans('messages.Products_in_brand') }}</th>
+                        <th>{{ trans('messages.Alias') }}</th>
                         <th>{{ trans('messages.Logo') }}</th>
+                        <th></th>
                         <th></th>
                     </tr>
                     </thead>
@@ -25,13 +28,17 @@
                     @foreach($brands as $brand)
                         <tr data-id="{{$brand->id}}" class="product-row">
                             <td>{{ $brand->id }}</td>
-                            <td>{{ $brand->brand }}</td>
-                            <td><img src="{{ $brand->logo }}" alt=""></td>
+                            <td class="brand">{{ $brand->brand }}</td>
+                            <td class="brand">{{ $brand->productsInBrand->count() }}</td>
+                            <td class="brand">{{ $brand->alias }}</td>
+                            <td><img src="/uploads/images/brands/{{ $brand->logo }}" alt=""></td>
                             <td>
-                                <div class="brand-edit" data-id="{{ $brand->id }}"><span
-                                            class="fa fa-pencil fa-2x"></span></div>
-                                <div class="brand-delete" data-id="{{ $brand->id }}"><span
-                                            class="fa fa-close fa-2x"></span></div>
+                                <div class="brand-edit"><a href="/dashboard/brand/edit/{{ $brand->id }}"
+                                            class="fa fa-pencil fa-2x"></a></div>
+                            </td>
+                            <td>
+                                <div class="brand-delete" data-id="{{ $brand->id }}"><a
+                                            class="fa fa-close fa-2x"></a></div>
                             </td>
                         </tr>
                     @endforeach

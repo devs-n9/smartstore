@@ -10,6 +10,8 @@ use App\Models\ProductImages;
 use App\Models\Categories;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Validator;
 
 class ProductsController extends Controller
@@ -54,7 +56,8 @@ class ProductsController extends Controller
             }
 
             $validator = Validator::make($form_data, $rule);
-            $path = 'uploads/images/products'; // path to product images directory
+            $path = config('custom')['products_path']; // path to product images directory
+            $img_sizes = config('custom')['products_img'];
             $form_data = ['product' => $form_data['product'],
                 'alias' => $form_data['alias'],
                 'category_id' => $form_data['category'],
@@ -69,12 +72,17 @@ class ProductsController extends Controller
                 'rating' => $form_data['rating']]; //array keys rename for fill form fields
 
             if (!$validator->fails()) {
-                $photos = [];
                 if (!is_null($request->photos[0])) { // if we have one or more photos upload and write to db this
                     foreach ($request->photos as $photo) {
                         $filename = md5(time() . rand(1, 999)) . '.' . $photo->extension(); // filename generate
-                        $photos[] = $filename;
-                        $photo->move($path, $filename); // move image to fs
+                        $curr_img = Image::make($photo->path());
+                        ProductImages::create(['image' => $filename, 'product_id' => $id]);
+                        foreach ($img_sizes as $sizes) {
+                            if (!is_dir($path . $sizes['width'] . 'x' . $sizes['height'])) {
+                                mkdir($path . $sizes['width'] . 'x' . $sizes['height']);
+                            }
+                            $curr_img->fit($sizes['width'], $sizes['height'])->save($path . $sizes['width'] . 'x' . $sizes['height'] . '/' . $filename, 90);
+                        }
                     }
                 }
 
@@ -89,11 +97,10 @@ class ProductsController extends Controller
                     'old_price' => $product['old_price'],
                     'price_from_date' => $product['price_from_date'],
                     'price_to_date' => $product['price_to_date'],
-                    'preview' => serialize($photos),
                     'count' => $product['count'],
                     'rating' => $product['rating']];
                 foreach ($data_array as $key => $item) {
-                    if(empty($item)){
+                    if (empty($item)) {
                         $data_array[$key] = null;
                     }
                 }
@@ -136,11 +143,10 @@ class ProductsController extends Controller
             ];
             $validator = Validator::make($request->all(), $rule);
 
-            $path = 'uploads/images/product';
+            $path = config('custom')['products_path'];
+            $img_sizes = config('custom')['products_img'];
 
             if (!$validator->fails()) {
-                $photos = [];
-
                 $product = $request->all();
                 $data_array = ['product' => $product['product'],
                     'alias' => $product['alias'],
@@ -165,14 +171,19 @@ class ProductsController extends Controller
                 if (!is_null($request->photos[0])) {
                     foreach ($request->photos as $photo) {
                         $filename = $form_data['product'] . md5(time() . rand(1, 999)) . '.' . $photo->extension();
+                        $curr_img = Image::make($photo->path());
                         $img_result = ProductImages::create(['image' => $filename, 'product_id' => $result->id]);
-                        $photos[] = $filename;
-                        $photo->move($path, $filename);
+                        foreach ($img_sizes as $sizes) {
+                            if (!is_dir($path . $sizes['width'] . 'x' . $sizes['height'])) {
+                                mkdir($path . $sizes['width'] . 'x' . $sizes['height']);
+                            }
+                            $curr_img->fit($sizes['width'], $sizes['height'])->save($path . $sizes['width'] . 'x' . $sizes['height'] . '/' . $filename, 90);
+                        }
                     }
                     Products::where('id', $result->id)->update(['preview' => $img_result->id]);
                 }
 
-                $message = trans('messages.Product') . ' ' . $product['product'] . ' ' . trans('messages.succeffuly_added');
+                $message = trans('messages.Product') . ' ' . $product['product'] . ' ' . trans('messages.succeffully_added');
                 $message_type = 'success';
                 $form_data = '';
             } else {
@@ -187,7 +198,7 @@ class ProductsController extends Controller
     {
         $query = Products::where('id', $request->all()['id'])->delete();
         if ($query) {
-            return response()->json(['message' => trans('messages.Product') . ' ' . $request->all()['product'] . ' ' . trans('messages.succeffuly_deleted') . '!', 'result' => 'success']);
+            return response()->json(['message' => trans('messages.Product') . ' ' . $request->all()['product'] . ' ' . trans('messages.succeffully_deleted') . '!', 'result' => 'success']);
         } else {
             return response()->json(['message' => "Error!", 'result' => 'danger']);
         }
@@ -201,29 +212,57 @@ class ProductsController extends Controller
     public function addBrand(Request $request)
     {
         $form_data = $request->all();
+        $path = config('custom')['brands_path']; // path to product images directory
+        $logo_sizes = config('custom')['brands_img'];
+
         if (empty($form_data)) {
             return view('dashboard.add_brand');
         } else {
             $rule = [
                 'brand' => 'required|unique:brands|max:255',
                 'alias' => 'required|unique:brands|max:255',
-                'logo' => 'image|max:512'
+                'logo' => 'image|max:2048'
             ];
             $validator = Validator::make($request->all(), $rule);
-            $path = 'uploads/images/brands';
             if (!$validator->fails()) {
                 $filename = '';
                 if (!is_null($request->logo)) {
                     $filename = $form_data['alias'] . '.' . $request->logo->extension();
-                    $request->logo->move($path, $filename);
+                    foreach ($logo_sizes as $size) {
+                        if (!is_dir($path . $size['width'] . 'x' . $size['height'])) {
+                            mkdir($path . $size['width'] . 'x' . $size['height']);
+                        }
+                        Image::make($request->logo->path())
+                            ->crop($form_data['width'], $form_data['height'], $form_data['x'], $form_data['y'])
+                            ->resize($size['width'], $size['height'])
+                            ->save($path . $size['width'] . 'x' . $size['height'] . '/' . $filename, 90);
+                    }
                 }
-                $message = trans('messages.Brand') . ' ' . $form_data['brand'] . ' ' . trans('messages.succeffuly_added');
+                $message = trans('messages.Brand') . ' ' . $form_data['brand'] . ' ' . trans('messages.succeffully_added');
                 Brands::create(['brand' => $form_data['brand'], 'alias' => $form_data['alias'], 'logo' => $filename]);
                 return view('dashboard.add_brand', ['form_data' => $form_data, 'message' => $message, 'type' => 'success']);
             } else {
                 $message = $validator->errors()->all();
                 return view('dashboard.add_brand', ['form_data' => $form_data, 'message' => $message, 'type' => 'danger']);
             }
+        }
+    }
+
+    public function deleteBrand(Request $request)// ajax delete
+    {
+        $query = Brands::where('id', $request->all()['id']);
+        $img = $query->first();
+        $query = $query->delete();
+        $path = config('custom')['brands_path']; // path to product images directory
+        $logo_sizes = config('custom')['brands_img'];
+
+        if ($query) {
+            foreach ($logo_sizes as $size) {
+                unlink($path . $size['width'] . 'x' . $size['height'] . '/' . $img->logo);
+            }
+            return response()->json(['message' => trans('messages.Brand') . ' ' . $request->all()['brand'] . ' ' . trans('messages.succeffully_deleted') . '!', 'result' => 'success']);
+        } else {
+            return response()->json(['message' => 'Error!', 'result' => 'danger']);
         }
     }
 }

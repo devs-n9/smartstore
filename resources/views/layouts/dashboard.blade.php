@@ -234,6 +234,8 @@
 	<script src="{{ asset('bower_components/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 	<!-- FastClick -->
 	<script src="{{ asset('bower_components/gentelella/vendors/fastclick/lib/fastclick.js') }}"></script>
+    <!-- sceditor -->
+	<script src="{{ asset('bower_components/ckeditor/ckeditor.js') }}"></script>
 	<!-- NProgress -->
 	<script src="{{ asset('bower_components/gentelella/vendors/nprogress/nprogress.js') }}"></script>
 	<!-- Chart.js -->

@@ -116,6 +116,10 @@ $().ready(function () {
         }
     });
 
+    var editor = CKEDITOR.replace('ckeditor', {
+        filebrowserBrowseUrl : '/elfinder/ckeditor'
+    });
+
     //// datetimepicker
     $.datetimepicker.setLocale('ru');
     $('[name*="date"]').datetimepicker({

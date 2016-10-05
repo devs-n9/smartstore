@@ -73,9 +73,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ trans('messages.Full_description') }}:</label>
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <textarea class="form-control col-md-7 col-xs-12"
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ trans('messages.Full_description') }}:</label>
+            <div class="col-md-7 col-sm-7 col-xs-12">
+                <textarea id="ckeditor" class="form-control col-md-12 col-xs-12"
                           name="content">{{ $form_data['content'] or '' }}</textarea>
             </div>
         </div>

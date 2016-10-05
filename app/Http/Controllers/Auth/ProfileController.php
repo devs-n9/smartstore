@@ -82,10 +82,12 @@ class ProfileController extends Controller
                   'address' => $data['address'],
                   'avatar' => $fileName
                 ]);
-                // Update user
-                $user = User::where('id', Auth::user()->id)->update([
-                  'password' => bcrypt($data['password'])
-                ]);
+                if($data['password'] != ''){
+                    // Update user
+                    $user = User::where('id', Auth::user()->id)->update([
+                      'password' => bcrypt($data['password'])
+                    ]);
+                }
 
                 $this_user = $this->thisUser();
                 return view("auth.profile", ["user"=>$this_user]);

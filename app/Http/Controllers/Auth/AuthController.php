@@ -63,6 +63,7 @@ class AuthController extends Controller
             'login' => $data['login'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'role_id' => 3
         ]);
         $this_user_id = User::where('email', $data['email'])->select('id')->first();
         $user_profile = Profile::create([

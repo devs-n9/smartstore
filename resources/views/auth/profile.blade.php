@@ -56,7 +56,7 @@
                                                 @if($user->avatar)
                                                     <img class="media-object img-circle" src="{{ asset('/uploads/images/users/' . $user->avatar) }}" alt="">
                                                 @else
-                                                    <img class="media-object img-circle" src="{{ asset('/assets/images/default-user-image.png' . $user->avatar) }}" alt="">
+                                                    <img class="media-object img-circle" src="{{ asset('/assets/images/default-user-image.png') }}" alt="">
                                                 @endif
                                             </div>
                                             <label class="input">

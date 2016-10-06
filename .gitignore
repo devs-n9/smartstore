@@ -9,6 +9,7 @@ Homestead.json
 nbproject/
 composer.lock
 /public/uploads/images/*
+/public/packages/*
 /public/uploads/ckeditor/*.png
 /public/uploads/ckeditor/*.jpg
 /public/uploads/ckeditor/*.jpeg

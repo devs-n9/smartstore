@@ -73,8 +73,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-2 col-sm-2 col-xs-12">{{ trans('messages.Full_description') }}:</label>
-            <div class="col-md-7 col-sm-7 col-xs-12">
+            <label class="control-label col-md-offset-4 col-md-2 col-sm-2 col-xs-12">{{ trans('messages.Full_description') }}:</label>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12 col-sm-12 col-xs-12">
                 <textarea id="ckeditor" class="form-control col-md-12 col-xs-12"
                           name="content">{{ $form_data['content'] or '' }}</textarea>
             </div>

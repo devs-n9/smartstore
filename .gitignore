@@ -8,6 +8,10 @@ Homestead.json
 .idea/
 nbproject/
 composer.lock
-/public/uploads/*
+/public/uploads/images/*
+/public/uploads/ckeditor/*.png
+/public/uploads/ckeditor/*.jpg
+/public/uploads/ckeditor/*.jpeg
+/public/uploads/ckeditor/*.gif
 composer.phar
 .gitignore

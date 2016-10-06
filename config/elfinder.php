@@ -10,7 +10,7 @@ return array(
     | The dir where to store the images (relative from public)
     |
     */
-    'dir' => ['uploads/images/products/ckeditor'],
+    'dir' => ['uploads/ckeditor'],
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +86,6 @@ return array(
                 'driver' => 'LocalFileSystem',
                 'path'   => public_path().'/uploads',
                 'URL'    => '/uploads'
-                //'URL'    => 'http://' . $_SERVER['HTTP_HOST'] . '/uploads'
             ),
         )
     ),

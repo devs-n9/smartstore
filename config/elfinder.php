@@ -85,7 +85,8 @@ return array(
             array(
                 'driver' => 'LocalFileSystem',
                 'path'   => public_path().'/uploads',
-                'URL'    => 'http://' . $_SERVER['HTTP_HOST'] . '/uploads'
+                'URL'    => '/uploads'
+                //'URL'    => 'http://' . $_SERVER['HTTP_HOST'] . '/uploads'
             ),
         )
     ),

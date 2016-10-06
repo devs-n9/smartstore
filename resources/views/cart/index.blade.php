@@ -4,6 +4,7 @@
 <div class="space-60"></div>
 <div class="container">
     <div class="table-responsive">
+       <form method="post" role="form" id="cartTable">
         <table class="table table-condensed cart-table">
             <thead>
                 <tr>
@@ -34,10 +35,12 @@
             @endif
             </tbody>
         </table><!--cart table-->
+        </form>
     </div>
     <hr>
     <!--cart row-->
     <div class="space-30"></div>
+    @if (!Auth::check())
     <div class="cart-total">
         <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
@@ -63,7 +66,7 @@
                             <td class="total"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"> <a href="/checkout" class="btn btn-lg btn-skin">Place order</a></td>
+                            <td colspan="2"> <a href="/cart/order" class="btn btn-lg btn-skin">Place order</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -71,10 +74,11 @@
         </div>
     </div>
 </div>
+@endif
 <div class="space-60"></div>
 
+@if (Auth::check())
 <div class="container sky-checkout-form">
-
     <form action="" id="checkout-form" class="sky-form">
         <fieldset>
             <div class="margin-b-20">
@@ -491,4 +495,5 @@
     </form>
 
 </div>
+@endif
 @endsection

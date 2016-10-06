@@ -79,4 +79,13 @@ class CartController extends Controller
         Session::put('cntProd', $cntProd);
         return response()->json(['cntprod' => $cntProd]);
     }
+
+    /**
+     * Запись данных из корзины в таблицу orders
+     *
+     */
+    public function order()
+    {
+        dd(Session::get('cart'));
+    }
 }

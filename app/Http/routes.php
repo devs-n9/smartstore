@@ -22,8 +22,8 @@ Route::post('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@update');
 
 Route::get('/cart', 'Cart\CartController@cart');
 Route::post('/cart/addToCart', 'Cart\CartController@addToCart');
-Route::get('/checkout', 'Cart\CartController@checkout');
 Route::post('/cart/delToCart', 'Cart\CartController@delToCart');
+Route::get('/cart/order', 'Cart\CartController@order');
 
 // Cart routes end
 

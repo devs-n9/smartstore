@@ -6,7 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="_token" content="{{ csrf_token() }}">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Assan E-commerce</title>
+        <meta name="description" content="{{$settings->description->find(1)}}">
+        <meta name="keywords" content="{{$settings->keywords->find(1)}}">
+        <meta name="author" content="{{$settings->author->find(1)}}">
+
+        <title>{{$settings->title->find(1)}}</title>
 
         <!-- Bootstrap -->
         <link href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -261,7 +265,7 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading" >+01 1800 345-4509</h4>
+                                <h4 class="media-heading" >{{$contacts->phone->find(1)}}</h4>
                             </div>
                         </div>
                         <div class="media">
@@ -269,7 +273,7 @@
                                 <i class="fa fa-envelope"></i>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading">care@assan.com</h4>
+                                <h4 class="media-heading">{{$contacts->email->find(1)}}</h4>
                             </div>
                         </div>
                         <div class="media">
@@ -277,7 +281,7 @@
                                 <i class="fa fa-home"></i>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading">124, Lorem street, California, Usa</h4>
+                                <h4 class="media-heading">{{$contacts->address->find(1)}}</h4>
                             </div>
                         </div>
                     </div>

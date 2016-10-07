@@ -68,7 +68,7 @@
                                             <b class="tooltip tooltip-bottom-right">Enter your password</b>
                                         @endif
                                     </label>
-                                    <div class="note"><a href="#sky-form2" class="modal-opener">Forgot password?</a></div>
+                                    <div class="note"><a href="{{ url('password/email') }}" class="modal-opener">Forgot password?</a></div>
                                 </div>
                             </div>
                         </section>
@@ -83,7 +83,6 @@
                         </section>
                     </fieldset>
                     <footer class="text-right">
-                        <a href="/register" class="btn btn-link">Register</a>
                         <button type="submit" class="btn btn-lg btn-skin">Log in</button>
 
                     </footer>

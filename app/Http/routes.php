@@ -66,13 +66,22 @@ Route::group(['middleware' => 'web'], function() {
   // Auth
   Route::auth();
   Route::group([ 'middleware' => 'guest'], function () {
+    // Registration
     Route::get('/register', 'Auth\AuthController@getRegister');
     Route::post('/register', 'Auth\AuthController@userRegister');
+    // Activate user
     Route::get('/activate','Auth\AuthController@activate');
+    // Login
     Route::get('/login','Auth\AuthController@getLogin');
     Route::post('/login','Auth\AuthController@userLogin');
+    // Reset password
+    Route::get('password/email', 'Auth\PasswordController@getEmail');
+    Route::post('password/email', 'Auth\PasswordController@postEmail');
+    Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+    Route::post('password/reset', 'Auth\PasswordController@postReset');
   });
   Route::group([ 'middleware' => 'auth'], function () {
+    // Profile
     Route::get('/profile', 'Auth\ProfileController@getProfile');
     Route::post('/profile', 'Auth\ProfileController@updateProfile');
   });

@@ -51,7 +51,7 @@ class ProfileController extends Controller
     public function getProfile()
     {
         $this_user = $this->thisUser();
-        return view("auth.profile", ["user"=>$this_user]);
+        return view("profile.index", ["user"=>$this_user]);
     }
     public function updateProfile(Request $request)
     {
@@ -90,7 +90,7 @@ class ProfileController extends Controller
                 }
 
                 $this_user = $this->thisUser();
-                return view("auth.profile", ["user"=>$this_user]);
+                return view("profile.index", ["user"=>$this_user]);
             }
         }
     }

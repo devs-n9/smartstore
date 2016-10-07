@@ -29,7 +29,7 @@ class AuthController extends Controller
     // Default view
     public function getRegister()
     {
-        return view('auth.register');
+        return view('auth.register.index');
     }
 
     // Validation reg form
@@ -101,7 +101,7 @@ class AuthController extends Controller
             $message->from('mr.korg@ya.ru', 'Smartstore');
             $message->to($request->email)->subject('Registration');
         });
-        return view('auth.register_message', ['message'=>'Registration is successful, email sent with a link to activate your account']);
+        return view('auth.register.message', ['message'=>'Registration is successful, email sent with a link to activate your account']);
     }
 
     // Activate user
@@ -119,7 +119,7 @@ class AuthController extends Controller
     // Authorization
     public function getLogin()
     {
-        return view('auth.login');
+        return view('auth.login.index');
     }
     public function userLogin(Request $request)
     {

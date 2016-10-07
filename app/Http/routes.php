@@ -16,7 +16,7 @@ Route::get('/', 'DefaultController@index');
 Route::group(['middleware' => 'web'], function() {
 
   // Dashboard
-  Route::group([ 'middleware' => 'auth.dashboard'], function () {
+  Route::group(['middleware' => 'auth.dashboard'], function () {
     Route::group(['middleware' => ['client']], function () {
       Route::get('/dashboard', 'Dashboard\DashboardController@index');
       Route::get('/dashboard/orders', 'Dashboard\OrdersController@orders');
@@ -24,7 +24,7 @@ Route::group(['middleware' => 'web'], function() {
       Route::post('/dashboard/orders/edit/{id}', 'Dashboard\OrdersController@update');
     });
   });
-  Route::group([ 'middleware' => 'guest'], function () {
+  Route::group(['middleware' => 'guest'], function () {
     Route::get('/dashboard/login', 'Auth\AuthController@getDashboardLogin');
     Route::post('/dashboard/login', 'Auth\AuthController@userDashboardLogin');
   });
@@ -65,7 +65,7 @@ Route::group(['middleware' => 'web'], function() {
 
   // Auth
   Route::auth();
-  Route::group([ 'middleware' => 'guest'], function () {
+  Route::group(['middleware' => 'guest'], function () {
     // Registration
     Route::get('/register', 'Auth\AuthController@getRegister');
     Route::post('/register', 'Auth\AuthController@userRegister');
@@ -80,7 +80,7 @@ Route::group(['middleware' => 'web'], function() {
     Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
     Route::post('password/reset', 'Auth\PasswordController@postReset');
   });
-  Route::group([ 'middleware' => 'auth'], function () {
+  Route::group(['middleware' => 'auth'], function () {
     // Profile
     Route::get('/profile', 'Auth\ProfileController@getProfile');
     Route::post('/profile', 'Auth\ProfileController@updateProfile');

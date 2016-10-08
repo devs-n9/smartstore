@@ -1,6 +1,6 @@
 @extends('layouts.dashboard') @section('content')
 
-    <h1>Categories</h1>
+    <h1>News</h1>
     <div id="datatable-fixed-header_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
         <div class="row">
             <div class="col-sm-12">
@@ -9,27 +9,29 @@
                     <thead>
                     <tr role="row">
                         <th>ID</th>
-                        <th>Category</th>
+                        <th>News</th>
                         <th>Alias</th>
                         <th>Description</th>
                         <th>Content</th>
                         <th>Preview</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
                         <th></th>
                     </thead>
                     <tbody>
-                    @foreach($categories as $category)
+                    @foreach($news as $news_one)
                         <tr>
-                            <td>{{ $category->id }}</td>
-                            <td>{{ $category->category }}</td>
-                            <td>{{ $category->alias }}</td>
-                            <td>{{ $category->description }}</td>
-                            <td>{{ $category->content }}</td>
-                            <td>{{ $category->preview }}</td>
+                            <td>{{ $news_one->id }}</td>
+                            <td>{{ $news_one->title }}</td>
+                            <td>{{ $news_one->alias }}</td>
+                            <td>{{ $news_one->description }}</td>
+                            <td>{{ $news_one->content }}</td>
+                            <td>{{ $news_one->preview }}</td>
+                            <td></td>
+                            <td></td>
                             <td>
-                                 <a href="/dashboard/category/edit/{{ $category->id }}"><span
+                                <a href="/dashboard/news/edit/{{ $news_one->id }}"><span
                                             class="fa fa-pencil fa-2x"></span>
-                                  <a href="/dashboard/category/delete/{{ $category->id }}"><span
-                                            class="fa fa-close fa-2x"></span>
                             </td>
                         </tr>
                     @endforeach

@@ -40,7 +40,7 @@
     <hr>
     <!--cart row-->
     <div class="space-30"></div>
-    @if (!Auth::check())
+    @if (Auth::check())
     <div class="cart-total">
         <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
@@ -77,7 +77,7 @@
 @endif
 <div class="space-60"></div>
 
-@if (Auth::check())
+@if (!Auth::check())
 <div class="container sky-checkout-form">
     <form action="" id="checkout-form" class="sky-form">
         <fieldset>

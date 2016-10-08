@@ -20,6 +20,7 @@ return [
 
     'brands_path' => 'uploads/images/brands/', //путь к логотипам брендов
     'products_path' => 'uploads/images/products/', //путь к фото товаров
+    'users_path' => 'uploads/images/users/', //путь к фото пользователей
 
     /*
      * Разрешение картинок для брендов
@@ -34,6 +35,14 @@ return [
     'products_img' => [
         ['width' => 210, 'height' => 210], // храним картинки в 2х разрешениях
         ['width' => 325, 'height' => 400]
+    ],
+
+    /*
+     * Разрешения для аватарок юзеров
+     */
+
+    'users_img' => [
+        ['width' => 210, 'height' => 210]
     ],
 
 ];

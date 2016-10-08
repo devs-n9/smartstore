@@ -44,8 +44,10 @@ Route::group(['middleware' => 'web'], function() {
   Route::post('/dashboard/product/edit/{id}', 'Dashboard\ProductsController@editProduct');
   Route::post('/dashboard/product/delete', 'Dashboard\ProductsController@deleteProduct'); // ajax
   Route::post('/dashboard/brand/delete', 'Dashboard\ProductsController@deleteBrand'); // ajax
-  // Dashboard products end here
-
+	
+  //notify
+  Route::get('/dashboard/notify', 'Dashboard\DashboardController@notify');
+	
   // Dashboard brands begin here
   Route::get('/dashboard/brands/all', 'Dashboard\ProductsController@showAllBrands');
   Route::get('/dashboard/brands/add', 'Dashboard\ProductsController@addBrand');

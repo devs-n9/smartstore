@@ -18,4 +18,11 @@ class DashboardController extends Controller
     {
         return view('dashboard.index');
     }
+	
+	public function notify()
+    {
+        return view('dashboard.notify');
+    }
+	
+	
 }

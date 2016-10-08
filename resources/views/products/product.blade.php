@@ -35,7 +35,7 @@
                             @endfor
                             <a href="#">
                                 {{ $product_rating_count }}
-                                @if($product_rating_count > 1)
+                                @if($product_rating_count >= 1)
                                 Review
                                 @else
                                 Reviews

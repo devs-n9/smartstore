@@ -75,11 +75,12 @@ class ProductsController extends Controller
         $product_reviews = DB::table('reviews')
           ->join('users', function ($join) use ($productId) {
               $join->on('users.id', '=', 'reviews.user_id')
-                ->where('reviews.product_id', '=', $productId);
+                ->where('reviews.product_id', '=', $productId)
+                ->where('reviews.publish', '=', 1);
           })
           ->join('profile', 'profile.user_id', '=', 'reviews.user_id')
           ->get();
-        $product_rating = Reviews::where('product_id', $product->id)->select('rating')->get();
+        $product_rating = Reviews::where('product_id', $product->id)->where('publish', '=', 1)->select('rating')->get();
         $product_rating_total = 0;
         $product_rating_count = 0;
         for($i=0;$i<count($product_rating);$i++){

@@ -117,6 +117,7 @@
                                 @endforeach
                             </div>
                             <div role="tabpanel" class="tab-pane" id="add-cmnt">
+                                @if( Auth::check() )
                                 <form role="form" method="post" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <div class="row">
@@ -173,6 +174,14 @@
                                     </div>
                                     <input type="submit" class="btn-skin btn btn-lg" value="Add Review" name="add_review">
                                 </form>
+                                @else
+                                    <p>Sorry, but only registered user can leave feedback</p>
+                                    <p>
+                                        <a href="{{ url('login') }}" class="btn-skin btn btn-lg">Login</a>
+                                        or
+                                        <a href="{{ url('register') }}" class="btn-skin btn btn-lg">Register</a>
+                                    </p>
+                                @endif
                             </div>
                         </div>
 

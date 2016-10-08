@@ -16,7 +16,7 @@
                         <th>Preview</th>
                         <th>Created At</th>
                         <th>Updated At</th>
-                        <th></th>
+                        <th>Edit</th>
                     </thead>
                     <tbody>
                     @foreach($news as $news_one)

@@ -14,7 +14,8 @@
                         <th>Description</th>
                         <th>Content</th>
                         <th>Preview</th>
-                        <th></th>
+                        <th>Edit</th>
+                        <th style="text-align: center">x</th>
                     </thead>
                     <tbody>
                     @foreach($categories as $category)
@@ -28,7 +29,9 @@
                             <td>
                                  <a href="/dashboard/category/edit/{{ $category->id }}"><span
                                             class="fa fa-pencil fa-2x"></span>
-                                  <a href="/dashboard/category/delete/{{ $category->id }}"><span
+                            </td>
+                            <td>
+                                <a href="/dashboard/category/delete/{{ $category->id }}"><span
                                             class="fa fa-close fa-2x"></span>
                             </td>
                         </tr>

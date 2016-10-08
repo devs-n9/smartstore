@@ -7,7 +7,7 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Title:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="text" required name="category" value="{{$title}}" class="form-control col-md-7 col-xs-12">
+                <input type="text" required name="title" value="{{$title}}" class="form-control col-md-7 col-xs-12">
             </div>
         </div>
         <div class="form-group">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="col-md-1 col-sm-1 col-xs-12">
-            <input type="submit" value="Edit category" class="form-control btn btn-success">
+            <input type="submit" value="Edit" class="form-control btn btn-success">
         </div>
     </form>
 @endsection

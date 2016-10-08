@@ -71,5 +71,5 @@ Route::get('/dashboard/news/all', 'Dashboard\NewsController@showAllNews');
 Route::get('/dashboard/news/add', 'Dashboard\NewsController@addNews');
 Route::post('/dashboard/news/add', 'Dashboard\NewsController@addNews');
 Route::get('/dashboard/news/edit/{id}', 'Dashboard\NewsController@editNews');
-Route::post('/dashboard/news/edit/{id}', 'Dashboard\CategoriesController@updateNews');
+Route::post('/dashboard/news/edit/{id}', 'Dashboard\NewsController@updateNews');
 // dashboard news end here

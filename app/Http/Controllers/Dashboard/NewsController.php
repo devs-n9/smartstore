@@ -31,7 +31,7 @@ class NewsController extends Controller
         $data = $request->all();
 
         News::insert([
-            'title' => $data['category'],
+            'title' => $data['title'],
             'alias' => $data['alias'],
             'description' => $data['description'],
             'content' => $data['content'],

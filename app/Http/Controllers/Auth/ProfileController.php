@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 use Auth;
+use Intervention\Image\Facades\Image;
 
 
 class ProfileController extends Controller
@@ -69,8 +70,16 @@ class ProfileController extends Controller
                 if($request->hasFile("avatar")){
                     $file = $request->file("avatar");
                     $fileName = md5(time() . rand(1, 999)) . '.' . $file->extension();
-                    $uploadPath = base_path() . '\public\uploads\images\users';
-                    $file->move($uploadPath, $fileName);
+
+                    $path = config('custom')['users_path'];
+                    $img_sizes = config('custom')['users_img'];
+                    $curr_img = Image::make($file->path());
+                    foreach ($img_sizes as $sizes) {
+                        if (!is_dir($path . $sizes['width'] . 'x' . $sizes['height'])) {
+                            mkdir($path . $sizes['width'] . 'x' . $sizes['height']);
+                        }
+                        $curr_img->fit($sizes['width'], $sizes['height'])->save($path . $sizes['width'] . 'x' . $sizes['height'] . '/' . $fileName, 90);
+                    }
                 }
                 // Update profile
                 $user_profile = Profile::where('user_id', Auth::user()->id)->update([

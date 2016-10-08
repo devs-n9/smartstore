@@ -64,3 +64,12 @@ Route::get('/category/{name}', 'Products\ProductsController@category');
 Route::get('/product/{name}', 'Products\ProductsController@product');
 Route::post('/product/{name}', 'Products\ProductsController@product');
 // Front Products end
+
+
+// dashboard news begin here
+Route::get('/dashboard/news/all', 'Dashboard\NewsController@showAllNews');
+Route::get('/dashboard/news/add', 'Dashboard\NewsController@addNews');
+Route::post('/dashboard/news/add', 'Dashboard\NewsController@addNews');
+Route::get('/dashboard/news/edit/{id}', 'Dashboard\NewsController@editNews');
+Route::post('/dashboard/news/edit/{id}', 'Dashboard\CategoriesController@updateNews');
+// dashboard news end here

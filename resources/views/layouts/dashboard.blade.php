@@ -94,6 +94,12 @@
 										<li><a href="/dashboard/category/add">Add</a></li>
 									</ul>
 								</li>
+								<li><a><i class="fa fa-apple"></i> News <span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="/dashboard/news/all">Show</a></li>
+										<li><a href="/dashboard/news/add">Add</a></li>
+									</ul>
+								</li>
 							</ul>
 						</div>
 					</div>

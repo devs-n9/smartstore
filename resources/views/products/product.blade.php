@@ -121,7 +121,6 @@
                                 <form role="form" method="post" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <div class="row">
-                                        <input type="hidden" value="{{ $product->id }}" name="product_id">
                                         <div class="col-xs-12">
                                             <p style="font-size: 20px;"><strong>{{ Auth::user()->login }}</strong>, leave your review</p>
                                         </div>

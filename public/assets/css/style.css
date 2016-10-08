@@ -1553,3 +1553,8 @@ del {
 .rating-stars ul li.star.selected i.fa {
   color: #ef6464;
 }
+.profile__avatar img{
+  display: block;
+  width: 150px;
+  border-radius: 50%;
+}

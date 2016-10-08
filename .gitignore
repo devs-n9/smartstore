@@ -9,3 +9,5 @@ Homestead.json
 nbproject/
 composer.lock
 /public/uploads/*
+composer.phar
+.gitignore

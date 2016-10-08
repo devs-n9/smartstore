@@ -7,7 +7,7 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Title:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="text" required name="title" value="{{$title}}" class="form-control col-md-7 col-xs-12">
+                <input type="text" required name="title" data-translit="true" value="{{$title}}" class="form-control col-md-7 col-xs-12">
             </div>
         </div>
         <div class="form-group">
@@ -19,15 +19,15 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Description:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="text" required name="description" value="{{$desc}}"
-                       class="form-control col-md-7 col-xs-12">
+                <textarea class="form-control col-md-7 col-xs-12"
+                          name="description" value="">{{$desc}}</textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Content:</label>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="text" required name="content" value="{{$content}}"
-                       class="form-control col-md-7 col-xs-12">
+                <textarea class="form-control col-md-7 col-xs-12"
+                          name="content" value="">{{$content}}</textarea>
             </div>
         </div>
         <div class="form-group">
@@ -35,6 +35,12 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <textarea class="form-control col-md-7 col-xs-12"
                           name="preview" value="">{{$preview}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <input type="hidden" class="form-control col-md-7 col-xs-12"
+                          name="preview" value="{{$updated_at}}">
             </div>
         </div>
 

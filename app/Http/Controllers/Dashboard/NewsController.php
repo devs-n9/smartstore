@@ -35,7 +35,8 @@ class NewsController extends Controller
             'alias' => $data['alias'],
             'description' => $data['description'],
             'content' => $data['content'],
-            'preview' => $data['preview']
+            'preview' => $data['preview'],
+            'created_at' => $data['created_at']
 
         ]);
         return redirect('/dashboard/news/all');
@@ -59,8 +60,8 @@ class NewsController extends Controller
             'alias' => $news_one['alias'],
             'desc' => $news_one['description'],
             'content' => $news_one['content'],
-            'preview' => $news_one['preview']
-
+            'preview' => $news_one['preview'],
+            'updated_at' => $news_one['updated_at']
         ]);
     }
 

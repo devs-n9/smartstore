@@ -27,8 +27,8 @@
                             <td>{{ $news_one->description }}</td>
                             <td>{{ $news_one->content }}</td>
                             <td>{{ $news_one->preview }}</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $news_one->created_at }}</td>
+                            <td>{{ $news_one->updated_at }}</td>
                             <td>
                                 <a href="/dashboard/news/edit/{{ $news_one->id }}"><span
                                             class="fa fa-pencil fa-2x"></span>

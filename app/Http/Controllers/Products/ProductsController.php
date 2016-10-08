@@ -9,7 +9,9 @@ use App\Models\Reviews;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Validator;
+use DB;
 
 class ProductsController extends Controller
 {
@@ -32,22 +34,23 @@ class ProductsController extends Controller
     // Product detail
     public function product($alias, Request $request)
     {
+        // Get product
+        $product = Products::all()->where('alias', $alias)->first();
+        $productId = $product->id;
 
         // Set review
         if($request){
             $validator = Validator::make($request->all(), [
-                "name" => "required",
-                "review" => "required"
+              "review" => "required"
             ]);
             $data = $request->all();
-
             if ( !$validator->fails() ) {
                 // Create review & save
                 $review = new Reviews();
-                $review->name = $data["name"];
                 $review->review = $data["review"];
-                $review->product_id = $data["product_id"];
+                $review->product_id = $product->id;
                 $review->rating = $data["rating"];
+                $review->user_id = Auth::user()->id;
                 // Work with image
                 if($request->hasFile("avatar")){
                     $file = $request->file("avatar");
@@ -58,19 +61,24 @@ class ProductsController extends Controller
                 }
                 $review->save();
             } else {
-
+//                return back()->withErrors($validator);
             }
         }
 
         // Get product
-        $product = Products::all()->where('alias', $alias)->first();
         $images = ProductImages::all()->where('product_id', $product->id);
         $products = Products::all();
         $categories = Categories::all();
         $product_category = $categories->where('id', $product['category_id'])->first();
 
         // Get product reviews
-        $product_reviews = Reviews::all()->where('product_id', $product->id);
+        $product_reviews = DB::table('reviews')
+          ->join('users', function ($join) use ($productId) {
+              $join->on('users.id', '=', 'reviews.user_id')
+                ->where('reviews.product_id', '=', $productId);
+          })
+          ->join('profile', 'profile.user_id', '=', 'reviews.user_id')
+          ->get();
         $product_rating = Reviews::where('product_id', $product->id)->select('rating')->get();
         $product_rating_total = 0;
         $product_rating_count = 0;

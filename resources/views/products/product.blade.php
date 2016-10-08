@@ -92,14 +92,14 @@
                                     <div class="media-left">
                                         <a href="#">
                                             @if($review->avatar)
-                                            <img class="media-object img-circle" src="{{ asset('/uploads/images/reviews/' . $review->avatar) }}" width="80" alt="{{ $review->name }}">
+                                            <img class="media-object img-circle" src="{{ asset('/uploads/images/reviews/' . $review->avatar) }}" width="80" alt="{{ $review->login }}">
                                             @else
-                                            <img class="media-object img-circle" src="{{ asset('/assets/images/default-user-image.png' . $review->avatar) }}" width="80" alt="{{ $review->name }}">
+                                            <img class="media-object img-circle" src="{{ asset('/assets/images/default-user-image.png' . $review->avatar) }}" width="80" alt="{{ $review->login }}">
                                             @endif
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <h5>{{ $review->name }}</h5>
+                                        <h5>{{ $review->login }}</h5>
                                         <p>{{ $review->review }}</p>
                                         @if($review->rating)
                                         <span class="rating">
@@ -122,21 +122,8 @@
                                     {{ csrf_field() }}
                                     <div class="row">
                                         <input type="hidden" value="{{ $product->id }}" name="product_id">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="inputFirstName" class="control-label">First Name:<span class="text-error">*</span></label>
-                                                <div>
-                                                    <input type="text" class="form-control" id="inputFirstName" name="name" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="inputCompany" class="control-label">Avatar:</label>
-                                                <div>
-                                                    <input type="file" class="form-control" id="inputAvatar" name="avatar">
-                                                </div>
-                                            </div>
+                                        <div class="col-xs-12">
+                                            <p style="font-size: 20px;"><strong>{{ Auth::user()->login }}</strong>, leave your review</p>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -178,7 +165,7 @@
                                     <p>Sorry, but only registered user can leave feedback</p>
                                     <p>
                                         <a href="{{ url('login') }}" class="btn-skin btn btn-lg">Login</a>
-                                        or
+                                        &#160;&#160;or&#160;&#160;
                                         <a href="{{ url('register') }}" class="btn-skin btn btn-lg">Register</a>
                                     </p>
                                 @endif

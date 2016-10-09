@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 
 class SettingsController extends Controller
 {
-    //show view with contacts information
+    //show view with contact's information
     public function index_contacts()
     { 
         $contacts = Contacts::all();
@@ -20,7 +20,7 @@ class SettingsController extends Controller
         ]);
     }
     
-   //show view with meta tags information 
+   //show view with meta tag's information 
    public function index_settings()
     {
         $settings = Settings::find(1);

@@ -23,7 +23,7 @@
                     <div class="col-md-4 margin-b-30">
                         <div class="product-list-thumb">
                             <a href="/product/{{ $product->alias }}">
-                                <img src="{{ asset('uploads/images/products/' . $product->preview ) }}" alt="{{ $product->product }}" class="img-responsive">
+                                <img src="{{ asset('uploads/images/products/210x210/' . $product->preview ) }}" alt="{{ $product->product }}" class="img-responsive">
                             </a>
                         </div>
                     </div>
@@ -67,24 +67,8 @@
             @endforeach
 
             <!--pagination-->
-            <nav>
-                <ul class="pagination pull-right clearfix">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
+            <nav class="pull-right clearfix">
+                {{ $category_products->links() }}
             </nav>
             <!--pagination end-->
         </div>

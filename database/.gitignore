@@ -1,2 +1,14 @@
 *.sqlite
+/vendor
+/node_modules
+/public/storage
+/public/bower_components
+Homestead.yaml
+Homestead.json
+.env
+.idea/
+nbproject/
 composer.lock
+/public/uploads/*
+composer.phar
+.gitignore

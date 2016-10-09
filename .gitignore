@@ -8,5 +8,11 @@ Homestead.json
 .idea/
 nbproject/
 composer.lock
+<<<<<<< HEAD
 /public/uploads/images/product/*
 /public/uploads/*
+=======
+/public/uploads/*
+composer.phar
+.gitignore
+>>>>>>> 1eb1d96dd71667d997c635fcfc4424bac503a72c

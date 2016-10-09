@@ -61,21 +61,19 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6 hidden-xs">
-                            <span>Welcome message goes here...</span>
+                            @if(Auth::check())
+                            <span>Welcome {{ Auth::user()->login }}</span>
+                            @endif
                         </div>
                         <div class="col-sm-6 text-right">
                             <ul class="list-inline">
-                                <li class="hidden-xs"><a href="#" class="offers">offers</a></li>                              
-                                <li class="hidden-xs"><a href="#"><i class="pe-7s-user"></i> Register</a></li>
-                                <li><a href="#"><i class="pe-7s-lock"></i> Login</a></li>
-                                <li class="lang-dropdown">
-                                    <a href="#"><img src="{{ asset('assets/images/flag1.png') }}" alt=""> English <i class="fa fa-angle-down"></i></a>
-                                    <div class="lang-drop-menu">
-                                        <a href="#"><img src="{{ asset('assets/images/flag1.png') }}" alt=""> English</a>
-                                        <a href="#"><img src="{{ asset('assets/images/flag2.png') }}" alt=""> French</a>
-                                        <a href="#"><img src="{{ asset('assets/images/flag3.png') }}" alt=""> German</a>
-                                    </div>
-                                </li>
+                                @if( Auth::check() )
+                                    <li><a href="{{ url('profile') }}"><i class="pe-7s-lock"></i> User</a></li>
+                                    <li><a href="{{ url('logout') }}"><i class="pe-7s-lock"></i> Logout</a></li>
+                                @else
+                                    <li class="hidden-xs"><a href="{{ url('register') }}"><i class="pe-7s-user"></i> Register</a></li>
+                                    <li><a href="{{ url('login') }}"><i class="pe-7s-lock"></i> Login</a></li>
+                                @endif
                                 <li><a href="javascript:void(0)" class="search-toggle"><i class="fa fa-search"></i></a></li>
                             </ul>
                         </div>
@@ -315,7 +313,7 @@
         <script src="{{ asset('assets/libs/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('bower_components/flexslider/jquery.flexslider-min.js') }}"></script>
         <script src="{{ asset('assets/libs/owl-carousel/owl.carousel.min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('assets/js/tweetie.min.js') }}" type="text/javascript"></script>
+        {{--<script src="{{ asset('assets/js/tweetie.min.js') }}" type="text/javascript"></script>--}}
         <script src="{{ asset('assets/js/custom.js') }}" type="text/javascript"></script>
         <script src="{{ asset('bower_components/lightbox2/dist/js/lightbox.min.js') }}" type="text/javascript"></script>
         <!--revolution slider extentions-->

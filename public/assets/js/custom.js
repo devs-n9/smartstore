@@ -131,23 +131,27 @@ jQuery(document).ready(function () {
   /* ===================================================================
              TWEETIE -  TWITTER FEED PLUGIN THAT WORKS WITH NEW Twitter 1.1 API
              ==================================================================== */
-            jQuery('.tweet').twittie({
-                apiPath: 'twit-api/tweet.php',
-                dateFormat: '%b. %d, %Y',
-                template: '{{tweet}} <div class="date">{{date}}</div> ',
-                count: 2
-            });
+            // jQuery('.tweet').twittie({
+            //     apiPath: 'twit-api/tweet.php',
+            //     dateFormat: '%b. %d, %Y',
+            //     template: '{{tweet}} <div class="date">{{date}}</div> ',
+            //     count: 2
+            // });
 
 
 /** product single slider**/
 $(document).ready(function() {
-  $("#product-single").owlCarousel({
-      navigation : true, 
-      slideSpeed : 300,
-      pagination : false,
-      singleItem:true,
-      navigationText: ["<i class='pe-7s-angle-left'>", "<i class='pe-7s-angle-right'>"]
-  });
+    $("#product-single").owlCarousel({
+        navigation : true,
+        slideSpeed : 300,
+        pagination : false,
+        singleItem:true,
+        navigationText: ["<i class='pe-7s-angle-left'>", "<i class='pe-7s-angle-right'>"]
+    });
+
+    setTimeout(function () {
+        $(".tooltip").removeClass("active");
+    }, 7000);
 });
 
 

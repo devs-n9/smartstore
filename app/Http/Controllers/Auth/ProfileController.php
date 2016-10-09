@@ -1,0 +1,107 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Models\User;
+use App\Models\Profile;
+use Validator;
+use Mail;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use DB;
+use Auth;
+use Intervention\Image\Facades\Image;
+
+
+class ProfileController extends Controller
+{
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    // Validation reg form
+    protected function validator(array $data, $form)
+    {
+        $validator = null;
+        if( $form == 'profile' ){
+            $validator = Validator::make($data, [
+                'first_name' => 'required|min:3',
+                'last_name' => 'required|min:3',
+                'tel' => 'required',
+                'password' => 'confirmed|min:6',
+            ]);
+        }
+        return $validator;
+    }
+
+    public function thisUser()
+    {
+        $user = DB::table('users')
+            ->join('profile', function ($join) {
+                $join->on('users.id', '=', 'profile.user_id')
+                    ->where('profile.user_id', '=', Auth::user()->id);
+            })
+            ->get();
+        return $user[0];
+    }
+    public function getProfile()
+    {
+        $this_user = $this->thisUser();
+        return view("profile.index", ["user"=>$this_user]);
+    }
+    public function updateProfile(Request $request)
+    {
+        if($request){
+            $validator = $this->validator($request->all(), 'profile');
+            $data = $request->all();
+            if ($validator->fails()) {
+                return redirect('/profile')->withErrors($validator);
+            } else {
+
+                $this_user = $this->thisUser();
+
+                // Work with image
+                $fileName = $this_user->avatar;
+                if($request->hasFile("avatar")){
+                    $file = $request->file("avatar");
+                    $fileName = md5(time() . rand(1, 999)) . '.' . $file->extension();
+
+                    $path = config('custom')['users_path'];
+                    $img_sizes = config('custom')['users_img'];
+                    $curr_img = Image::make($file->path());
+                    foreach ($img_sizes as $sizes) {
+                        if (!is_dir($path . $sizes['width'] . 'x' . $sizes['height'])) {
+                            mkdir($path . $sizes['width'] . 'x' . $sizes['height']);
+                        }
+                        $curr_img->fit($sizes['width'], $sizes['height'])->save($path . $sizes['width'] . 'x' . $sizes['height'] . '/' . $fileName, 90);
+                    }
+                }
+                // Update profile
+                $user_profile = Profile::where('user_id', Auth::user()->id)->update([
+                  'first_name' => $data['first_name'],
+                  'last_name' => $data['last_name'],
+                  'gender' => $data['gender'],
+                  'age' => $data['age'],
+                  'tel' => $data['tel'],
+                  'address' => $data['address'],
+                  'avatar' => $fileName
+                ]);
+                if($data['password'] != ''){
+                    // Update user
+                    $user = User::where('id', Auth::user()->id)->update([
+                      'password' => bcrypt($data['password'])
+                    ]);
+                }
+
+                $this_user = $this->thisUser();
+                return view("profile.index", ["user"=>$this_user]);
+            }
+        }
+    }
+
+}

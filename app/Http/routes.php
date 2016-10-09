@@ -78,7 +78,7 @@ Route::group(['middleware' => 'web'], function() {
   });
   // Auth end
     
-    ///dashboard settings for meta tags start here
+///dashboard settings for meta tags start here
 
 Route::get('/dashboard/settings/index_meta','Dashboard\SettingsController@index_settings');
 
@@ -102,7 +102,7 @@ Route::get('/dashboard/settings/edit_contacts','Dashboard\SettingsController@ind
 Route::get('/dashboard/settings/edit_contacts/{id}','Dashboard\SettingsController@edit_contacts');
 Route::post('/dashboard/settings/edit_contacts/{id}','Dashboard\SettingsController@update_contacts');
 
-Route::get('/dashboard/settings/delete/{id}', 'Dashboard\SettingsController@delete_contacts');
+Route::get('/dashboard/settings/index_contacts/delete_contacts/{id}', 'Dashboard\SettingsController@delete_contacts');
 
 ///dashboard settings for contacts end here
 

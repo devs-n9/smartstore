@@ -21,7 +21,7 @@
         <td>{{ $contact->email }}</td>
         <td>{{ $contact->address }}</td>
         <td><a class="glyphicon glyphicon-pencil" href="/dashboard/settings/edit_contacts/{{ $contact->id }}"></a></td>
-        <td><a class="glyphicon glyphicon-remove" href="/dashboard/settings/edit_contacts/{{ $contact->id }}"></a></td>
+        <td><a class="glyphicon glyphicon-remove" href="/dashboard/settings/index_contacts/delete_contacts/{{ $contact->id }}"></a></td>
             </tr>
             @endforeach
         </tbody>

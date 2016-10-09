@@ -93,7 +93,7 @@ class SettingsController extends Controller
     //show view for changing contact information by $id
     public function edit_contacts($id)
     {
-        $contacts = Contacts::all();
+        $contacts = Contacts::find($id);
         return view('dashboard.settings.edit_contacts', [
             'contacts' => $contacts
         ]);
@@ -109,10 +109,12 @@ class SettingsController extends Controller
     }
     
     //delete contact's informations by $id
-     public function delete_contacts($id)
+    public function delete_contacts($id)
     {
-        $contacts = Contacts::where('id', $id)->delete();
-        return redirect('/dashboard/settings/index_contacts');
+        $contacts = Contacts::where("ID", $id)->first();
+        $contacts->delete();
+        $contacts = Contacts::all();
+        return view("dashboard.settings.index_contacts", ["contacts"=>$contacts]);
     }
     
 }

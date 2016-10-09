@@ -23,7 +23,7 @@
                     <div class="col-md-4 margin-b-30">
                         <div class="product-list-thumb">
                             <a href="/product/{{ $product->alias }}">
-                                <img src="{{ asset('uploads/images/products/' . $product->preview ) }}" alt="{{ $product->product }}" class="img-responsive">
+                                <img src="{{ asset('uploads/images/products/210x210/' . $product->preview ) }}" alt="{{ $product->product }}" class="img-responsive">
                             </a>
                         </div>
                     </div>

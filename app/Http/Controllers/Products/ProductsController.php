@@ -48,7 +48,7 @@ class ProductsController extends Controller
                 // Create review & save
                 $review = new Reviews();
                 $review->review = $data["review"];
-                $review->product_id = $product->id;
+                $review->product_id = $productId;
                 $review->rating = $data["rating"];
                 $review->user_id = Auth::user()->id;
                 // Work with image
@@ -66,7 +66,7 @@ class ProductsController extends Controller
         }
 
         // Get product
-        $images = ProductImages::all()->where('product_id', $product->id);
+        $images = ProductImages::all()->where('product_id', $productId);
         $products = Products::all();
         $categories = Categories::all();
         $product_category = $categories->where('id', $product['category_id'])->first();
@@ -80,7 +80,7 @@ class ProductsController extends Controller
           })
           ->join('profile', 'profile.user_id', '=', 'reviews.user_id')
           ->get();
-        $product_rating = Reviews::where('product_id', $product->id)->where('publish', '=', 1)->select('rating')->get();
+        $product_rating = Reviews::where('product_id', $productId)->where('publish', '=', 1)->select('rating')->get();
         $product_rating_total = 0;
         $product_rating_count = 0;
         for($i=0;$i<count($product_rating);$i++){

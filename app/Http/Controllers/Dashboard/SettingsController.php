@@ -44,8 +44,8 @@ class SettingsController extends Controller
         $contacts = [];
         $validator = Validator::make($request->all(), [
             'phone' => 'unique:contacts|required',
-            'email' => 'unique:contacts|required',
-            'address' => 'unique:contacts|required'
+            'email' => 'unique:contacts|required|max:150|email',
+            'address' => 'unique:contacts|required|max:500'
         ]);
         
         if (!$validator->fails()) {
@@ -68,14 +68,14 @@ class SettingsController extends Controller
     {
         $settings = [];
         $validator = Validator::make($request->all(), [
-            'description' => 'unique:settings|required',
+            'description' => 'unique:settings|required|max:3000',
             'keywords' => 'unique:settings|required',
-            'author' => 'unique:settings|required',
+            'author' => 'unique:settings|required|max:100',
             'title' => 'unique:settings|required'
         ]);
         
         if (!$validator->fails()) {
-            
+           
             $data_set = $request->all();
           
             Settings::create($data_set);
@@ -86,8 +86,7 @@ class SettingsController extends Controller
             return view('dashboard.settings.add_meta', [
                 'errors' => $validator->errors()->all()
             ]);
-        }
-        
+        }  
     }
     
     //show view for changing contact information by $id

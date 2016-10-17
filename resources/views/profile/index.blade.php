@@ -54,7 +54,7 @@
                                         <section>
                                             <div class="profile__avatar">
                                                 @if($user->avatar)
-                                                    <img class="media-object img-circle" src="{{ asset('/uploads/images/users/' . $user->avatar) }}" alt="">
+                                                    <img class="media-object img-circle" src="{{ asset('/uploads/images/users/210x210/' . $user->avatar) }}" alt="">
                                                 @else
                                                     <img class="media-object img-circle" src="{{ asset('/assets/images/default-user-image.png') }}" alt="">
                                                 @endif

@@ -12,8 +12,8 @@
                     <div id="product-single"  class="owl-carousel owl-theme single-product-slider">
                         @foreach($images as $image)
                         <div class="item">
-                            <a href="{{ asset('/uploads/images/product/' . $image->image) }}" data-lightbox="roadtrip">
-                                <img src="{{ asset('/uploads/images/product/' . $image->image) }}" alt="Product image" class="img-responsive">
+                            <a href="{{ asset('/uploads/images/products/325x400/' . $image->image) }}" data-lightbox="roadtrip">
+                                <img src="{{ asset('/uploads/images/products/325x400/' . $image->image) }}" alt="Product image" class="img-responsive">
                             </a>
                         </div>
                         @endforeach
@@ -35,7 +35,7 @@
                             @endfor
                             <a href="#">
                                 {{ $product_rating_count }}
-                                @if($product_rating_count > 1)
+                                @if($product_rating_count >= 1)
                                 Review
                                 @else
                                 Reviews
@@ -92,14 +92,14 @@
                                     <div class="media-left">
                                         <a href="#">
                                             @if($review->avatar)
-                                            <img class="media-object img-circle" src="{{ asset('/uploads/images/reviews/' . $review->avatar) }}" width="80" alt="{{ $review->name }}">
+                                            <img class="media-object img-circle" src="{{ asset('/uploads/images/reviews/' . $review->avatar) }}" width="80" alt="{{ $review->login }}">
                                             @else
-                                            <img class="media-object img-circle" src="{{ asset('/assets/images/default-user-image.png' . $review->avatar) }}" width="80" alt="{{ $review->name }}">
+                                            <img class="media-object img-circle" src="{{ asset('/assets/images/default-user-image.png' . $review->avatar) }}" width="80" alt="{{ $review->login }}">
                                             @endif
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <h5>{{ $review->name }}</h5>
+                                        <h5>{{ $review->login }}</h5>
                                         <p>{{ $review->review }}</p>
                                         @if($review->rating)
                                         <span class="rating">
@@ -117,25 +117,12 @@
                                 @endforeach
                             </div>
                             <div role="tabpanel" class="tab-pane" id="add-cmnt">
+                                @if( Auth::check() )
                                 <form role="form" method="post" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <div class="row">
-                                        <input type="hidden" value="{{ $product->id }}" name="product_id">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="inputFirstName" class="control-label">First Name:<span class="text-error">*</span></label>
-                                                <div>
-                                                    <input type="text" class="form-control" id="inputFirstName" name="name" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="inputCompany" class="control-label">Avatar:</label>
-                                                <div>
-                                                    <input type="file" class="form-control" id="inputAvatar" name="avatar">
-                                                </div>
-                                            </div>
+                                        <div class="col-xs-12">
+                                            <p style="font-size: 20px;"><strong>{{ Auth::user()->login }}</strong>, leave your review</p>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -173,6 +160,14 @@
                                     </div>
                                     <input type="submit" class="btn-skin btn btn-lg" value="Add Review" name="add_review">
                                 </form>
+                                @else
+                                    <p>Sorry, but only registered user can leave feedback</p>
+                                    <p>
+                                        <a href="{{ url('login') }}" class="btn-skin btn btn-lg">Login</a>
+                                        &#160;&#160;or&#160;&#160;
+                                        <a href="{{ url('register') }}" class="btn-skin btn btn-lg">Register</a>
+                                    </p>
+                                @endif
                             </div>
                         </div>
 
